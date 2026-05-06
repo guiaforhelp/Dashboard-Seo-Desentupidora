@@ -50,7 +50,7 @@ export default function DashboardHeader({
           </div>
 
           {/* Summary */}
-          <div className="bg-white bg-opacity-10 backdrop-blur-sm rounded-lg p-4 border border-white border-opacity-20">
+          <div className="bg-white bg-opacity-10 backdrop-blur-sm rounded-lg p-4 border border-white border-opacity-20" style={{backgroundColor: '#213d50'}}>
             <p className="text-gray-100 leading-relaxed">{summary}</p>
           </div>
         </div>
