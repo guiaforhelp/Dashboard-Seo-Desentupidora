@@ -23,7 +23,13 @@ export default function DashboardHeader({
           <div className="flex-1 pr-8">
             {/* Badge */}
             <div className="inline-block mb-4">
-              <span className="px-4 py-2 bg-white bg-opacity-20 text-white text-xs font-bold tracking-wider rounded-full border border-white border-opacity-30">
+              <span 
+                className="px-4 py-2 text-white text-xs font-bold tracking-wider rounded-full border"
+                style={{
+                  backgroundColor: '#224055',
+                  borderColor: '#4b5057'
+                }}
+              >
                 RELATÓRIO SEO PREMIUM
               </span>
             </div>
@@ -60,25 +66,53 @@ export default function DashboardHeader({
           {/* Right KPI Cards */}
           <div className="grid grid-cols-2 gap-4">
             {/* Usuários Ativos */}
-            <div className="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-4 border border-white border-opacity-20 text-center">
+            <div 
+              className="backdrop-blur-sm rounded-xl p-4 text-center"
+              style={{
+                backgroundColor: '#4b5057',
+                borderColor: '#9e9e9e',
+                border: '1px solid #9e9e9e'
+              }}
+            >
               <p className="text-gray-300 text-xs font-semibold tracking-wide mb-2">USUÁRIOS ATIVOS</p>
               <p className="text-white text-3xl font-bold" style={{ fontFamily: "'Poppins', sans-serif" }}>47</p>
             </div>
 
             {/* Cliques Orgânicos */}
-            <div className="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-4 border border-white border-opacity-20 text-center">
+            <div 
+              className="backdrop-blur-sm rounded-xl p-4 text-center"
+              style={{
+                backgroundColor: '#4b5057',
+                borderColor: '#9e9e9e',
+                border: '1px solid #9e9e9e'
+              }}
+            >
               <p className="text-gray-300 text-xs font-semibold tracking-wide mb-2">CLIQUES ORGÂNICOS</p>
               <p className="text-white text-3xl font-bold" style={{ fontFamily: "'Poppins', sans-serif" }}>30</p>
             </div>
 
             {/* Impressões */}
-            <div className="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-4 border border-white border-opacity-20 text-center">
+            <div 
+              className="backdrop-blur-sm rounded-xl p-4 text-center"
+              style={{
+                backgroundColor: '#4b5057',
+                borderColor: '#9e9e9e',
+                border: '1px solid #9e9e9e'
+              }}
+            >
               <p className="text-gray-300 text-xs font-semibold tracking-wide mb-2">IMPRESSÕES</p>
               <p className="text-white text-3xl font-bold" style={{ fontFamily: "'Poppins', sans-serif" }}>7.04 mil</p>
             </div>
 
             {/* Conversões */}
-            <div className="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-4 border border-white border-opacity-20 text-center">
+            <div 
+              className="backdrop-blur-sm rounded-xl p-4 text-center"
+              style={{
+                backgroundColor: '#4b5057',
+                borderColor: '#9e9e9e',
+                border: '1px solid #9e9e9e'
+              }}
+            >
               <p className="text-gray-300 text-xs font-semibold tracking-wide mb-2">CONVERSÕES</p>
               <p className="text-white text-3xl font-bold" style={{ fontFamily: "'Poppins', sans-serif" }}>1</p>
             </div>
