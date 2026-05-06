@@ -16,7 +16,7 @@ export default function DashboardHeader({
   onDownload,
 }: DashboardHeaderProps) {
   return (
-    <div className="sticky top-0 z-40 bg-[#f2f2f7] py-4">
+    <div className="bg-[#f2f2f7] py-4">
       <div className="container">
         <div className="bg-gradient-to-r from-[#203c50] via-[#2a4d63] to-[#1a2d3a] rounded-[32px] p-8">
           {/* Header Title */}
