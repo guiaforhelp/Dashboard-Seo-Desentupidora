@@ -253,12 +253,12 @@ export default function GA4Section({ data }: GA4SectionProps) {
                 </div>
               </div>
               {/* Second Conversion Page */}
-              <div className="p-4 bg-gradient-to-r from-orange-50 to-white rounded-lg border border-orange-200">
+              <div className="p-4 bg-gradient-to-r from-orange-50 to-white rounded-lg border border-orange-200" style={{borderColor: '#f1fdf5', backgroundColor: '#f0fdf4'}}>
                 <p className="font-medium text-[#203c50] mb-3">Limpa Fossa Águas Lindas Serviços em Goiás com Soluções Prof</p>
                 <div className="grid grid-cols-2 gap-3">
-                  <div className="text-center p-2 bg-orange-100 rounded-lg">
+                  <div className="text-center p-2 bg-orange-100 rounded-lg" style={{backgroundColor: '#dbfce6'}}>
                     <p className="text-xs text-gray-600 mb-1">Conversões</p>
-                    <p className="text-xl font-bold text-orange-600">1</p>
+                    <p className="text-xl font-bold" style={{color: '#00a63d'}}>1</p>
                   </div>
                   <div className="text-center p-2 bg-blue-100 rounded-lg">
                     <p className="text-xs text-gray-600 mb-1">Tempo Médio</p>
