@@ -230,30 +230,41 @@ export default function GA4Section({ data }: GA4SectionProps) {
             </div>
           </div>
 
-          {/* Top Conversion Page */}
+          {/* Top Conversion Pages */}
           <div className="card-premium">
-            <p className="text-sm text-gray-600 mb-4">Página com Maior Intenção de Conversão</p>
-            <p className="font-medium text-[#203c50] mb-4 line-clamp-2">
-              {data.topConversionPage.title}
-            </p>
-            <div className="grid grid-cols-3 gap-4">
-              <div className="text-center p-3 bg-gray-50 rounded-lg">
-                <p className="text-xs text-gray-600 mb-1">Eventos</p>
-                <p className="text-2xl font-bold text-[#203c50]">
-                  {data.topConversionPage.events}
-                </p>
+            <p className="text-sm text-gray-600 mb-4">Páginas com Maior Intenção de Conversão</p>
+            <div className="space-y-4">
+              {/* First Conversion Page */}
+              <div className="p-4 bg-gradient-to-r from-green-50 to-white rounded-lg border border-green-200">
+                <p className="font-medium text-[#203c50] mb-3">{data.topConversionPage.title}</p>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="text-center p-2 bg-green-100 rounded-lg">
+                    <p className="text-xs text-gray-600 mb-1">Conversões</p>
+                    <p className="text-xl font-bold text-green-600">
+                      {data.topConversionPage.conversions}
+                    </p>
+                  </div>
+                  <div className="text-center p-2 bg-blue-100 rounded-lg">
+                    <p className="text-xs text-gray-600 mb-1">Tempo Médio</p>
+                    <p className="text-sm font-bold text-[#203c50]">
+                      {data.topConversionPage.engagementTime}
+                    </p>
+                  </div>
+                </div>
               </div>
-              <div className="text-center p-3 bg-green-50 rounded-lg">
-                <p className="text-xs text-gray-600 mb-1">Conversões</p>
-                <p className="text-2xl font-bold text-green-600">
-                  {data.topConversionPage.conversions}
-                </p>
-              </div>
-              <div className="text-center p-3 bg-blue-50 rounded-lg">
-                <p className="text-xs text-gray-600 mb-1">Tempo Médio</p>
-                <p className="text-sm font-bold text-[#203c50]">
-                  {data.topConversionPage.engagementTime}
-                </p>
+              {/* Second Conversion Page */}
+              <div className="p-4 bg-gradient-to-r from-orange-50 to-white rounded-lg border border-orange-200">
+                <p className="font-medium text-[#203c50] mb-3">Limpa Fossa Águas Lindas Serviços em Goiás com Soluções Prof</p>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="text-center p-2 bg-orange-100 rounded-lg">
+                    <p className="text-xs text-gray-600 mb-1">Conversões</p>
+                    <p className="text-xl font-bold text-orange-600">1</p>
+                  </div>
+                  <div className="text-center p-2 bg-blue-100 rounded-lg">
+                    <p className="text-xs text-gray-600 mb-1">Tempo Médio</p>
+                    <p className="text-sm font-bold text-[#203c50]">6s</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
