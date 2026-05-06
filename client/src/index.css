@@ -148,7 +148,8 @@
   }
 
   .kpi-value {
-    @apply text-5xl font-bold text-[#ff6737] font-poppins;
+    font-family: 'Poppins', sans-serif;
+    @apply text-5xl font-bold text-[#ff6737];
   }
 
   .kpi-label {
@@ -157,11 +158,13 @@
 
   /* Section Title */
   .section-title {
-    @apply text-3xl font-bold text-[#203c50] font-poppins mb-8;
+    font-family: 'Poppins', sans-serif;
+    @apply text-3xl font-bold text-[#203c50] mb-8;
   }
 
   .section-subtitle {
-    @apply text-lg font-semibold text-[#203c50] font-poppins mb-4;
+    font-family: 'Poppins', sans-serif;
+    @apply text-lg font-semibold text-[#203c50] mb-4;
   }
 
   /* Badge Styles */
