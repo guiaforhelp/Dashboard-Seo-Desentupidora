@@ -28,14 +28,32 @@ export default function GSCSection({ data }: GSCSectionProps) {
 
         {/* KPI Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
-          <KPICard label="Total de Cliques" value={data.clicks} icon={<Search />} />
+          <KPICard
+            label="Total de Cliques"
+            value={data.clicks}
+            icon={<Search />}
+            trend="up"
+            trendValue="+18%"
+          />
           <KPICard
             label="Total de Impressões"
             value={data.impressions.toLocaleString('pt-BR')}
             icon={<BarChart3 />}
+            trend="up"
+            trendValue="+22%"
           />
-          <KPICard label="CTR Média" value={`${data.ctr}%`} />
-          <KPICard label="Posição Média" value={data.avgPosition.toFixed(1)} />
+          <KPICard
+            label="CTR Média"
+            value={`${data.ctr}%`}
+            trend="up"
+            trendValue="+5%"
+          />
+          <KPICard
+            label="Posição Média"
+            value={data.avgPosition.toFixed(1)}
+            trend="down"
+            trendValue="-1.2"
+          />
         </div>
 
         {/* Daily Metrics Chart */}

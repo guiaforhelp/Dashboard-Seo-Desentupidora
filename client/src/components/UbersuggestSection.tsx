@@ -36,10 +36,30 @@ export default function UbersuggestSection({ data }: UbersuggestSectionProps) {
 
         {/* KPI Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
-          <KPICard label="Pontuação SEO On-page" value={data.seoScore} />
-          <KPICard label="Tráfego Orgânico Mensal" value={data.monthlyTraffic} />
-          <KPICard label="Palavras-chave Orgânicas" value={data.organicKeywords} />
-          <KPICard label="Backlinks" value={data.backlinks} />
+          <KPICard
+            label="Pontuação SEO On-page"
+            value={data.seoScore}
+            trend="up"
+            trendValue="+7"
+          />
+          <KPICard
+            label="Tráfego Orgânico Mensal"
+            value={data.monthlyTraffic}
+            trend="up"
+            trendValue="+34%"
+          />
+          <KPICard
+            label="Palavras-chave Orgânicas"
+            value={data.organicKeywords}
+            trend="up"
+            trendValue="+19%"
+          />
+          <KPICard
+            label="Backlinks"
+            value={data.backlinks}
+            trend="up"
+            trendValue="+12%"
+          />
         </div>
 
         {/* Rankings */}

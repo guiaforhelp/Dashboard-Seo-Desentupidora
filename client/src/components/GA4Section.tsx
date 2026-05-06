@@ -37,26 +37,36 @@ export default function GA4Section({ data }: GA4SectionProps) {
             label="Usuários Ativos"
             value={data.activeUsers}
             icon={<Users />}
+            trend="up"
+            trendValue="+12%"
           />
           <KPICard
             label="Novos Usuários"
             value={data.newUsers}
             icon={<Users />}
+            trend="up"
+            trendValue="+8%"
           />
           <KPICard
             label="Tempo Médio"
             value={data.engagementTime}
             icon={<Zap />}
+            trend="down"
+            trendValue="-3%"
           />
           <KPICard
             label="Visualizações"
             value={data.pageViews}
             icon={<Eye />}
+            trend="up"
+            trendValue="+15%"
           />
           <KPICard
             label="Conversões"
             value={data.conversions}
             icon={<TrendingUp />}
+            trend="up"
+            trendValue="+25%"
           />
         </div>
 
