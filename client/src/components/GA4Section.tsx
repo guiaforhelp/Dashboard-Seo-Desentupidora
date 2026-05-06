@@ -37,36 +37,26 @@ export default function GA4Section({ data }: GA4SectionProps) {
             label="Usuários Ativos"
             value={data.activeUsers}
             icon={<Users />}
-            trend="up"
-            trendValue="+12%"
           />
           <KPICard
             label="Novos Usuários"
             value={data.newUsers}
             icon={<Users />}
-            trend="up"
-            trendValue="+8%"
           />
           <KPICard
             label="Tempo Médio"
             value={data.engagementTime}
             icon={<Zap />}
-            trend="down"
-            trendValue="-3%"
           />
           <KPICard
             label="Visualizações"
             value={data.pageViews}
             icon={<Eye />}
-            trend="up"
-            trendValue="+15%"
           />
           <KPICard
             label="Conversões"
             value={data.conversions}
             icon={<TrendingUp />}
-            trend="up"
-            trendValue="+25%"
           />
         </div>
 
@@ -174,7 +164,7 @@ export default function GA4Section({ data }: GA4SectionProps) {
                     borderRadius: '8px',
                   }}
                 />
-                <Bar dataKey="count" fill="#ff6737" radius={[0, 8, 8, 0]} />
+                <Bar dataKey="count" fill="#ff6737" radius={[0, 8, 8, 0]} label={{ position: 'right', fill: '#203c50', fontSize: 12, fontWeight: 'bold' }} />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -187,7 +177,7 @@ export default function GA4Section({ data }: GA4SectionProps) {
             <BarChart
               data={data.locations}
               layout="vertical"
-              margin={{ top: 5, right: 30, left: 200 }}
+              margin={{ top: 5, right: 100, left: 200 }}
             >
               <CartesianGrid strokeDasharray="3 3" stroke="#e5e5e5" />
               <XAxis type="number" stroke="#999" />
@@ -199,7 +189,7 @@ export default function GA4Section({ data }: GA4SectionProps) {
                   borderRadius: '8px',
                 }}
               />
-              <Bar dataKey="count" fill="#203c50" radius={[0, 8, 8, 0]} />
+                <Bar dataKey="count" fill="#203c50" radius={[0, 8, 8, 0]} label={{ position: 'right', fill: '#203c50', fontSize: 12, fontWeight: 'bold' }} />
             </BarChart>
           </ResponsiveContainer>
         </div>

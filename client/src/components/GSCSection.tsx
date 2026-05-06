@@ -32,27 +32,19 @@ export default function GSCSection({ data }: GSCSectionProps) {
             label="Total de Cliques"
             value={data.clicks}
             icon={<Search />}
-            trend="up"
-            trendValue="+18%"
           />
           <KPICard
             label="Total de Impressões"
             value={data.impressions.toLocaleString('pt-BR')}
             icon={<BarChart3 />}
-            trend="up"
-            trendValue="+22%"
           />
           <KPICard
             label="CTR Média"
             value={`${data.ctr}%`}
-            trend="up"
-            trendValue="+5%"
           />
           <KPICard
             label="Posição Média"
             value={data.avgPosition.toFixed(1)}
-            trend="down"
-            trendValue="-1.2"
           />
         </div>
 
@@ -73,7 +65,7 @@ export default function GSCSection({ data }: GSCSectionProps) {
                 }}
               />
               <Legend />
-              <Bar yAxisId="left" dataKey="clicks" fill="#ff6737" name="Cliques" />
+              <Bar yAxisId="left" dataKey="clicks" fill="#ff6737" name="Cliques" label={{ position: 'top', fill: '#203c50', fontSize: 11, fontWeight: 'bold' }} />
               <Line
                 yAxisId="right"
                 type="monotone"

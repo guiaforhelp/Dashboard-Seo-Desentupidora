@@ -39,26 +39,18 @@ export default function UbersuggestSection({ data }: UbersuggestSectionProps) {
           <KPICard
             label="Pontuação SEO On-page"
             value={data.seoScore}
-            trend="up"
-            trendValue="+7"
           />
           <KPICard
             label="Tráfego Orgânico Mensal"
             value={data.monthlyTraffic}
-            trend="up"
-            trendValue="+34%"
           />
           <KPICard
             label="Palavras-chave Orgânicas"
             value={data.organicKeywords}
-            trend="up"
-            trendValue="+19%"
           />
           <KPICard
             label="Backlinks"
             value={data.backlinks}
-            trend="up"
-            trendValue="+12%"
           />
         </div>
 
@@ -79,7 +71,7 @@ export default function UbersuggestSection({ data }: UbersuggestSectionProps) {
                       borderRadius: '8px',
                     }}
                   />
-                  <Bar dataKey="value" fill="#ff6737" radius={[8, 8, 0, 0]} />
+                  <Bar dataKey="value" fill="#ff6737" radius={[8, 8, 0, 0]} label={{ position: 'top', fill: '#203c50', fontSize: 12, fontWeight: 'bold' }} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
