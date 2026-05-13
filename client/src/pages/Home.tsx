@@ -6,6 +6,8 @@ import UbersuggestSection from '@/components/UbersuggestSection';
 import InsightsSection from '@/components/InsightsSection';
 import ActionItemsSection from '@/components/ActionItemsSection';
 import ExecutiveSummarySection from '@/components/ExecutiveSummarySection';
+import WeeklyReadingSection from '@/components/WeeklyReadingSection';
+import RecommendationsSection from '@/components/RecommendationsSection';
 import DataInputPanel from '@/components/DataInputPanel';
 import { DashboardData, defaultDashboardData } from '@/types/dashboard';
 import { generateHTMLContent, downloadHTML } from '@/lib/exportHTML';
@@ -56,6 +58,12 @@ export default function Home() {
 
         {/* Executive Summary Section */}
         <ExecutiveSummarySection />
+
+        {/* Weekly Reading Section */}
+        <WeeklyReadingSection />
+
+        {/* Recommendations Section */}
+        <RecommendationsSection />
       </main>
 
       {/* Data Input Panel */}
