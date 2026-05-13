@@ -11,6 +11,8 @@ export default function RecommendationsSection() {
     'Fortalecer conteúdos em alta, como Fossa Negra, Prumada, Soda Cáustica e Plástico e Inquilino Reclama de Entupimento.',
     'Criar ou reotimizar conteúdos locais para Perdizes, Morumbi, Pirituba, Ipiranga e Osasco.',
     'Monitorar se os artigos novos começam a aparecer no Search Console nas próximas semanas.',
+    'Revisar a página "Desentupidora Blumenau Serviços para Santa Catarina", pois ela gerou conversão.',
+    'Melhorar CTA, bloco de confiança, telefone/WhatsApp e links internos da página de Blumenau.',
     'Continuar o plano do 2º trimestre com foco em linkagem interna, otimização de conteúdo antigo e fortalecimento dos conteúdos novos.',
   ];
 
@@ -35,7 +37,8 @@ export default function RecommendationsSection() {
           <p className="text-lg font-semibold mb-2">🎯 Foco Principal</p>
           <p className="text-sm leading-relaxed">
             A estratégia agora deve focar em fortalecer os artigos novos com linkagem interna vinda dos artigos antigos mais fortes. 
-            Isso criará um efeito de autoridade que ajudará os conteúdos novos a ranquearem mais rapidamente no Google.
+            Isso criará um efeito de autoridade que ajudará os conteúdos novos a ranquearem mais rapidamente no Google. Além disso, 
+            as páginas locais como Blumenau mostram potencial de conversão rápida e devem ser replicadas para outras cidades.
           </p>
         </div>
       </div>

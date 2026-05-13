@@ -3,6 +3,10 @@ export interface DashboardData {
     startDate: string;
     endDate: string;
   };
+  previousPeriod?: {
+    startDate: string;
+    endDate: string;
+  };
   company: string;
   
   // Google Analytics 4
@@ -100,6 +104,10 @@ export const defaultDashboardData: DashboardData = {
     startDate: '06/05/2026',
     endDate: '12/05/2026',
   },
+  previousPeriod: {
+    startDate: '29/04/2026',
+    endDate: '05/05/2026',
+  },
   company: 'Desentupidora JD',
   
   ga4: {
@@ -164,10 +172,10 @@ export const defaultDashboardData: DashboardData = {
     },
     
     topConversionPage: {
-      title: 'Prumada: O Que É, Sua Função e Manutenção Preventiva',
-      events: 6,
+      title: 'Desentupidora Blumenau Serviços para Santa Catarina',
+      events: 7,
       conversions: 1,
-      engagementTime: '45 segundos',
+      engagementTime: '17 segundos',
     },
   },
   
