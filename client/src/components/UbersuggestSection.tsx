@@ -5,6 +5,7 @@ import { Smartphone, Monitor, Zap, AlertCircle, CheckCircle, Clock } from 'lucid
 
 interface UbersuggestSectionProps {
   data: DashboardData['ubersuggest'];
+  technicalData?: DashboardData['technicalSeo'];
 }
 
 function getPerformanceStatus(status: string): { color: string; bgColor: string } {
@@ -46,12 +47,12 @@ function getMetricIcon(metric: string) {
   }
 }
 
-export default function UbersuggestSection({ data }: UbersuggestSectionProps) {
+export default function UbersuggestSection({ data, technicalData }: UbersuggestSectionProps) {
   const rankingData = [
-    { name: 'Top 3', value: data.rankings.top3 },
-    { name: 'Top 10', value: data.rankings.top10 },
-    { name: 'Top 100', value: data.rankings.top100 },
-    { name: 'Não Ranqueiam', value: data.rankings.notRanking },
+    { name: 'Top 3', value: data.top3 },
+    { name: 'Top 10', value: data.top10 },
+    { name: 'Top 100', value: data.top100 },
+    { name: 'Não Ranqueiam', value: data.notRanked },
   ];
 
   const performanceMetrics = [
@@ -69,16 +70,16 @@ export default function UbersuggestSection({ data }: UbersuggestSectionProps) {
         {/* KPI Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
           <KPICard
-            label="Pontuação SEO On-page"
-            value={data.seoScore}
+            label="Posição Média"
+            value={data.avgPositionCurrent.toFixed(1)}
           />
           <KPICard
-            label="Tráfego Orgânico Mensal"
-            value={data.monthlyTraffic}
+            label="Melhora"
+            value={`+${(data.avgPositionPrevious - data.avgPositionCurrent).toFixed(1)}`}
           />
           <KPICard
-            label="Palavras-chave Orgânicas"
-            value={data.organicKeywords}
+            label="Top 100"
+            value={data.top100}
           />
           <KPICard
             label="Backlinks"
@@ -110,21 +111,21 @@ export default function UbersuggestSection({ data }: UbersuggestSectionProps) {
             <div className="space-y-3">
               <div className="p-4 bg-gradient-to-r from-blue-50 to-white rounded-lg border border-blue-200">
                 <p className="text-sm text-gray-600 mb-1">Posição Média</p>
-                <p className="text-3xl font-bold text-[#203c50]">{data.rankings.avgPosition}</p>
+                <p className="text-3xl font-bold text-[#203c50]">{data.avgPositionCurrent.toFixed(1)}</p>
               </div>
               <div className="grid grid-cols-2 gap-3">
                 <div className="p-3 bg-green-50 rounded-lg border border-green-200">
                   <p className="text-xs text-gray-600">Ganharam Posições</p>
-                  <p className="text-2xl font-bold text-green-600">{data.rankings.gainedPositions}</p>
+                  <p className="text-2xl font-bold text-green-600">{data.gainedPositions}</p>
                 </div>
                 <div className="p-3 bg-red-50 rounded-lg border border-red-200">
                   <p className="text-xs text-gray-600">Perderam Posições</p>
-                  <p className="text-2xl font-bold text-red-600">{data.rankings.lostPositions}</p>
+                  <p className="text-2xl font-bold text-red-600">{data.lostPositions}</p>
                 </div>
               </div>
               <div className="p-3 bg-gray-50 rounded-lg border border-gray-200">
                 <p className="text-xs text-gray-600">Inalteradas</p>
-                <p className="text-2xl font-bold text-[#203c50]">{data.rankings.unchanged}</p>
+                <p className="text-2xl font-bold text-[#203c50]">{data.unchangedPositions}</p>
               </div>
             </div>
           </div>
@@ -146,8 +147,8 @@ export default function UbersuggestSection({ data }: UbersuggestSectionProps) {
 
             <div className="space-y-3">
               {performanceMetrics.map((metric, idx) => {
-                const key = `mobile${metric.key}` as keyof typeof data.performance;
-                const status = data.performance[key] as string;
+                const key = `${metric.key}` as any;
+                const status = (technicalData?.performance as any)?.[key] as string || 'Bom';
                 const statusInfo = getPerformanceStatus(status);
                 
                 return (
@@ -189,8 +190,8 @@ export default function UbersuggestSection({ data }: UbersuggestSectionProps) {
 
             <div className="space-y-3">
               {performanceMetrics.map((metric, idx) => {
-                const key = `desktop${metric.key}` as keyof typeof data.performance;
-                const status = data.performance[key] as string;
+                const key = `${metric.key}` as any;
+                const status = (technicalData?.performance as any)?.[key] as string || 'Bom';
                 const statusInfo = getPerformanceStatus(status);
                 
                 return (

@@ -172,23 +172,23 @@ export default function DataInputPanel({ isOpen, onClose, onSave }: DataInputPan
             <div className="grid grid-cols-2 gap-4">
               <input
                 type="number"
-                placeholder="Pontuação SEO"
-                value={formData.ubersuggest.seoScore}
-                onChange={(e) => handleInputChange('ubersuggest.seoScore', parseInt(e.target.value))}
+                placeholder="Posição Média Anterior"
+                value={formData.ubersuggest.avgPositionPrevious}
+                onChange={(e) => handleInputChange('ubersuggest.avgPositionPrevious', parseFloat(e.target.value))}
                 className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#ff6737]"
               />
               <input
                 type="number"
                 placeholder="Tráfego Orgânico Mensal"
-                value={formData.ubersuggest.monthlyTraffic}
-                onChange={(e) => handleInputChange('ubersuggest.monthlyTraffic', parseInt(e.target.value))}
+                value={formData.ubersuggest.top10}
+                onChange={(e) => handleInputChange('ubersuggest.top10', parseInt(e.target.value))}
                 className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#ff6737]"
               />
               <input
                 type="number"
-                placeholder="Palavras-chave Orgânicas"
-                value={formData.ubersuggest.organicKeywords}
-                onChange={(e) => handleInputChange('ubersuggest.organicKeywords', parseInt(e.target.value))}
+                placeholder="Top 100"
+                value={formData.ubersuggest.top100}
+                onChange={(e) => handleInputChange('ubersuggest.top100', parseInt(e.target.value))}
                 className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#ff6737]"
               />
               <input

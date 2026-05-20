@@ -31,6 +31,7 @@ export interface DashboardData {
       name: string;
       count: number;
     };
+    
     topConversionPage: {
       title: string;
       events: number;
@@ -58,27 +59,33 @@ export interface DashboardData {
     queriesDown: Array<{ query: string; change: number }>;
     contentsUp: Array<{ title: string; change: number }>;
     contentsDown: Array<{ title: string; change: number }>;
-    topPages: Array<{ title: string; clicks: number }>;
+    topContents: Array<{ title: string; clicks: number }>;
   };
   
   // Ubersuggest
   ubersuggest: {
-    seoScore: number;
-    monthlyTraffic: number;
-    organicKeywords: number;
+    avgPositionPrevious: number;
+    avgPositionCurrent: number;
+    top3: number;
+    top10: number;
+    top100: number;
+    notRanked: number;
+    gainedPositions: number;
+    lostPositions: number;
+    unchangedPositions: number;
     backlinks: number;
     
-    rankings: {
-      avgPosition: number;
-      gainedPositions: number;
-      lostPositions: number;
-      unchanged: number;
-      top3: number;
-      top10: number;
-      top100: number;
-      notRanking: number;
-    };
-    
+    topKeywords: Array<{
+      keyword: string;
+      position: number;
+      change: number;
+      volume: number;
+      difficulty: number;
+    }>;
+  };
+  
+  // Technical SEO
+  technicalSeo: {
     performance: {
       mobileLoad: string;
       mobileInteractivity: string;
@@ -101,69 +108,70 @@ export interface DashboardData {
 
 export const defaultDashboardData: DashboardData = {
   period: {
-    startDate: '06/05/2026',
-    endDate: '12/05/2026',
+    startDate: '13/05/2026',
+    endDate: '19/05/2026',
   },
   previousPeriod: {
-    startDate: '29/04/2026',
-    endDate: '05/05/2026',
+    startDate: '06/05/2026',
+    endDate: '12/05/2026',
   },
   company: 'Desentupidora JD',
   
   ga4: {
-    activeUsers: 45,
-    newUsers: 45,
-    engagementTime: '28 segundos',
-    pageViews: 53,
+    activeUsers: 59,
+    newUsers: 59,
+    engagementTime: '53 segundos',
+    pageViews: 61,
     conversions: 1,
-    activeUsers30d: 160,
-    activeUsers7d: 45,
-    activeUsers1d: 4,
+    activeUsers30d: 186,
+    activeUsers7d: 59,
+    activeUsers1d: 12,
     
     dailyActivity: [
-      { date: '06/05', users: 8 },
-      { date: '07/05', users: 5 },
-      { date: '08/05', users: 7 },
-      { date: '09/05', users: 6 },
-      { date: '10/05', users: 9 },
-      { date: '11/05', users: 6 },
-      { date: '12/05', users: 4 },
+      { date: '13/05', users: 9 },
+      { date: '14/05', users: 8 },
+      { date: '15/05', users: 10 },
+      { date: '16/05', users: 11 },
+      { date: '17/05', users: 12 },
+      { date: '18/05', users: 5 },
+      { date: '19/05', users: 4 },
     ],
     
     devices: [
-      { name: 'Mobile', percentage: 51.1 },
-      { name: 'Desktop', percentage: 48.9 },
+      { name: 'Mobile', percentage: 61.0 },
+      { name: 'Desktop', percentage: 39.0 },
     ],
     
     os: [
+      { name: 'Android', count: 26 },
       { name: 'Windows', count: 22 },
-      { name: 'Android', count: 18 },
-      { name: 'iOS', count: 5 },
+      { name: 'iOS', count: 10 },
+      { name: 'Chrome OS', count: 1 },
     ],
     
     locations: [
-      { city: 'São Paulo', count: 5 },
-      { city: 'Blumenau', count: 3 },
-      { city: 'Belo Horizonte', count: 2 },
-      { city: 'Cuiabá', count: 2 },
-      { city: 'Curitiba', count: 2 },
-      { city: 'Guarulhos', count: 2 },
-      { city: 'Salvador', count: 2 },
+      { city: 'São Paulo', count: 6 },
+      { city: 'Curitiba', count: 4 },
+      { city: 'Belo Horizonte', count: 3 },
+      { city: 'Rio de Janeiro', count: 3 },
+      { city: 'Florianópolis', count: 2 },
+      { city: 'João Pessoa', count: 2 },
+      { city: 'Porto Alegre', count: 2 },
     ],
     
     audiences: [
-      { name: 'All Users', count: 45 },
-      { name: 'Usuários ativos recentemente', count: 32 },
+      { name: 'All Users', count: 59 },
+      { name: 'Usuários ativos recentemente', count: 33 },
     ],
     
     topPages: [
-      { title: 'Prumada: O Que É, Sua Função e Manutenção Preventiva', views: 6 },
-      { title: 'Soda Cáustica e Plástico: Evite Danos em Tubulações', views: 5 },
-      { title: 'Entupimento: Inquilino vs. Proprietário', views: 4 },
-      { title: 'Fossa Negra: Funcionamento, Riscos e Manutenção', views: 3 },
-      { title: 'Inquilino Reclama de Entupimento', views: 3 },
-      { title: 'Soda Cáustica: Como Usar para Desentupir', views: 3 },
-      { title: 'Desentupimento em São Paulo', views: 2 },
+      { title: 'Prumada: O Que É, Sua Função e Manutenção Preventiva', views: 7 },
+      { title: 'Inquilino Reclama de Entupimento', views: 6 },
+      { title: 'Soda Cáustica e Plástico: Evite Danos em Tubulações', views: 6 },
+      { title: 'Bueiros Entupidos? Veja as Principais Soluções', views: 5 },
+      { title: 'Qual papel higiênico pode jogar no vaso', views: 3 },
+      { title: 'Ralo Fazendo Barulho: O Que Significa', views: 3 },
+      { title: 'Fezes Grandes Entupindo o Vaso', views: 2 },
     ],
     
     conversionEvent: {
@@ -181,98 +189,102 @@ export const defaultDashboardData: DashboardData = {
   
   gsc: {
     clicks: 39,
-    impressions: 7050,
-    ctr: 0.6,
-    avgPosition: 8.4,
+    impressions: 8510,
+    ctr: 0.5,
+    avgPosition: 8.5,
     
     dailyMetrics: [
-      { date: '06/05', clicks: 5, impressions: 1050, ctr: 0.5, position: 8.2 },
-      { date: '07/05', clicks: 6, impressions: 1100, ctr: 0.5, position: 8.3 },
-      { date: '08/05', clicks: 6, impressions: 1050, ctr: 0.6, position: 8.4 },
-      { date: '09/05', clicks: 5, impressions: 1000, ctr: 0.5, position: 8.5 },
-      { date: '10/05', clicks: 8, impressions: 1200, ctr: 0.7, position: 8.3 },
-      { date: '11/05', clicks: 5, impressions: 950, ctr: 0.5, position: 8.4 },
-      { date: '12/05', clicks: 4, impressions: 700, ctr: 0.6, position: 8.6 },
+      { date: '13/05', clicks: 5, impressions: 1200, ctr: 0.4, position: 8.4 },
+      { date: '14/05', clicks: 6, impressions: 1250, ctr: 0.5, position: 8.5 },
+      { date: '15/05', clicks: 6, impressions: 1300, ctr: 0.5, position: 8.3 },
+      { date: '16/05', clicks: 6, impressions: 1400, ctr: 0.4, position: 8.6 },
+      { date: '17/05', clicks: 8, impressions: 1500, ctr: 0.5, position: 8.4 },
+      { date: '18/05', clicks: 5, impressions: 1100, ctr: 0.5, position: 8.7 },
+      { date: '19/05', clicks: 3, impressions: 760, ctr: 0.4, position: 8.5 },
     ],
     
     queriesUp: [
-      { query: 'fossa rudimentar', change: 1 },
-      { query: 'limpa fossa ponta grossa', change: 1 },
-      { query: 'soda cáustica como usar', change: 1 },
-      { query: 'soda derrete plástico', change: 1 },
+      { query: 'desentupidora em blumenau', change: 1 },
+      { query: 'diabo verde ou soda cáustica', change: 1 },
+      { query: 'fossa rudimentar o que é', change: 1 },
+      { query: 'quanto custa para esvaziar uma fossa', change: 1 },
+      { query: 'vaso entupido é responsabilidade do inquilino ou proprietário', change: 1 },
     ],
     
     queriesDown: [
-      { query: 'fossa rudmentar', change: -1 },
-      { query: 'prumada de esgoto', change: -1 },
-      { query: 'quanto tempo deixar soda cáustica no vaso', change: -1 },
+      { query: 'fossa rudimentar', change: -1 },
+      { query: 'limpa fossa ponta grossa', change: -1 },
+      { query: 'soda cáustica como usar', change: -1 },
+      { query: 'soda derrete plástico', change: -1 },
     ],
     
     contentsUp: [
-      { title: 'Inquilino Reclama de Entupimento', change: 5 },
-      { title: 'Fossa Negra: Funcionamento, Riscos e Manutenção', change: 5 },
-      { title: 'Prumada: O Que É, Sua Função e Manutenção Preventiva', change: 4 },
-      { title: 'Soda Cáustica e Plástico: Evite Danos em Tubulações', change: 4 },
-      { title: 'Caixa de Gordura em Apartamento: Guia Completo de Manutenção', change: 2 },
-      { title: 'Soda Cáustica Derrete Cano: Verdade ou Mito?', change: 2 },
+      { title: 'Soda Cáustica Derrete Cano? Guia para Evitar Danos', change: 3 },
+      { title: 'Desentupimento em São Paulo - Desentupidora JD', change: 2 },
+      { title: 'Bueiros Entupidos? Veja as Principais Soluções', change: 2 },
+      { title: 'Entupimento: Inquilino vs. Proprietário - Quem Paga a Conta?', change: 2 },
+      { title: 'Artigo de ações pós-entupimento', change: 1 },
     ],
     
     contentsDown: [
-      { title: 'Ralo Fazendo Barulho: Causas e Soluções', change: -4 },
-      { title: 'Desentupimento em São Paulo: Serviços Profissionais', change: -3 },
-      { title: 'Diabo Verde vs Soda: Qual a Melhor Escolha para Desentupir?', change: -3 },
-      { title: 'Ar no Encanamento: Causas, Sinais e Soluções Profissionais', change: -2 },
-      { title: 'Fossa Rudimentar: O Que É, Funcionamento e Manutenção', change: -2 },
+      { title: 'Prumada: O Que É, Sua Função e Manutenção Preventiva', change: -4 },
+      { title: 'Fossa Negra: Funcionamento, Riscos e Manutenção', change: -3 },
+      { title: 'Inquilino Reclama de Entupimento: O Que Fazer e Quem Paga', change: -2 },
+      { title: 'Caixa de Gordura em Apartamento: Guia Completo de Manutenção', change: -2 },
+      { title: 'Vaso Entupido: Água Não Desce? Guia para Solucionar em SP', change: -2 },
     ],
     
-    topPages: [
-      { title: 'Prumada: O Que É, Sua Função e Manutenção Preventiva', clicks: 6 },
+    topContents: [
+      { title: 'Soda Cáustica Derrete Cano? Guia para Evitar Danos', clicks: 5 },
       { title: 'Soda Cáustica e Plástico: Evite Danos em Tubulações', clicks: 5 },
-      { title: 'Entupimento: Inquilino vs. Proprietário', clicks: 4 },
-      { title: 'Fossa Negra: Funcionamento, Riscos e Manutenção', clicks: 3 },
-      { title: 'Inquilino Reclama de Entupimento', clicks: 3 },
-      { title: 'Soda Cáustica: Como Usar para Desentupir', clicks: 3 },
-      { title: 'Desentupimento em São Paulo', clicks: 2 },
+      { title: 'Inquilino Reclama de Entupimento: O Que Fazer e Quem Paga', clicks: 3 },
+      { title: 'Desentupimento em São Paulo - Desentupidora JD', clicks: 2 },
+      { title: 'Bueiros Entupidos? Veja as Principais Soluções', clicks: 2 },
     ],
   },
   
   ubersuggest: {
-    seoScore: 61,
-    monthlyTraffic: 148,
-    organicKeywords: 51,
+    avgPositionPrevious: 79,
+    avgPositionCurrent: 17.8,
+    top3: 0,
+    top10: 0,
+    top100: 5,
+    notRanked: 50,
+    gainedPositions: 5,
+    lostPositions: 1,
+    unchangedPositions: 49,
     backlinks: 13,
     
-    rankings: {
-      avgPosition: 79,
-      gainedPositions: 0,
-      lostPositions: 0,
-      unchanged: 55,
-      top3: 0,
-      top10: 0,
-      top100: 0,
-      notRanking: 55,
-    },
-    
+    topKeywords: [
+      { keyword: 'desentupidora em pinheiros', position: 13, change: 87, volume: 320, difficulty: 21 },
+      { keyword: 'encanador na mooca', position: 14, change: 86, volume: 170, difficulty: 7 },
+      { keyword: 'encanador mooca', position: 17, change: 83, volume: 170, difficulty: 7 },
+      { keyword: 'desentupidora jabaquara', position: 21, change: 79, volume: 170, difficulty: 9 },
+      { keyword: 'desentupidora em parelheiros', position: 24, change: 76, volume: 260, difficulty: 6 },
+    ],
+  },
+  
+  technicalSeo: {
     performance: {
-      mobileLoad: 'Bom',
-      mobileInteractivity: 'Excelente',
-      mobileStability: 'Excelente',
-      desktopLoad: 'Excelente',
-      desktopInteractivity: 'Excelente',
-      desktopStability: 'Excelente',
+      mobileLoad: '2.8s',
+      mobileInteractivity: '150ms',
+      mobileStability: '0.15',
+      desktopLoad: '1.9s',
+      desktopInteractivity: '80ms',
+      desktopStability: '0.08',
     },
     
     issues: [
-      { title: 'Problemas de Carregamento', count: 2 },
-      { title: 'Imagens não otimizadas', count: 3 },
-      { title: 'Links quebrados', count: 1 },
+      { title: 'Imagens sem otimização', count: 12 },
+      { title: 'Recursos bloqueados', count: 3 },
     ],
+    
     pagesScraped: {
-      total: 156,
-      valid: 148,
-      redirects: 2,
-      broken: 4,
-      blocked: 2,
+      total: 45,
+      valid: 42,
+      redirects: 1,
+      broken: 1,
+      blocked: 1,
     },
   },
 };

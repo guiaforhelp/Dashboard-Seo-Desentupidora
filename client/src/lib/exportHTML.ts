@@ -377,7 +377,7 @@ export function generateHTMLContent(data: DashboardData): string {
             `).join('')}
 
             <h3>Páginas Principais</h3>
-            ${data.gsc.topPages.map((page, idx) => `
+            ${data.gsc.topContents.map((page: any, idx: number) => `
                 <div class="data-row">
                     <div class="data-label">${idx + 1}. ${page.title}</div>
                     <div class="data-value">${page.clicks} cliques</div>
@@ -391,16 +391,16 @@ export function generateHTMLContent(data: DashboardData): string {
             
             <div class="kpi-grid">
                 <div class="kpi-card">
-                    <div class="kpi-label">Pontuação SEO On-page</div>
-                    <div class="kpi-value">${data.ubersuggest.seoScore}</div>
+                    <div class="kpi-label">Posição Média</div>
+                    <div class="kpi-value">${data.ubersuggest.avgPositionCurrent.toFixed(1)}</div>
                 </div>
                 <div class="kpi-card">
-                    <div class="kpi-label">Tráfego Orgânico Mensal</div>
-                    <div class="kpi-value">${data.ubersuggest.monthlyTraffic}</div>
+                    <div class="kpi-label">Melhora</div>
+                    <div class="kpi-value">+${(data.ubersuggest.avgPositionPrevious - data.ubersuggest.avgPositionCurrent).toFixed(1)}</div>
                 </div>
                 <div class="kpi-card">
-                    <div class="kpi-label">Palavras-chave Orgânicas</div>
-                    <div class="kpi-value">${data.ubersuggest.organicKeywords}</div>
+                    <div class="kpi-label">Top 100</div>
+                    <div class="kpi-value">${data.ubersuggest.top100}</div>
                 </div>
                 <div class="kpi-card">
                     <div class="kpi-label">Backlinks</div>
@@ -412,25 +412,25 @@ export function generateHTMLContent(data: DashboardData): string {
             <h4 style="margin-top: 1rem; margin-bottom: 0.5rem;">Mobile</h4>
             <div class="data-row">
                 <div class="data-label">Carregamento</div>
-                <div class="data-value">${data.ubersuggest.performance.mobileLoad}</div>
+                <div class="data-value">${data.technicalSeo.performance.mobileLoad}</div>
             </div>
             <div class="data-row">
                 <div class="data-label">Interatividade</div>
-                <div class="data-value">${data.ubersuggest.performance.mobileInteractivity}</div>
+                <div class="data-value">${data.technicalSeo.performance.mobileInteractivity}</div>
             </div>
 
             <h4 style="margin-top: 1rem; margin-bottom: 0.5rem;">Desktop</h4>
             <div class="data-row">
                 <div class="data-label">Carregamento</div>
-                <div class="data-value">${data.ubersuggest.performance.desktopLoad}</div>
+                <div class="data-value">${data.technicalSeo.performance.desktopLoad}</div>
             </div>
             <div class="data-row">
                 <div class="data-label">Interatividade</div>
-                <div class="data-value">${data.ubersuggest.performance.desktopInteractivity}</div>
+                <div class="data-value">${data.technicalSeo.performance.desktopInteractivity}</div>
             </div>
 
             <h3>Problemas Encontrados</h3>
-            ${data.ubersuggest.issues.length > 0 ? data.ubersuggest.issues.map((issue) => `
+            ${data.technicalSeo.issues.length > 0 ? data.technicalSeo.issues.map((issue) => `
                 <div class="data-row">
                     <div class="data-label">${issue.title}</div>
                     <span class="badge badge-danger">${issue.count}</span>

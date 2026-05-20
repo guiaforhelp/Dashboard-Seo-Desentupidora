@@ -152,7 +152,7 @@ export default function GSCSection({ data }: GSCSectionProps) {
         <div className="card-premium">
           <h3 className="section-subtitle">Páginas Principais</h3>
           <div className="space-y-3">
-            {data.topPages.map((page, idx) => (
+            {data.topContents.map((page: any, idx: number) => (
               <div key={idx} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
                 <div className="flex items-center gap-3">
                   <div className="flex items-center justify-center w-8 h-8 bg-[#ff6737] text-white rounded-full font-bold text-sm">
