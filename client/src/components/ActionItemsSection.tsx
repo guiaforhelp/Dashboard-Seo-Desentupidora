@@ -15,7 +15,7 @@ export default function ActionItemsSection() {
   ];
 
   return (
-    <section className="py-12 border-b border-gray-200">
+    <section className="py-12 border-b border-gray-200" style={{display: 'none'}}>
       <div className="container">
         {/* Section Title */}
         <h2 className="section-title">Próximas Ações Recomendadas</h2>
