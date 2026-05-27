@@ -38,6 +38,13 @@ export interface DashboardData {
       conversions: number;
       engagementTime: string;
     };
+    
+    conversionPages?: Array<{
+      title: string;
+      events: number;
+      conversions: number;
+      engagementTime: string;
+    }>;
   };
   
   // Google Search Console
@@ -206,6 +213,21 @@ export const defaultDashboardData: DashboardData = {
       conversions: 2,
       engagementTime: '1min 54s',
     },
+    
+    conversionPages: [
+      {
+        title: 'Caça Vazamento em São Bernardo do Campo Serviço Ágil',
+        events: 11,
+        conversions: 2,
+        engagementTime: '1min 54s',
+      },
+      {
+        title: 'Caça Vazamento Diminua sua Conta de Água',
+        events: 10,
+        conversions: 1,
+        engagementTime: '32s',
+      },
+    ]
   },
   
   gsc: {
