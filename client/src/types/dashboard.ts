@@ -203,8 +203,8 @@ export const defaultDashboardData: DashboardData = {
     ],
     
     conversionEvent: {
-      name: 'botão whatsapp GA4',
-      count: 2,
+      name: 'botão whatsapp GA4 (2) + whatsapp fixed (1)',
+      count: 3,
     },
     
     topConversionPage: {
