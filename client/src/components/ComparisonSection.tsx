@@ -10,12 +10,12 @@ interface ComparisonMetric {
 
 export default function ComparisonSection() {
   const metrics: ComparisonMetric[] = [
-    { label: 'Usuários Ativos', current: 45, previous: 27, change: 67, unit: '%' },
-    { label: 'Visualizações', current: 53, previous: 32, change: 66, unit: '%' },
-    { label: 'Cliques (GSC)', current: 39, previous: 27, change: 44, unit: '%' },
-    { label: 'CTR Média', current: '0,6%', previous: '0,4%', change: 50, unit: '%' },
-    { label: 'Conversões', current: 1, previous: 3, change: -67, unit: '%' },
-    { label: 'Tempo Médio', current: '28s', previous: '1m 44s', change: -73, unit: '%' },
+    { label: 'Usuários Ativos', current: 62, previous: 59, change: 5, unit: '%' },
+    { label: 'Visualizações', current: 78, previous: 61, change: 28, unit: '%' },
+    { label: 'Conversões', current: 3, previous: 1, change: 200, unit: '%' },
+    { label: 'Cliques (GSC)', current: 43, previous: 39, change: 10, unit: '%' },
+    { label: 'Impressões (GSC)', current: '8,37 mil', previous: '8,51 mil', change: -2, unit: '%' },
+    { label: 'Tempo Médio', current: '42s', previous: '53s', change: -21, unit: '%' },
   ];
 
   const getChangeColor = (change: number) => {
@@ -35,7 +35,7 @@ export default function ComparisonSection() {
       <div className="container">
         {/* Section Title */}
         <h2 className="section-title">Comparativo de Períodos</h2>
-        <p className="text-gray-600 mb-6">29/04-05/05 vs 06/05-12/05</p>
+        <p className="text-gray-600 mb-6">13/05-19/05 vs 20/05-26/05</p>
 
         {/* Metrics Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -61,12 +61,32 @@ export default function ComparisonSection() {
           ))}
         </div>
 
-        {/* Summary */}
+        {/* Summary - Google Analytics */}
         <div className="mt-8 card-premium bg-gradient-to-r from-blue-50 to-white border border-blue-200">
+          <p className="text-sm font-semibold text-[#203c50] mb-2">📊 Google Analytics</p>
           <p className="text-sm text-gray-700 leading-relaxed">
-            <strong>Resumo:</strong> O período 06/05-12/05 mostrou crescimento significativo em usuários (+67%), visualizações (+66%) e cliques no Search Console (+44%). 
-            A CTR também melhorou de 0,4% para 0,6%. Porém, o tempo médio de engajamento caiu 73% (de 1m 44s para 28s) e as conversões reduziram de 3 para 1. 
-            Isso sugere que o site está atraindo mais tráfego, mas precisa melhorar a qualidade do engajamento e conversão.
+            O tráfego orgânico cresceu em volume e conversão, mas a queda no tempo médio de engajamento indica necessidade de melhorar retenção nos conteúdos mais acessados. 
+            O site teve mais usuários ativos (+5%), mais visualizações (+28%) e principalmente mais eventos principais (+200%). Porém, o tempo médio caiu 21%, sugerindo que 
+            usuários estão encontrando rapidamente o que procuram, mas não explorando outros conteúdos.
+          </p>
+        </div>
+
+        {/* Summary - Search Console */}
+        <div className="mt-4 card-premium bg-gradient-to-r from-green-50 to-white border border-green-200">
+          <p className="text-sm font-semibold text-[#203c50] mb-2">🔍 Search Console</p>
+          <p className="text-sm text-gray-700 leading-relaxed">
+            Mesmo com leve queda nas impressões (-2%), os cliques cresceram (+10%). Isso indica melhora na eficiência orgânica, pois o site gerou mais tráfego mesmo aparecendo 
+            um pouco menos. A CTR segue em 0,5%, mostrando que ainda existe grande oportunidade de melhorar titles, metas e chamadas dos conteúdos.
+          </p>
+        </div>
+
+        {/* Summary - Ubersuggest */}
+        <div className="mt-4 card-premium bg-gradient-to-r from-orange-50 to-white border border-orange-200">
+          <p className="text-sm font-semibold text-[#203c50] mb-2">🎯 Ubersuggest</p>
+          <p className="text-sm text-gray-700 leading-relaxed">
+            O Ubersuggest mostra perda de força em rankings monitorados, principalmente pela redução de palavras no Top 100 (de 5 para 2) e aumento de palavras que ainda não 
+            se posicionam (de 50 para 53). A posição média piorou de 17,8 para 21,5. Porém, o Search Console mostra crescimento real de cliques, o que indica que algumas 
+            consultas reais estão performando melhor mesmo com os rankings monitorados apresentando oscilação.
           </p>
         </div>
       </div>

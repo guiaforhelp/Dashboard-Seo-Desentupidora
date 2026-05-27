@@ -9,33 +9,35 @@ export default function WeeklyReadingSection() {
         <div className="card-premium">
           <div className="space-y-4 text-gray-700 leading-relaxed">
             <p>
-              Nesta semana, o site manteve <strong>45 usuários ativos</strong> vindos do orgânico e registrou <strong>53 visualizações</strong>. 
-              O destaque positivo foi o crescimento no Search Console, com <strong>39 cliques</strong>, <strong>7,05 mil impressões</strong> e 
-              <strong>CTR média de 0,6%</strong>. Isso mostra que o site continua aparecendo no Google e começou a melhorar sua taxa de clique.
+              Nesta semana (20/05 a 26/05), o site registrou <strong>62 usuários ativos</strong> e <strong>78 visualizações</strong>, 
+              mantendo crescimento consistente. O destaque principal é o <strong>crescimento de 200% em conversões</strong> (de 1 para 3), 
+              com a página <strong>"Caça Vazamento em São Bernardo do Campo"</strong> gerando 2 conversões e <strong>1min 54s de engajamento</strong>.
             </p>
 
             <p>
-              Por outro lado, o tempo médio de engajamento caiu para <strong>28 segundos</strong>, indicando que parte dos usuários entra nas páginas, 
-              mas não permanece por muito tempo. Esse ponto precisa ser acompanhado, principalmente nos conteúdos que recebem tráfego, mas ainda não 
-              conduzem bem para conversão.
+              O Search Console mostra <strong>43 cliques (+9%)</strong> e <strong>8,37 mil impressões (-2%)</strong>. Mesmo com leve queda nas impressões, 
+              os cliques cresceram, indicando melhora na eficiência orgânica. O site gerou mais tráfego mesmo aparecendo um pouco menos. 
+              A CTR segue em <strong>0,5%</strong>, mostrando que ainda existe grande oportunidade de melhorar titles, metas e chamadas dos conteúdos.
             </p>
 
             <p>
-              A página <strong>"Desentupidora Blumenau Serviços para Santa Catarina"</strong> merece destaque porque foi responsável pela conversão registrada no período. 
-              Mesmo com apenas <strong>17 segundos de engajamento médio</strong>, ela gerou <strong>1 evento principal</strong>. Isso mostra que algumas páginas locais 
-              podem converter rápido quando o usuário já chega com intenção direta.
+              Porém, há um ponto de atenção: o tempo médio de engajamento caiu de <strong>53s para 42s (-21%)</strong>. Isso indica que, apesar do crescimento 
+              em volume e conversão, os usuários estão permanecendo menos tempo nas páginas. Isso pode significar que estão encontrando rapidamente o que 
+              procuram (o que é bom para conversão), mas também pode indicar falta de retenção para exploração de outros conteúdos.
             </p>
 
             <p>
-              Os conteúdos antigos continuam sendo os mais fortes, como <strong>Prumada</strong>, <strong>Soda Cáustica</strong>, <strong>Fossa Negra</strong> 
-              e temas jurídicos sobre inquilino e proprietário. Isso reforça a necessidade de usar esses artigos como motores de autoridade para fortalecer 
-              os conteúdos novos publicados entre março, abril e maio.
+              No Ubersuggest, a posição média piorou de <strong>17,8 para 21,5</strong> (-3,7 posições), principalmente pela redução de palavras no Top 100 
+              (de 5 para 2). Porém, o Search Console mostra crescimento real de cliques, o que indica que algumas consultas reais estão performando melhor 
+              mesmo com os rankings monitorados apresentando oscilação. Isso sugere que o algoritmo pode estar priorizando conteúdos mais relevantes em consultas 
+              específicas, mesmo que em posições diferentes.
             </p>
 
             <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
               <p className="text-sm text-blue-900">
-                <strong>💡 Resumo:</strong> O site segue recebendo tráfego consistente. O Search Console mostra melhora em cliques e CTR, mas o engajamento 
-                caiu e precisa de atenção. Os artigos antigos continuam puxando tráfego e devem servir como base para fortalecer os novos conteúdos.
+                <strong>💡 Resumo:</strong> O tráfego orgânico cresceu em volume e conversão, mas a queda no tempo médio de engajamento indica necessidade 
+                de melhorar retenção nos conteúdos mais acessados. Foco: otimizar CTR via titles/metas, fortalecer linkagem interna e criar conteúdos 
+                que mantenham usuários explorando mais páginas.
               </p>
             </div>
           </div>
