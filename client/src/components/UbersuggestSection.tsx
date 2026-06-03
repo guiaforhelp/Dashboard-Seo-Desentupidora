@@ -148,7 +148,7 @@ export default function UbersuggestSection({ data, technicalData }: UbersuggestS
             <div className="space-y-3">
               {performanceMetrics.map((metric, idx) => {
                 const key = `${metric.key}` as any;
-                const status = (technicalData?.performance as any)?.[key] as string || 'Bom';
+                const status = (technicalData?.mobile as any)?.[key] as string || 'Bom';
                 const statusInfo = getPerformanceStatus(status);
                 
                 return (
@@ -191,7 +191,7 @@ export default function UbersuggestSection({ data, technicalData }: UbersuggestS
             <div className="space-y-3">
               {performanceMetrics.map((metric, idx) => {
                 const key = `${metric.key}` as any;
-                const status = (technicalData?.performance as any)?.[key] as string || 'Bom';
+                const status = (technicalData?.desktop as any)?.[key] as string || 'Bom';
                 const statusInfo = getPerformanceStatus(status);
                 
                 return (

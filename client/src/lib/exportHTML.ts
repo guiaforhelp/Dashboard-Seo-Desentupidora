@@ -412,30 +412,28 @@ export function generateHTMLContent(data: DashboardData): string {
             <h4 style="margin-top: 1rem; margin-bottom: 0.5rem;">Mobile</h4>
             <div class="data-row">
                 <div class="data-label">Carregamento</div>
-                <div class="data-value">${data.technicalSeo.performance.mobileLoad}</div>
+                <div class="data-value">${data.technicalSeo.mobile.carregamento}</div>
             </div>
             <div class="data-row">
                 <div class="data-label">Interatividade</div>
-                <div class="data-value">${data.technicalSeo.performance.mobileInteractivity}</div>
+                <div class="data-value">${data.technicalSeo.mobile.interatividade}</div>
             </div>
 
             <h4 style="margin-top: 1rem; margin-bottom: 0.5rem;">Desktop</h4>
             <div class="data-row">
                 <div class="data-label">Carregamento</div>
-                <div class="data-value">${data.technicalSeo.performance.desktopLoad}</div>
+                <div class="data-value">${data.technicalSeo.desktop.carregamento}</div>
             </div>
             <div class="data-row">
                 <div class="data-label">Interatividade</div>
-                <div class="data-value">${data.technicalSeo.performance.desktopInteractivity}</div>
+                <div class="data-value">${data.technicalSeo.desktop.interatividade}</div>
             </div>
 
             <h3>Problemas Encontrados</h3>
-            ${data.technicalSeo.issues.length > 0 ? data.technicalSeo.issues.map((issue) => `
-                <div class="data-row">
-                    <div class="data-label">${issue.title}</div>
-                    <span class="badge badge-danger">${issue.count}</span>
-                </div>
-            `).join('') : '<p>Nenhum problema encontrado</p>'}
+            <div class="data-row">
+                <div class="data-label">Total de Problemas</div>
+                <span class="badge badge-danger">${data.technicalSeo.problemasEncontrados}</span>
+            </div>
         </section>
 
         <!-- Insights Section -->
