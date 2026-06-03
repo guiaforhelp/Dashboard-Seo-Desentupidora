@@ -198,7 +198,7 @@ export const defaultDashboardData: DashboardData = {
       {
         title: 'Quanto Custa Limpa Fossa? Preços e Serviço Profissional',
         events: 12,
-        conversions: 2,
+        conversions: 1,
         engagementTime: '8s',
       },
       {
