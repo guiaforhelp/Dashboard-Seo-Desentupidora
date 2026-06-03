@@ -178,7 +178,7 @@ export const defaultDashboardData: DashboardData = {
     
     conversionEvent: {
       name: 'Whatsapp Flutuante',
-      count: 2,
+      count: 3,
     },
     
     topConversionPage: {
