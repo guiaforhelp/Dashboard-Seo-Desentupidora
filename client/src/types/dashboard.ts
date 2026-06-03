@@ -190,12 +190,6 @@ export const defaultDashboardData: DashboardData = {
     
     conversionPages: [
       {
-        title: 'Fezes Grandes Entupindo o Vaso: Causas, Prevenção e Soluções - Desentupidora JD',
-        events: 11,
-        conversions: 1,
-        engagementTime: '1s',
-      },
-      {
         title: 'Quanto Custa Limpa Fossa? Preços e Serviço Profissional',
         events: 12,
         conversions: 2,
