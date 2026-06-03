@@ -285,6 +285,33 @@ export default function GA4Section({ data }: GA4SectionProps) {
                   </div>
                 </div>
               )}
+              
+              {/* Third Conversion Page */}
+              {data.conversionPages && data.conversionPages.length > 2 && (
+                <div className="p-4 bg-gradient-to-r from-purple-50 to-white rounded-lg border border-purple-200">
+                  <p className="font-medium text-[#203c50] mb-3">{data.conversionPages[2].title}</p>
+                  <div className="grid grid-cols-3 gap-3">
+                    <div className="text-center p-2 bg-purple-100 rounded-lg">
+                      <p className="text-xs text-gray-600 mb-1">Conversões</p>
+                      <p className="text-xl font-bold text-purple-600">
+                        {data.conversionPages[2].conversions}
+                      </p>
+                    </div>
+                    <div className="text-center p-2 bg-blue-100 rounded-lg">
+                      <p className="text-xs text-gray-600 mb-1">Eventos</p>
+                      <p className="text-xl font-bold text-[#203c50]">
+                        {data.conversionPages[2].events}
+                      </p>
+                    </div>
+                    <div className="text-center p-2 bg-blue-100 rounded-lg">
+                      <p className="text-xs text-gray-600 mb-1">Tempo Médio</p>
+                      <p className="text-sm font-bold text-[#203c50]">
+                        {data.conversionPages[2].engagementTime}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
