@@ -9,7 +9,7 @@ import ExecutiveSummarySection from '@/components/ExecutiveSummarySection';
 import WeeklyReadingSection from '@/components/WeeklyReadingSection';
 import RecommendationsSection from '@/components/RecommendationsSection';
 import ComparisonSection from '@/components/ComparisonSection';
-import ConversionPageSection from '@/components/ConversionPageSection';
+
 import DataInputPanel from '@/components/DataInputPanel';
 import { DashboardData, defaultDashboardData } from '@/types/dashboard';
 import { generateHTMLContent, downloadHTML } from '@/lib/exportHTML';
@@ -51,9 +51,6 @@ export default function Home() {
 
         {/* Ubersuggest Section */}
         <UbersuggestSection data={dashboardData.ubersuggest} />
-
-        {/* Conversion Page Section */}
-        <ConversionPageSection />
 
         {/* Comparison Section */}
         <ComparisonSection />
