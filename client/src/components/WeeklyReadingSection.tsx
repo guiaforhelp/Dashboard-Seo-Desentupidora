@@ -9,35 +9,41 @@ export default function WeeklyReadingSection() {
         <div className="card-premium">
           <div className="space-y-4 text-gray-700 leading-relaxed">
             <p>
-              Nesta semana (20/05 a 26/05), o site registrou <strong>62 usuários ativos</strong> e <strong>78 visualizações</strong>, 
-              mantendo crescimento consistente. O destaque principal é o <strong>crescimento de 200% em conversões</strong> (de 1 para 3), 
-              com a página <strong>"Caça Vazamento em São Bernardo do Campo"</strong> gerando 2 conversões e <strong>1min 54s de engajamento</strong>.
+              No período de <strong>03/06 a 09/06</strong>, o tráfego orgânico apresentou recuperação em relação à semana anterior, 
+              subindo de <strong>44 para 53 usuários ativos (+20%)</strong> e de <strong>47 para 62 visualizações (+32%)</strong>. 
+              O tempo médio de engajamento também melhorou significativamente, saindo de <strong>41 segundos para 1 minuto e 03 segundos (+54%)</strong>.
             </p>
 
             <p>
-              O Search Console mostra <strong>43 cliques (+9%)</strong> e <strong>8,37 mil impressões (-2%)</strong>. Mesmo com leve queda nas impressões, 
-              os cliques cresceram, indicando melhora na eficiência orgânica. O site gerou mais tráfego mesmo aparecendo um pouco menos. 
-              A CTR segue em <strong>0,5%</strong>, mostrando que ainda existe grande oportunidade de melhorar titles, metas e chamadas dos conteúdos.
+              Apesar da melhora em tráfego e engajamento, os eventos principais no orgânico caíram de <strong>2 para 0</strong>, 
+              indicando necessidade de revisar a mensuração de conversões no GA4/GTM e também melhorar os CTAs das páginas com maior tráfego. 
+              Este é um ponto crítico que requer atenção imediata para entender se há problema técnico ou se os usuários não estão convertendo.
             </p>
 
             <p>
-              Porém, há um ponto de atenção: o tempo médio de engajamento caiu de <strong>53s para 42s (-21%)</strong>. Isso indica que, apesar do crescimento 
-              em volume e conversão, os usuários estão permanecendo menos tempo nas páginas. Isso pode significar que estão encontrando rapidamente o que 
-              procuram (o que é bom para conversão), mas também pode indicar falta de retenção para exploração de outros conteúdos.
+              No Google Search Console, os cliques ficaram praticamente estáveis, passando de <strong>36 para 35 (-3%)</strong>. 
+              As impressões caíram de <strong>8,96 mil para 8,68 mil (-3%)</strong>, enquanto a posição média melhorou de <strong>8,6 para 8 (+0,6)</strong>. 
+              A CTR permaneceu em <strong>0,4%</strong>, mostrando que o principal gargalo continua sendo a taxa de clique nos resultados de busca. 
+              Há grande oportunidade de melhorar titles e meta descriptions para aumentar CTR.
             </p>
 
             <p>
-              No Ubersuggest, a posição média piorou de <strong>17,8 para 21,5</strong> (-3,7 posições), principalmente pela redução de palavras no Top 100 
-              (de 5 para 2). Porém, o Search Console mostra crescimento real de cliques, o que indica que algumas consultas reais estão performando melhor 
-              mesmo com os rankings monitorados apresentando oscilação. Isso sugere que o algoritmo pode estar priorizando conteúdos mais relevantes em consultas 
-              específicas, mesmo que em posições diferentes.
+              No Ubersuggest, a pontuação SEO permaneceu em <strong>76</strong> com status positivo, porém os backlinks caíram de <strong>13 para 12 (-1)</strong> 
+              e as palavras-chave rastreadas em baixa subiram para <strong>3</strong>. O tráfego orgânico mensal estimado permaneceu em <strong>200</strong>, 
+              e o número de palavras-chave orgânicas continuou em <strong>115</strong>. Palavras-chave em alta caíram de 4 para 0, indicando consolidação.
+            </p>
+
+            <p>
+              Os principais conteúdos em destaque seguem relacionados a problemas residenciais e intenção prática: 
+              <strong>Fezes Grandes Entupindo o Vaso, Inquilino Reclama de Entupimento, Prumada, Ar no Encanamento, Soda Cáustica e Bueiros</strong>. 
+              Estes temas continuam gerando tráfego consistente e devem ser priorizados em futuras otimizações.
             </p>
 
             <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
               <p className="text-sm text-blue-900">
-                <strong>💡 Resumo:</strong> O tráfego orgânico cresceu em volume e conversão, mas a queda no tempo médio de engajamento indica necessidade 
-                de melhorar retenção nos conteúdos mais acessados. Foco: otimizar CTR via titles/metas, fortalecer linkagem interna e criar conteúdos 
-                que mantenham usuários explorando mais páginas.
+                <strong>💡 Resumo:</strong> O tráfego orgânico recuperou-se bem com crescimento de 20% em usuários e 32% em visualizações, 
+                mas a queda a zero em eventos principais requer investigação urgente. Foco: verificar eventos GA4/GTM, otimizar CTR via titles/metas, 
+                fortalecer linkagem interna para páginas comerciais e criar conteúdos locais para bairros estratégicos.
               </p>
             </div>
           </div>

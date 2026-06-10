@@ -10,12 +10,14 @@ interface ComparisonMetric {
 
 export default function ComparisonSection() {
   const metrics: ComparisonMetric[] = [
-    { label: 'Usuários Ativos', current: 62, previous: 59, change: 5, unit: '%' },
-    { label: 'Visualizações', current: 78, previous: 61, change: 28, unit: '%' },
-    { label: 'Conversões', current: 3, previous: 1, change: 200, unit: '%' },
-    { label: 'Cliques (GSC)', current: 43, previous: 39, change: 10, unit: '%' },
-    { label: 'Impressões (GSC)', current: '8,37 mil', previous: '8,51 mil', change: -2, unit: '%' },
-    { label: 'Tempo Médio', current: '42s', previous: '53s', change: -21, unit: '%' },
+    { label: 'Usuários Ativos', current: 53, previous: 44, change: 20, unit: '%' },
+    { label: 'Visualizações', current: 62, previous: 47, change: 32, unit: '%' },
+    { label: 'Conversões', current: 0, previous: 2, change: -100, unit: '%' },
+    { label: 'Tempo Médio', current: '1min 03s', previous: '41s', change: 54, unit: '%' },
+    { label: 'Cliques (GSC)', current: 35, previous: 36, change: -3, unit: '%' },
+    { label: 'Impressões (GSC)', current: '8,68 mil', previous: '8,96 mil', change: -3, unit: '%' },
+    { label: 'Posição Média (GSC)', current: 8, previous: 8.6, change: 1, unit: '↑' },
+    { label: 'Backlinks', current: 12, previous: 13, change: -8, unit: '%' },
   ];
 
   const getChangeColor = (change: number) => {
@@ -35,7 +37,7 @@ export default function ComparisonSection() {
       <div className="container">
         {/* Section Title */}
         <h2 className="section-title">Comparativo de Períodos</h2>
-        <p className="text-gray-600 mb-6">13/05-19/05 vs 20/05-26/05</p>
+        <p className="text-gray-600 mb-6">27/05-02/06 vs 03/06-09/06</p>
 
         {/* Metrics Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -65,9 +67,10 @@ export default function ComparisonSection() {
         <div className="mt-8 card-premium bg-gradient-to-r from-blue-50 to-white border border-blue-200">
           <p className="text-sm font-semibold text-[#203c50] mb-2">📊 Google Analytics</p>
           <p className="text-sm text-gray-700 leading-relaxed">
-            O tráfego orgânico cresceu em volume e conversão, mas a queda no tempo médio de engajamento indica necessidade de melhorar retenção nos conteúdos mais acessados. 
-            O site teve mais usuários ativos (+5%), mais visualizações (+28%) e principalmente mais eventos principais (+200%). Porém, o tempo médio caiu 21%, sugerindo que 
-            usuários estão encontrando rapidamente o que procuram, mas não explorando outros conteúdos.
+            O tráfego orgânico apresentou recuperação significativa: <strong>+20% em usuários ativos</strong> (44 → 53), 
+            <strong>+32% em visualizações</strong> (47 → 62) e <strong>+54% no tempo médio de engajamento</strong> (41s → 1min 03s). 
+            Porém, os eventos principais caíram de 2 para 0, indicando necessidade urgente de revisar a mensuração de conversões no GA4/GTM. 
+            Este é um ponto crítico que requer investigação imediata.
           </p>
         </div>
 
@@ -75,8 +78,9 @@ export default function ComparisonSection() {
         <div className="mt-4 card-premium bg-gradient-to-r from-green-50 to-white border border-green-200">
           <p className="text-sm font-semibold text-[#203c50] mb-2">🔍 Search Console</p>
           <p className="text-sm text-gray-700 leading-relaxed">
-            Mesmo com leve queda nas impressões (-2%), os cliques cresceram (+10%). Isso indica melhora na eficiência orgânica, pois o site gerou mais tráfego mesmo aparecendo 
-            um pouco menos. A CTR segue em 0,5%, mostrando que ainda existe grande oportunidade de melhorar titles, metas e chamadas dos conteúdos.
+            Os cliques ficaram praticamente estáveis (-3%, 36 → 35) e as impressões caíram levemente (-3%, 8,96 mil → 8,68 mil). 
+            Porém, a posição média melhorou de 8,6 para 8, indicando ganho em ranking. A CTR permaneceu em 0,4%, mostrando que o principal 
+            gargalo continua sendo a taxa de clique nos resultados de busca. Grande oportunidade de melhorar titles e meta descriptions.
           </p>
         </div>
 
@@ -84,9 +88,9 @@ export default function ComparisonSection() {
         <div className="mt-4 card-premium bg-gradient-to-r from-orange-50 to-white border border-orange-200">
           <p className="text-sm font-semibold text-[#203c50] mb-2">🎯 Ubersuggest</p>
           <p className="text-sm text-gray-700 leading-relaxed">
-            O Ubersuggest mostra perda de força em rankings monitorados, principalmente pela redução de palavras no Top 100 (de 5 para 2) e aumento de palavras que ainda não 
-            se posicionam (de 50 para 53). A posição média piorou de 17,8 para 21,5. Porém, o Search Console mostra crescimento real de cliques, o que indica que algumas 
-            consultas reais estão performando melhor mesmo com os rankings monitorados apresentando oscilação.
+            A pontuação SEO permaneceu em 76 com status positivo. Os backlinks caíram de 13 para 12 (-8%), e as palavras-chave rastreadas em baixa 
+            subiram para 3. Palavras-chave em alta caíram de 4 para 0, indicando consolidação. O tráfego orgânico mensal estimado permaneceu em 200, 
+            e o número de palavras-chave orgânicas continuou em 115. Foco: trabalhar oportunidades de SEO local para bairros estratégicos.
           </p>
         </div>
       </div>
