@@ -70,7 +70,7 @@ export default function ComparisonSection() {
             O tráfego orgânico apresentou recuperação significativa: <strong>+20% em usuários ativos</strong> (44 → 53), 
             <strong>+32% em visualizações</strong> (47 → 62) e <strong>+54% no tempo médio de engajamento</strong> (41s → 1min 03s). 
             Porém, os eventos principais caíram de 2 para 0, indicando necessidade urgente de revisar a mensuração de conversões no GA4/GTM. 
-            Este é um ponto crítico que requer investigação imediata.
+            Este é um ponto crítico que requer investigação imediata para entender se há problema técnico ou se os usuários não estão convertendo.
           </p>
         </div>
 
@@ -80,7 +80,7 @@ export default function ComparisonSection() {
           <p className="text-sm text-gray-700 leading-relaxed">
             Os cliques ficaram praticamente estáveis (-3%, 36 → 35) e as impressões caíram levemente (-3%, 8,96 mil → 8,68 mil). 
             Porém, a posição média melhorou de 8,6 para 8, indicando ganho em ranking. A CTR permaneceu em 0,4%, mostrando que o principal 
-            gargalo continua sendo a taxa de clique nos resultados de busca. Grande oportunidade de melhorar titles e meta descriptions.
+            gargalo continua sendo a taxa de clique nos resultados de busca. Grande oportunidade de melhorar titles e meta descriptions para aumentar CTR.
           </p>
         </div>
 
@@ -89,8 +89,8 @@ export default function ComparisonSection() {
           <p className="text-sm font-semibold text-[#203c50] mb-2">🎯 Ubersuggest</p>
           <p className="text-sm text-gray-700 leading-relaxed">
             A pontuação SEO permaneceu em 76 com status positivo. Os backlinks caíram de 13 para 12 (-8%), e as palavras-chave rastreadas em baixa 
-            subiram para 3. Palavras-chave em alta caíram de 4 para 0, indicando consolidação. O tráfego orgânico mensal estimado permaneceu em 200, 
-            e o número de palavras-chave orgânicas continuou em 115. Foco: trabalhar oportunidades de SEO local para bairros estratégicos.
+            subiram para 3. O tráfego orgânico mensal estimado permaneceu em 200, e o número de palavras-chave orgânicas continuou em 115. 
+            Foco: trabalhar oportunidades de SEO local para bairros estratégicos (Pinheiros, Parelheiros, Mooca) e corrigir 2 problemas técnicos identificados.
           </p>
         </div>
       </div>
