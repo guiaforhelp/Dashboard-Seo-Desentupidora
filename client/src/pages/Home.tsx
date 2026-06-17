@@ -9,6 +9,7 @@ import ExecutiveSummarySection from '@/components/ExecutiveSummarySection';
 import WeeklyReadingSection from '@/components/WeeklyReadingSection';
 import RecommendationsSection from '@/components/RecommendationsSection';
 import ComparisonSection from '@/components/ComparisonSection';
+import ConversionPagesSection from '@/components/ConversionPagesSection';
 
 import DataInputPanel from '@/components/DataInputPanel';
 import { DashboardData, defaultDashboardData } from '@/types/dashboard';
@@ -45,6 +46,9 @@ export default function Home() {
       <main className="py-12">
         {/* GA4 Section */}
         <GA4Section data={dashboardData.ga4} />
+
+        {/* Conversion Pages Section */}
+        <ConversionPagesSection data={dashboardData.ga4} />
 
         {/* GSC Section */}
         <GSCSection data={dashboardData.gsc} />
