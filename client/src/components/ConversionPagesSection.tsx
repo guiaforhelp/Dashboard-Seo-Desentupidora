@@ -8,7 +8,7 @@ interface ConversionPagesSectionProps {
 export default function ConversionPagesSection({ data }: ConversionPagesSectionProps) {
   // Calculate conversion percentages
   const totalConversions = data.conversions;
-  const conversionPercentage = totalConversions > 0 ? (1 / totalConversions) * 100 : 0;
+  const conversionPercentage = (conversions: number) => totalConversions > 0 ? (conversions / totalConversions) * 100 : 0;
 
   return (
     <section className="py-12 border-b border-gray-200">
@@ -48,6 +48,7 @@ export default function ConversionPagesSection({ data }: ConversionPagesSectionP
               { bg: 'from-purple-50', border: 'border-purple-200', badge: 'bg-purple-100', badgeText: 'text-purple-700' },
             ];
             const color = colors[idx] || colors[0];
+            const percentage = conversionPercentage(page.conversions);
 
             return (
               <div
@@ -68,7 +69,7 @@ export default function ConversionPagesSection({ data }: ConversionPagesSectionP
                     <p className={`text-3xl font-bold ${color.badgeText}`}>
                       {page.conversions}
                     </p>
-                    <p className="text-xs text-gray-600 mt-2">{conversionPercentage.toFixed(1)}% do total</p>
+                    <p className="text-xs text-gray-600 mt-2">{percentage.toFixed(1)}% do total</p>
                   </div>
 
                   {/* Engagement Time */}
@@ -106,9 +107,9 @@ export default function ConversionPagesSection({ data }: ConversionPagesSectionP
                     <div>
                       <p className="text-sm font-semibold text-[#203c50] mb-1">Observação Estratégica</p>
                       <p className="text-sm text-gray-700 leading-relaxed">
-                        {idx === 0 && "Página local gerou conversão direta via WhatsApp, indicando potencial forte para conteúdos locais e serviços de limpa fossa em regiões específicas."}
-                        {idx === 1 && "Conteúdo com intenção comercial forte, relacionado a preço, gerou conversão e deve ser tratado como página estratégica de fundo de funil para captura de leads."}
-                        {idx === 2 && "Artigo comparativo gerou conversão mesmo sendo informativo, mostrando potencial de captura em conteúdos de dúvida e risco com alto valor de conversão."}
+                        {idx === 0 && "Página de diagnóstico com alto índice de conversão (50% do total). Conteúdo informativo que leva a ação direta. Reforçar links internos para páginas de serviço e expandir conteúdo similar."}
+                        {idx === 1 && "Conteúdo comercial com intenção de preço gerou conversão. Página estratégica de fundo de funil. Otimizar CTR no Search Console e considerar anúncios pagos para amplificar."}
+                        {idx === 2 && "Artigo educativo sobre segurança gerou conversão. Indica potencial de captura em conteúdos de risco e preocupação. Fortalecer linkagem interna para páginas de serviço relacionadas."}
                       </p>
                     </div>
                   </div>

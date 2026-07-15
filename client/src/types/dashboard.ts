@@ -180,36 +180,30 @@ export const defaultDashboardData: DashboardData = {
     },
     
     topConversionPage: {
-      title: 'Desentupimento em São Paulo - Desentupidora JD',
-      events: 12,
-      conversions: 1,
-      engagementTime: '45s',
+      title: 'Banheiro Mau Cheiro: Diagnóstico Preciso e Soluções Profissionais - Desentupidora JD',
+      events: 8,
+      conversions: 2,
+      engagementTime: '48s',
     },
     
     conversionPages: [
       {
-        title: 'Desentupimento em São Paulo - Desentupidora JD',
-        events: 12,
-        conversions: 1,
-        engagementTime: '45s',
-      },
-      {
-        title: 'Fezes Grandes Entupindo o Vaso: Causas, Prevenção e Soluções',
+        title: 'Banheiro Mau Cheiro: Diagnóstico Preciso e Soluções Profissionais - Desentupidora JD',
         events: 8,
-        conversions: 1,
-        engagementTime: '38s',
-      },
-      {
-        title: 'Vaso Borbulhando: Sinais, Causas e Soluções Práticas',
-        events: 7,
-        conversions: 1,
-        engagementTime: '52s',
+        conversions: 2,
+        engagementTime: '48s',
       },
       {
         title: 'Quanto Custa Limpa Fossa? Preços e Serviço Profissional',
-        events: 6,
+        events: 13,
         conversions: 1,
-        engagementTime: '41s',
+        engagementTime: '55s',
+      },
+      {
+        title: 'Soda Cáustica: Guia Seguro para Desentupir | Soluções',
+        events: 5,
+        conversions: 1,
+        engagementTime: '42s',
       },
     ],
   },
