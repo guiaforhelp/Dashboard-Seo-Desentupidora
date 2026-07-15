@@ -9,44 +9,36 @@ export default function WeeklyReadingSection() {
         <div className="card-premium">
           <div className="space-y-4 text-gray-700 leading-relaxed">
             <p>
-              No período de <strong>10/06 a 16/06</strong>, o tráfego orgânico apresentou crescimento expressivo em relação à semana anterior, 
-              subindo de <strong>53 para 72 usuários ativos (+36%)</strong> e de <strong>62 para 100 visualizações (+61%)</strong>. 
-              Mais importante ainda: as <strong>conversões retornaram com força, passando de 0 para 3 conversões</strong>, todas geradas pelo 
-              evento <strong>Whatsapp Flutuante</strong>. Este é um resultado extremamente positivo que indica a recuperação da mensuração de conversões.
+              No período de <strong>08/07 a 14/07</strong>, o tráfego orgânico apresentou redução moderada em relação à semana anterior, 
+              passando de <strong>72 para 58 usuários ativos (-19%)</strong> e de <strong>100 para 73 visualizações (-27%)</strong>. 
+              Porém, as <strong>conversões se mantiveram positivas com 4 cliques no Whatsapp Flutuante</strong> (em comparação com 3 na semana anterior). 
+              O tempo médio de engajamento caiu de 58s para 52s, sugerindo necessidade de análise por página e origem antes de qualquer conclusão definitiva.
             </p>
 
             <p>
-              As <strong>3 páginas que converteram</strong> foram: (1) <strong>Limpa Fossa São Luís Atendimento no Maranhão com Soluções</strong> (1 conversão, 21s engajamento), 
-              (2) <strong>Quanto Custa Limpa Fossa? Preços e Serviço Profissional</strong> (1 conversão, 48s engajamento), 
-              (3) <strong>Soda Cáustica vs Diabo Verde: Desentupir com Segurança?</strong> (1 conversão, 1min 29s engajamento). 
-              Cada página representou <strong>33,33% das conversões totais</strong>, indicando distribuição equilibrada entre conteúdos locais, comerciais e informativos.
+              No Google Search Console, houve redução em cliques: <strong>de 53 para 39 cliques (-26%)</strong>, enquanto as impressões caíram de 
+              <strong>8,63 mil para 7,12 mil (-18%)</strong>. A <strong>CTR manteve-se em 0,5%</strong>, permanecendo como principal oportunidade de melhoria. 
+              A <strong>posição média subiu levemente para 8,3</strong>, mantendo a tendência de consolidação em ranking. 
+              Conteúdos com forte performance: <strong>Fezes Grandes Entupindo o Vaso (+12 cliques), Vaso Borbulhando (+7 cliques)</strong>.
             </p>
 
             <p>
-              No Google Search Console, o crescimento foi ainda mais impressionante: <strong>cliques subiram de 35 para 53 (+51%)</strong>, 
-              enquanto as impressões ficaram praticamente estáveis em 8,63 mil (-0,8%). A <strong>CTR melhorou de 0,4% para 0,6%</strong>, 
-              mostrando que as otimizações de titles e meta descriptions estão surtindo efeito. A <strong>posição média melhorou de 8 para 7,7</strong>, 
-              consolidando ganhos em ranking.
+              O tráfego observado ainda não está concentrado em São Paulo (7 usuários de 58), indicando alcance informativo nacional com oportunidade 
+              para reforçar páginas locais e comerciais. A maioria do acesso acontece pelo celular (63,8%), confirmando que a experiência mobile deve ser prioridade. 
+              <strong>57 de 58 usuários eram novos</strong>, mostrando alta taxa de aquisição mas também sugerindo necessidade de trabalhar retenção.
             </p>
 
             <p>
-              Os conteúdos com melhor performance no Search Console foram: <strong>Inquilino Reclama de Entupimento (5 cliques), 
-              Soda Cáustica e Plástico (5 cliques), Entupimento: Inquilino vs. Proprietário (4 cliques)</strong>. 
-              Houve queda em alguns conteúdos como <strong>Ar no Encanamento (-3 cliques)</strong>, sugerindo necessidade de revisar e atualizar esses artigos.
+              No Ubersuggest, o tráfego orgânico estimado cresceu para <strong>257 visitas mensais (+28,5%)</strong>, e as palavras-chave orgânicas subiram para 
+              <strong>154 (+33,9%)</strong>. Os backlinks aumentaram para <strong>13 (+18,2%)</strong>. Porém, a pontuação on-page permanece em 61 (média), 
+              e o painel ainda está coletando dados de rankings. Não usar posições individuais desta fonte como dado definitivo neste momento.
             </p>
 
-            <p>
-              No Ubersuggest, a pontuação on-page caiu de <strong>76 para 61</strong>, classificada como média. Porém, a posição média melhorou de 
-              <strong>21,5 para 20,67</strong>, e a palavra-chave <strong>desentupidora em pinheiros</strong> permanece em destaque na posição 13 
-              com volume de 320 buscas mensais. Foram identificados <strong>2 problemas técnicos</strong> que continuam requerendo atenção.
-            </p>
-
-            <div className="mt-6 p-4 bg-green-50 rounded-lg border border-green-200">
-              <p className="text-sm text-green-900">
-                <strong>✅ Resumo Executivo:</strong> Semana de recuperação forte: +36% em usuários, +61% em visualizações, 
-                <strong>+3 conversões</strong> (Whatsapp Flutuante), +51% em cliques GSC, CTR de 0,6%. 
-                As conversões distribuídas entre conteúdos locais, comerciais e informativos indicam estratégia de fundo de funil funcionando. 
-                Próxima ação: manter momentum, atualizar conteúdos em queda e corrigir problemas técnicos no Ubersuggest.
+            <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+              <p className="text-sm text-blue-900">
+                <strong>📊 Resumo Executivo:</strong> Semana de consolidação com redução moderada em tráfego (-19% usuários, -27% views), 
+                mas conversões mantidas em 4 cliques Whatsapp. CTR de 0,5% permanece como oportunidade. Tráfego nacional em crescimento (257 visitas/mês estimadas), 
+                mas ainda com potencial em São Paulo. Conteúdos sobre riscos práticos (soda cáustica, vaso entupido) continuam atraindo atenção e devem fortalecer linkagem interna.
               </p>
             </div>
           </div>

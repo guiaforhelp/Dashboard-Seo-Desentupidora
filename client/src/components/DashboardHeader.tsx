@@ -75,7 +75,7 @@ export default function DashboardHeader({
               }}
             >
               <p className="text-gray-300 text-xs font-semibold tracking-wide mb-2">USUÁRIOS ATIVOS</p>
-              <p className="text-white text-3xl font-bold" style={{ fontFamily: "'Poppins', sans-serif" }}>72</p>
+              <p className="text-white text-3xl font-bold" style={{ fontFamily: "'Poppins', sans-serif" }}>58</p>
             </div>
 
             {/* Cliques Orgânicos */}
@@ -88,7 +88,7 @@ export default function DashboardHeader({
               }}
             >
               <p className="text-gray-300 text-xs font-semibold tracking-wide mb-2">CLIQUES ORGÂNICOS</p>
-              <p className="text-white text-3xl font-bold" style={{ fontFamily: "'Poppins', sans-serif" }}>53</p>
+              <p className="text-white text-3xl font-bold" style={{ fontFamily: "'Poppins', sans-serif" }}>39</p>
             </div>
 
             {/* Impressões */}
@@ -101,7 +101,7 @@ export default function DashboardHeader({
               }}
             >
               <p className="text-gray-300 text-xs font-semibold tracking-wide mb-2">IMPRESSÕES</p>
-              <p className="text-white text-3xl font-bold" style={{ fontFamily: "'Poppins', sans-serif" }}>8.63 mil</p>
+              <p className="text-white text-3xl font-bold" style={{ fontFamily: "'Poppins', sans-serif" }}>7.12 mil</p>
             </div>
 
             {/* Conversões */}
@@ -114,7 +114,7 @@ export default function DashboardHeader({
               }}
             >
               <p className="text-gray-300 text-xs font-semibold tracking-wide mb-2">CONVERSÕES</p>
-              <p className="text-white text-3xl font-bold" style={{ fontFamily: "'Poppins', sans-serif" }}>3</p>
+              <p className="text-white text-3xl font-bold" style={{ fontFamily: "'Poppins', sans-serif" }}>4</p>
             </div>
           </div>
         </div>
