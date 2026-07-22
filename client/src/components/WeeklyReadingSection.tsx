@@ -9,36 +9,40 @@ export default function WeeklyReadingSection() {
         <div className="card-premium">
           <div className="space-y-4 text-gray-700 leading-relaxed">
             <p>
-              No período de <strong>08/07 a 14/07</strong>, o tráfego orgânico apresentou redução moderada em relação à semana anterior, 
-              passando de <strong>72 para 58 usuários ativos (-19%)</strong> e de <strong>100 para 73 visualizações (-27%)</strong>. 
-              Porém, as <strong>conversões se mantiveram positivas com 4 cliques no Whatsapp Flutuante</strong> (em comparação com 3 na semana anterior). 
-              O tempo médio de engajamento caiu de 58s para 52s, sugerindo necessidade de análise por página e origem antes de qualquer conclusão definitiva.
+              No período de <strong>15/07 a 21/07</strong>, o volume de usuários ficou praticamente estável em relação à semana anterior, 
+              com <strong>59 usuários ativos (+1,7%)</strong> e <strong>58 novos usuários (+1,8%)</strong>. Porém, houve redução em visualizações: 
+              <strong>65 views (-11%)</strong> em comparação com 73 da semana anterior. O destaque positivo foi o engajamento: 
+              <strong>1 minuto e 15 segundos (+44,2%)</strong>, indicando que os usuários permaneceram mais tempo no conteúdo. 
+              As conversões caíram de 4 para 2 cliques no Whatsapp Flutuante (-50%).
             </p>
 
             <p>
-              No Google Search Console, houve redução em cliques: <strong>de 53 para 39 cliques (-26%)</strong>, enquanto as impressões caíram de 
-              <strong>8,63 mil para 7,12 mil (-18%)</strong>. A <strong>CTR manteve-se em 0,5%</strong>, permanecendo como principal oportunidade de melhoria. 
-              A <strong>posição média subiu levemente para 8,3</strong>, mantendo a tendência de consolidação em ranking. 
-              Conteúdos com forte performance: <strong>Fezes Grandes Entupindo o Vaso (+12 cliques), Vaso Borbulhando (+7 cliques)</strong>.
+              O usuário permaneceu mais tempo no conteúdo, mas navegou menos pelo site. A média de visualizações por usuário caiu de 1,26 para 1,10, 
+              indicando uma oportunidade clara de reforçar links internos, sugestões de leitura e CTAs contextuais. 
+              <strong>No Google Search Console, foram registrados 36 cliques e 6,85 mil impressões</strong>, com CTR mantido em 0,5% e posição média em 8,5. 
+              O site continua ganhando presença em buscas informativas e práticas sobre soda cáustica, caixa de gordura e responsabilidade em imóvel alugado.
             </p>
 
             <p>
-              O tráfego observado ainda não está concentrado em São Paulo (7 usuários de 58), indicando alcance informativo nacional com oportunidade 
-              para reforçar páginas locais e comerciais. A maioria do acesso acontece pelo celular (63,8%), confirmando que a experiência mobile deve ser prioridade. 
-              <strong>57 de 58 usuários eram novos</strong>, mostrando alta taxa de aquisição mas também sugerindo necessidade de trabalhar retenção.
+              As conversões desta semana vieram de duas páginas: (1) <strong>Desentupidora Guarapari</strong> (1 conversão, 0s engajamento - desalinhada), 
+              (2) <strong>Quanto Custa Limpar Caixa D'Água</strong> (1 conversão, 1min 02s engajamento - consistente). 
+              A página de Guarapari está fora da área principal de atendimento da JD e deve ser validada quanto à origem do tráfego e evento acionado. 
+              O acesso está praticamente dividido entre celular (52,5%) e computador (47,5%), exigindo que CTAs, telefone clicável e formulários funcionem bem nos dois ambientes.
             </p>
 
             <p>
-              No Ubersuggest, o tráfego orgânico estimado cresceu para <strong>257 visitas mensais (+28,5%)</strong>, e as palavras-chave orgânicas subiram para 
-              <strong>154 (+33,9%)</strong>. Os backlinks aumentaram para <strong>13 (+18,2%)</strong>. Porém, a pontuação on-page permanece em 61 (média), 
-              e o painel ainda está coletando dados de rankings. Não usar posições individuais desta fonte como dado definitivo neste momento.
+              No Ubersuggest, as estimativas mensais permaneceram estáveis: <strong>257 visitas/mês e 154 palavras-chave</strong>. 
+              Porém, houve avanços em autoridade: <strong>backlinks subiram de 13 para 15 (+18,2%)</strong>, 
+              <strong>Domain Authority subiu de 4 para 5</strong>, e o <strong>valor estimado do tráfego cresceu de US$ 75,16 para US$ 82,33</strong>. 
+              O tráfego ainda está distribuído por várias cidades, com São Paulo (7 usuários) e Rio de Janeiro (6 usuários) em destaque, 
+              indicando que o blog tem alcance nacional por temas informativos, mas as páginas locais e comerciais de São Paulo precisam receber mais força.
             </p>
 
-            <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
-              <p className="text-sm text-blue-900">
-                <strong>📊 Resumo Executivo:</strong> Semana de consolidação com redução moderada em tráfego (-19% usuários, -27% views), 
-                mas conversões mantidas em 4 cliques Whatsapp. CTR de 0,5% permanece como oportunidade. Tráfego nacional em crescimento (257 visitas/mês estimadas), 
-                mas ainda com potencial em São Paulo. Conteúdos sobre riscos práticos (soda cáustica, vaso entupido) continuam atraindo atenção e devem fortalecer linkagem interna.
+            <div className="mt-6 p-4 bg-yellow-50 rounded-lg border border-yellow-200">
+              <p className="text-sm text-yellow-900">
+                <strong>⚠️ Resumo Executivo:</strong> Volume de usuários estável (+1,7%), engajamento forte (+44,2%), 
+                mas visualizações em queda (-11%) e conversões caíram pela metade (-50%). O foco agora é melhorar a navegação interna e conduzir 
+                os acessos informativos para páginas comerciais de São Paulo. Validar conversão de Guarapari e fortalecer linkagem para serviços.
               </p>
             </div>
           </div>
