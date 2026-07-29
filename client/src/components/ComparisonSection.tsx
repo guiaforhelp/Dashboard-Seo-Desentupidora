@@ -10,14 +10,14 @@ interface ComparisonMetric {
 
 export default function ComparisonSection() {
   const metrics: ComparisonMetric[] = [
-    { label: 'Usuários Ativos', current: 59, previous: 58, change: 1.7, unit: '%' },
-    { label: 'Novos Usuários', current: 58, previous: 57, change: 1.8, unit: '%' },
-    { label: 'Visualizações', current: 65, previous: 73, change: -11, unit: '%' },
-    { label: 'Tempo Médio', current: '1min 15s', previous: '52s', change: 44.2, unit: '%' },
-    { label: 'Cliques WhatsApp', current: 2, previous: 4, change: -50, unit: '%' },
-    { label: 'Cliques (GSC)', current: 36, previous: 39, change: -8, unit: '%' },
-    { label: 'Impressões (GSC)', current: '6,85 mil', previous: '7,12 mil', change: -4, unit: '%' },
-    { label: 'CTR (GSC)', current: '0,5%', previous: '0,5%', change: 0, unit: '%' },
+    { label: 'Usuários Ativos', current: 68, previous: 59, change: 15.3, unit: '%' },
+    { label: 'Novos Usuários', current: 68, previous: 58, change: 17.2, unit: '%' },
+    { label: 'Visualizações', current: 81, previous: 65, change: 24.6, unit: '%' },
+    { label: 'Tempo Médio', current: '1min 38s', previous: '1min 15s', change: 30.7, unit: '%' },
+    { label: 'Cliques WhatsApp', current: 2, previous: 2, change: 0, unit: '%' },
+    { label: 'Views por Usuário', current: 1.19, previous: 1.10, change: 8.2, unit: '%' },
+    { label: 'Cliques (GSC)', current: 45, previous: 36, change: 25, unit: '%' },
+    { label: 'Impressões (GSC)', current: '7,22 mil', previous: '6,85 mil', change: 5.4, unit: '%' },
   ];
 
   const getChangeColor = (change: number) => {
@@ -37,7 +37,7 @@ export default function ComparisonSection() {
       <div className="container">
         {/* Section Title */}
         <h2 className="section-title">Comparativo de Períodos</h2>
-        <p className="text-gray-600 mb-6">08/07-14/07 vs 15/07-21/07</p>
+        <p className="text-gray-600 mb-6">15/07-21/07 vs 22/07-28/07</p>
 
         {/* Metrics Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -67,32 +67,32 @@ export default function ComparisonSection() {
         <div className="mt-8 card-premium bg-gradient-to-r from-blue-50 to-white border border-blue-200">
           <p className="text-sm font-semibold text-[#203c50] mb-2">📊 Google Analytics</p>
           <p className="text-sm text-gray-700 leading-relaxed">
-            Estabilidade com mudanças qualitativas: <strong>+1,7% em usuários ativos</strong> (58 → 59), <strong>+1,8% em novos usuários</strong> (57 → 58), 
-            mas <strong>-11% em visualizações</strong> (73 → 65). Destaque positivo: <strong>engajamento subiu 44,2% (52s → 1min 15s)</strong>, 
-            indicando que usuários permanecem mais tempo no conteúdo. Porém, <strong>conversões caíram 50% (4 → 2)</strong>. 
-            Média de páginas por usuário caiu de 1,26 para 1,10, sinalizando necessidade de reforçar links internos.
+            Crescimento forte em todas as métricas: <strong>+15,3% em usuários ativos</strong> (59 → 68), <strong>+17,2% em novos usuários</strong> (58 → 68), 
+            <strong>+24,6% em visualizações</strong> (65 → 81). Engajamento continuou forte: <strong>+30,7% (1min 15s → 1min 38s)</strong>. 
+            Mais pessoas entraram, consumiram mais conteúdo e navegaram melhor: <strong>visualizações por usuário +8,2% (1,10 → 1,19)</strong>. 
+            Conversões permaneceram estáveis em 2 eventos. Taxa de eventos por usuário: 2,9% (pequena amostra, requer acompanhamento).
           </p>
         </div>
 
         {/* Summary - Search Console */}
         <div className="mt-4 card-premium bg-gradient-to-r from-green-50 to-white border border-green-200">
-          <p className="text-sm font-semibold text-[#203c50] mb-2">🔍 Search Console</p>
+          <p className="text-sm font-semibold text-[#203c50] mb-2">🔍 Search Console (20-26/07)</p>
           <p className="text-sm text-gray-700 leading-relaxed">
-            Redução moderada: <strong>-8% em cliques</strong> (39 → 36), <strong>-4% em impressões</strong> (7,12 mil → 6,85 mil). 
-            <strong>CTR mantido em 0,5%</strong>, permanecendo como oportunidade de melhoria. <strong>Posição média subiu para 8,5</strong>, 
-            consolidando presença em buscas informativas. Conteúdos em alta: Inquilino Reclama (+4 cliques). 
-            Conteúdos em baixa: Quanto Custa Limpa Fossa (-2), Fossa Rudimentar (-2), Tubulação de Ventilação (-2).
+            Crescimento em visibilidade: <strong>+25% em cliques</strong> (36 → 45), <strong>+5,4% em impressões</strong> (6,85 mil → 7,22 mil). 
+            <strong>CTR subiu para 0,6%</strong>, mostrando que otimizações de titles e meta descriptions começam a surtir efeito. 
+            <strong>Posição média permaneceu competitiva em 7,8</strong>. Conteúdos em destaque: Soda Cáustica (5 cliques), Prumada (4 cliques), 
+            Ralo Fazendo Barulho (4 cliques - novo em alta). Conteúdos em queda: Fezes Grandes (-3), Vaso Borbulhando (-3), Caixa de Gordura (-2).
           </p>
         </div>
 
-        {/* Summary - Ubersuggest */}
+        {/* Summary - Ubersuggest & Technical */}
         <div className="mt-4 card-premium bg-gradient-to-r from-orange-50 to-white border border-orange-200">
-          <p className="text-sm font-semibold text-[#203c50] mb-2">🎯 Ubersuggest</p>
+          <p className="text-sm font-semibold text-[#203c50] mb-2">🎯 Ubersuggest & Técnico</p>
           <p className="text-sm text-gray-700 leading-relaxed">
-            Estimativas mensais estáveis: <strong>257 visitas/mês e 154 palavras-chave</strong> (sem mudança). 
-            Porém, avanços em autoridade: <strong>backlinks +18,2% (13 → 15)</strong>, <strong>Domain Authority +25% (4 → 5)</strong>, 
-            <strong>valor estimado +9,5% (US$ 75,16 → US$ 82,33)</strong>. Nota: Ubersuggest apresenta estimativas mensais. 
-            Para dados reais de cliques, impressões e posição, considerar Google Search Console como fonte principal.
+            Estimativas mensais estáveis: 257 visitas/mês e 154 palavras-chave. Autoridade em crescimento: <strong>backlinks +18,2% (13 → 17)</strong>, 
+            <strong>Domain Authority +25% (4 → 6)</strong>. São Paulo ganhou presença: 13 usuários (+86% vs semana anterior). 
+            <strong>⚠️ ALERTA CRÍTICO: Velocidade mobile em 12,95s (crítica)</strong> — principal gargalo técnico. Desktop saudável em 2,15s. 
+            Tráfego 54,4% mobile exige prioridade em otimização. Sitemap ausente e URL 4XX apontados pelo rastreador — validar e corrigir.
           </p>
         </div>
       </div>

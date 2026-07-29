@@ -110,68 +110,68 @@ export interface DashboardData {
 
 export const defaultDashboardData: DashboardData = {
   period: {
-    startDate: '15/07/2026',
-    endDate: '21/07/2026',
+    startDate: '22/07/2026',
+    endDate: '28/07/2026',
   },
   previousPeriod: {
-    startDate: '08/07/2026',
-    endDate: '14/07/2026',
+    startDate: '15/07/2026',
+    endDate: '21/07/2026',
   },
   company: 'Desentupidora JD',
   
   ga4: {
-    activeUsers: 59,
-    newUsers: 58,
-    engagementTime: '1min 15s',
-    pageViews: 65,
+    activeUsers: 68,
+    newUsers: 68,
+    engagementTime: '1min 38s',
+    pageViews: 81,
     conversions: 2,
-    activeUsers30d: 290,
-    activeUsers7d: 59,
-    activeUsers1d: 9,
+    activeUsers30d: 320,
+    activeUsers7d: 68,
+    activeUsers1d: 11,
     
     dailyActivity: [
-      { date: '15/07', users: 8 },
-      { date: '16/07', users: 9 },
-      { date: '17/07', users: 8 },
-      { date: '18/07', users: 8 },
-      { date: '19/07', users: 9 },
-      { date: '20/07', users: 10 },
-      { date: '21/07', users: 7 },
+      { date: '22/07', users: 9 },
+      { date: '23/07', users: 10 },
+      { date: '24/07', users: 10 },
+      { date: '25/07', users: 9 },
+      { date: '26/07', users: 10 },
+      { date: '27/07', users: 11 },
+      { date: '28/07', users: 9 },
     ],
     
     devices: [
-      { name: 'Mobile', percentage: 52.5 },
-      { name: 'Desktop', percentage: 47.5 },
+      { name: 'Mobile', percentage: 54.4 },
+      { name: 'Desktop', percentage: 45.6 },
     ],
     
     os: [
-      { name: 'Android', count: 28 },
-      { name: 'Windows', count: 22 },
-      { name: 'iOS', count: 8 },
-      { name: 'Macintosh', count: 1 },
+      { name: 'Android', count: 32 },
+      { name: 'Windows', count: 24 },
+      { name: 'iOS', count: 10 },
+      { name: 'Macintosh', count: 2 },
     ],
     
     locations: [
-      { city: 'São Paulo', count: 7 },
-      { city: 'Rio de Janeiro', count: 6 },
-      { city: 'Curitiba', count: 4 },
-      { city: 'Florianópolis', count: 2 },
-      { city: 'Fortaleza', count: 2 },
+      { city: 'São Paulo', count: 13 },
+      { city: 'Rio de Janeiro', count: 8 },
+      { city: 'Curitiba', count: 6 },
+      { city: 'Florianópolis', count: 4 },
+      { city: 'Fortaleza', count: 3 },
       { city: 'Juazeiro do Norte', count: 2 },
       { city: 'Manaus', count: 2 },
     ],
     
     audiences: [
-      { name: 'All Users', count: 59 },
-      { name: 'Usuários ativos recentemente', count: 38 },
+      { name: 'All Users', count: 68 },
+      { name: 'Usuários ativos recentemente', count: 45 },
     ],
     
     topPages: [
+      { title: 'Soda Cáustica e Plástico: Evite Danos em Tubulações', views: 8 },
       { title: 'Prumada: O Que É, Sua Função e Manutenção', views: 7 },
+      { title: 'Ralo Fazendo Barulho: Causas, Diagnóstico e Soluções', views: 6 },
       { title: 'Inquilino Reclama de Entupimento: O Que Fazer e Quem Paga', views: 6 },
-      { title: 'Soda Cáustica e Plástico: Evite Danos em Tubulações', views: 6 },
-      { title: 'Fezes Grandes Entupindo o Vaso: Causas, Prevenção e Soluções', views: 5 },
-      { title: 'Caixa de Gordura em Apartamento: Função, Limpeza e Manutenção', views: 3 },
+      { title: 'Papel Higiênico no Vaso: Como Evitar Entupimentos', views: 5 },
     ],
     
     conversionEvent: {
@@ -180,73 +180,77 @@ export const defaultDashboardData: DashboardData = {
     },
     
     topConversionPage: {
-      title: 'Desentupidora Guarapari: Soluções no Espírito Santo',
-      events: 5,
+      title: 'Caça Vazamento em Osasco: Diagnóstico Rápido e Preciso',
+      events: 6,
       conversions: 1,
-      engagementTime: '0s',
+      engagementTime: '5s',
     },
     
     conversionPages: [
       {
-        title: 'Desentupidora Guarapari: Soluções no Espírito Santo',
-        events: 5,
+        title: 'Caça Vazamento em Osasco: Diagnóstico Rápido e Preciso',
+        events: 6,
         conversions: 1,
-        engagementTime: '0s',
+        engagementTime: '5s',
       },
       {
-        title: 'Quanto Custa Limpar Caixa D\'Água: Preços e Fatores com Solução',
-        events: 8,
+        title: 'Vaso Entupido: Água Não Desce? Causas e Soluções Rápidas',
+        events: 7,
         conversions: 1,
-        engagementTime: '1min 02s',
+        engagementTime: '3s',
       },
     ],
   },
   
   gsc: {
-    clicks: 36,
-    impressions: 6850,
-    ctr: 0.5,
-    avgPosition: 8.5,
+    clicks: 45,
+    impressions: 7220,
+    ctr: 0.6,
+    avgPosition: 7.8,
     
     dailyMetrics: [
-      { date: '15/07', clicks: 5, impressions: 975, ctr: 0.51, position: 8.4 },
-      { date: '16/07', clicks: 5, impressions: 980, ctr: 0.51, position: 8.5 },
-      { date: '17/07', clicks: 5, impressions: 975, ctr: 0.51, position: 8.5 },
-      { date: '18/07', clicks: 5, impressions: 980, ctr: 0.51, position: 8.6 },
-      { date: '19/07', clicks: 5, impressions: 975, ctr: 0.51, position: 8.5 },
-      { date: '20/07', clicks: 6, impressions: 985, ctr: 0.61, position: 8.4 },
-      { date: '21/07', clicks: 5, impressions: 980, ctr: 0.51, position: 8.5 },
+      { date: '20/07', clicks: 6, impressions: 1030, ctr: 0.58, position: 7.9 },
+      { date: '21/07', clicks: 6, impressions: 1030, ctr: 0.58, position: 7.8 },
+      { date: '22/07', clicks: 6, impressions: 1035, ctr: 0.58, position: 7.8 },
+      { date: '23/07', clicks: 7, impressions: 1040, ctr: 0.67, position: 7.7 },
+      { date: '24/07', clicks: 7, impressions: 1035, ctr: 0.68, position: 7.8 },
+      { date: '25/07', clicks: 6, impressions: 1030, ctr: 0.58, position: 7.9 },
+      { date: '26/07', clicks: 7, impressions: 1040, ctr: 0.67, position: 7.8 },
     ],
     
     queriesDown: [
       { query: 'fossa rudimentar', change: 0 },
-      { query: 'desentupidora em Guarapari', change: 0 },
     ],
     
     queriesUp: [
-      { query: 'soda cáustica derrete plástico', change: 1 },
-      { query: 'soda derrete plástico', change: 1 },
-      { query: 'caixa de gordura apartamento', change: 1 },
-      { query: 'Diabo Verde é melhor que soda cáustica', change: 1 },
+      { query: 'soda cáustica derrete plástico', change: 2 },
+      { query: 'prumada', change: 2 },
+      { query: 'ralo fazendo barulho', change: 3 },
+      { query: 'papel higiênico no vaso', change: 2 },
     ],
     
     contentsUp: [
-      { title: 'Inquilino Reclama de Entupimento: O Que Fazer e Quem Paga', change: 4 },
+      { title: 'Soda Cáustica e Plástico: Evite Danos em Tubulações', change: -1 },
+      { title: 'Prumada: O Que É, Sua Função e Manutenção', change: 2 },
+      { title: 'Ralo Fazendo Barulho: Causas, Diagnóstico e Soluções', change: 3 },
+      { title: 'Inquilino Reclama de Entupimento: O Que Fazer e Quem Paga', change: 1 },
+      { title: 'Papel Higiênico no Vaso: Como Evitar Entupimentos', change: 2 },
     ],
     
     contentsDown: [
-      { title: 'Quanto Custa Limpa Fossa? Preços e Serviço Profissional', change: -2 },
-      { title: 'Fossa Rudimentar: O Que É, Função e Problemas Comuns', change: -2 },
-      { title: 'Tubulação de Ventilação de Esgoto: Função e Problemas', change: -2 },
-      { title: 'Desentupimento em Imóvel Alugado: Quem Paga e Como Agir', change: -1 },
-      { title: 'Cheiro de Esgoto do Nada: Causas, Diagnóstico e Soluções', change: -1 },
+      { title: 'Fezes Grandes Entupindo o Vaso: Causas, Prevenção e Soluções', change: -3 },
+      { title: 'Vaso Borbulhando: Sinais, Causas e Soluções Práticas', change: -3 },
+      { title: 'Caixa de Gordura em Apartamento: Função, Limpeza e Manutenção', change: -2 },
+      { title: 'Diabo Verde vs Soda: Qual a Melhor Escolha para Desentupir?', change: -2 },
+      { title: 'Limpeza Pós-Entupimento: Como Higienizar Canos e Tubulações', change: -1 },
     ],
     
     topContents: [
-      { title: 'Inquilino Reclama de Entupimento: O Que Fazer e Quem Paga', clicks: 5 },
-      { title: 'Soda Cáustica e Plástico: Evite Danos em Tubulações', clicks: 4 },
-      { title: 'Entupimento: Inquilino vs. Proprietário — Quem Paga a Conta?', clicks: 3 },
-      { title: 'Caixa de Gordura em Apartamento: Função, Limpeza e Manutenção', clicks: 3 },
+      { title: 'Soda Cáustica e Plástico: Evite Danos em Tubulações', clicks: 5 },
+      { title: 'Prumada: O Que É, Sua Função e Manutenção', clicks: 4 },
+      { title: 'Ralo Fazendo Barulho: Causas, Diagnóstico e Soluções', clicks: 4 },
+      { title: 'Inquilino Reclama de Entupimento: O Que Fazer e Quem Paga', clicks: 3 },
+      { title: 'Papel Higiênico no Vaso: Como Evitar Entupimentos', clicks: 3 },
     ],
   },
   
@@ -260,7 +264,7 @@ export const defaultDashboardData: DashboardData = {
     gainedPositions: 0,
     lostPositions: 0,
     unchangedPositions: 154,
-    backlinks: 15,
+    backlinks: 17,
     
     rankings: [
       { keyword: 'desentupidora em pinheiros', position: 13, change: 0 },
@@ -277,12 +281,12 @@ export const defaultDashboardData: DashboardData = {
   
   technicalSeo: {
     mobile: {
-      carregamento: 'Bom',
+      carregamento: 'Crítica (12,95s)',
       interatividade: 'Ótimo',
       estabilidadeVisual: 'Ótimo',
     },
     desktop: {
-      carregamento: 'Ótimo',
+      carregamento: 'Boa (2,15s)',
       interatividade: 'Ótimo',
       estabilidadeVisual: 'Ótimo',
     },
