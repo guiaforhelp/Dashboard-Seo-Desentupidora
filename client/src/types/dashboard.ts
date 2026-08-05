@@ -110,33 +110,33 @@ export interface DashboardData {
 
 export const defaultDashboardData: DashboardData = {
   period: {
-    startDate: '22/07/2026',
-    endDate: '28/07/2026',
+    startDate: '29/07/2026',
+    endDate: '04/08/2026',
   },
   previousPeriod: {
-    startDate: '15/07/2026',
-    endDate: '21/07/2026',
+    startDate: '22/07/2026',
+    endDate: '28/07/2026',
   },
   company: 'Desentupidora JD',
   
   ga4: {
-    activeUsers: 68,
-    newUsers: 68,
-    engagementTime: '1min 38s',
+    activeUsers: 74,
+    newUsers: 73,
+    engagementTime: '1min 01s',
     pageViews: 81,
-    conversions: 2,
-    activeUsers30d: 320,
-    activeUsers7d: 68,
-    activeUsers1d: 11,
+    conversions: 5,
+    activeUsers30d: 340,
+    activeUsers7d: 74,
+    activeUsers1d: 12,
     
     dailyActivity: [
-      { date: '22/07', users: 9 },
-      { date: '23/07', users: 10 },
-      { date: '24/07', users: 10 },
-      { date: '25/07', users: 9 },
-      { date: '26/07', users: 10 },
-      { date: '27/07', users: 11 },
-      { date: '28/07', users: 9 },
+      { date: '29/07', users: 10 },
+      { date: '30/07', users: 11 },
+      { date: '31/07', users: 11 },
+      { date: '01/08', users: 10 },
+      { date: '02/08', users: 11 },
+      { date: '03/08', users: 12 },
+      { date: '04/08', users: 9 },
     ],
     
     devices: [
@@ -145,112 +145,110 @@ export const defaultDashboardData: DashboardData = {
     ],
     
     os: [
-      { name: 'Android', count: 32 },
-      { name: 'Windows', count: 24 },
-      { name: 'iOS', count: 10 },
+      { name: 'Android', count: 35 },
+      { name: 'Windows', count: 26 },
+      { name: 'iOS', count: 11 },
       { name: 'Macintosh', count: 2 },
     ],
     
     locations: [
-      { city: 'São Paulo', count: 13 },
-      { city: 'Rio de Janeiro', count: 8 },
-      { city: 'Curitiba', count: 6 },
+      { city: 'São Paulo', count: 14 },
+      { city: 'Rio de Janeiro', count: 9 },
+      { city: 'Curitiba', count: 7 },
       { city: 'Florianópolis', count: 4 },
       { city: 'Fortaleza', count: 3 },
+      { city: 'Manaus', count: 3 },
       { city: 'Juazeiro do Norte', count: 2 },
-      { city: 'Manaus', count: 2 },
     ],
     
     audiences: [
-      { name: 'All Users', count: 68 },
-      { name: 'Usuários ativos recentemente', count: 45 },
+      { name: 'All Users', count: 74 },
+      { name: 'Usuários ativos recentemente', count: 50 },
     ],
     
     topPages: [
-      { title: 'Soda Cáustica e Plástico: Evite Danos em Tubulações', views: 8 },
-      { title: 'Prumada: O Que É, Sua Função e Manutenção', views: 7 },
-      { title: 'Ralo Fazendo Barulho: Causas, Diagnóstico e Soluções', views: 6 },
+      { title: 'Soda Cáustica e Plástico: Evite Danos em Tubulações', views: 9 },
+      { title: 'Prumada: O Que É, Sua Função e Manutenção', views: 8 },
+      { title: 'Ralo Fazendo Barulho: Causas, Diagnóstico e Soluções', views: 7 },
       { title: 'Inquilino Reclama de Entupimento: O Que Fazer e Quem Paga', views: 6 },
       { title: 'Papel Higiênico no Vaso: Como Evitar Entupimentos', views: 5 },
     ],
     
     conversionEvent: {
-      name: 'Whatsapp Flutuante',
-      count: 2,
+      name: 'WhatsApp Flutuante',
+      count: 4,
     },
     
     topConversionPage: {
-      title: 'Caça Vazamento em Osasco: Diagnóstico Rápido e Preciso',
-      events: 6,
-      conversions: 1,
-      engagementTime: '5s',
+      title: 'Não disponível na captura',
+      events: 5,
+      conversions: 5,
+      engagementTime: 'Não disponível na captura',
     },
     
     conversionPages: [
       {
-        title: 'Caça Vazamento em Osasco: Diagnóstico Rápido e Preciso',
-        events: 6,
-        conversions: 1,
-        engagementTime: '5s',
+        title: 'WhatsApp Flutuante',
+        events: 4,
+        conversions: 4,
+        engagementTime: 'Não disponível na captura',
       },
       {
-        title: 'Vaso Entupido: Água Não Desce? Causas e Soluções Rápidas',
-        events: 7,
+        title: 'Botão WhatsApp GA4',
+        events: 1,
         conversions: 1,
-        engagementTime: '3s',
+        engagementTime: 'Não disponível na captura',
       },
     ],
   },
   
   gsc: {
-    clicks: 45,
-    impressions: 7220,
-    ctr: 0.6,
-    avgPosition: 7.8,
+    clicks: 40,
+    impressions: 7300,
+    ctr: 0.5,
+    avgPosition: 8.8,
     
     dailyMetrics: [
-      { date: '20/07', clicks: 6, impressions: 1030, ctr: 0.58, position: 7.9 },
-      { date: '21/07', clicks: 6, impressions: 1030, ctr: 0.58, position: 7.8 },
-      { date: '22/07', clicks: 6, impressions: 1035, ctr: 0.58, position: 7.8 },
-      { date: '23/07', clicks: 7, impressions: 1040, ctr: 0.67, position: 7.7 },
-      { date: '24/07', clicks: 7, impressions: 1035, ctr: 0.68, position: 7.8 },
-      { date: '25/07', clicks: 6, impressions: 1030, ctr: 0.58, position: 7.9 },
-      { date: '26/07', clicks: 7, impressions: 1040, ctr: 0.67, position: 7.8 },
-    ],
-    
-    queriesDown: [
-      { query: 'fossa rudimentar', change: 0 },
+      { date: '28/07', clicks: 5, impressions: 1040, ctr: 0.48, position: 8.9 },
+      { date: '29/07', clicks: 6, impressions: 1045, ctr: 0.57, position: 8.8 },
+      { date: '30/07', clicks: 6, impressions: 1040, ctr: 0.58, position: 8.8 },
+      { date: '31/07', clicks: 6, impressions: 1045, ctr: 0.57, position: 8.9 },
+      { date: '01/08', clicks: 6, impressions: 1040, ctr: 0.58, position: 8.8 },
+      { date: '02/08', clicks: 5, impressions: 1045, ctr: 0.48, position: 8.8 },
+      { date: '03/08', clicks: 6, impressions: 1045, ctr: 0.57, position: 8.7 },
     ],
     
     queriesUp: [
-      { query: 'soda cáustica derrete plástico', change: 2 },
-      { query: 'prumada', change: 2 },
-      { query: 'ralo fazendo barulho', change: 3 },
-      { query: 'papel higiênico no vaso', change: 2 },
+      { query: 'ralo fazendo barulho', change: 2 },
+      { query: 'papel higiênico entope vaso', change: 2 },
+      { query: 'prumada hidráulica', change: 1 },
+    ],
+    
+    queriesDown: [
+      { query: 'soda cáustica derrete plástico', change: -1 },
+      { query: 'caixa de gordura apartamento', change: -1 },
     ],
     
     contentsUp: [
-      { title: 'Soda Cáustica e Plástico: Evite Danos em Tubulações', change: -1 },
-      { title: 'Prumada: O Que É, Sua Função e Manutenção', change: 2 },
-      { title: 'Ralo Fazendo Barulho: Causas, Diagnóstico e Soluções', change: 3 },
-      { title: 'Inquilino Reclama de Entupimento: O Que Fazer e Quem Paga', change: 1 },
+      { title: 'Ralo Fazendo Barulho: Causas, Diagnóstico e Soluções', change: 2 },
       { title: 'Papel Higiênico no Vaso: Como Evitar Entupimentos', change: 2 },
+      { title: 'Prumada: O Que É, Sua Função e Manutenção', change: 1 },
     ],
     
     contentsDown: [
-      { title: 'Fezes Grandes Entupindo o Vaso: Causas, Prevenção e Soluções', change: -3 },
-      { title: 'Vaso Borbulhando: Sinais, Causas e Soluções Práticas', change: -3 },
-      { title: 'Caixa de Gordura em Apartamento: Função, Limpeza e Manutenção', change: -2 },
-      { title: 'Diabo Verde vs Soda: Qual a Melhor Escolha para Desentupir?', change: -2 },
-      { title: 'Limpeza Pós-Entupimento: Como Higienizar Canos e Tubulações', change: -1 },
+      { title: 'Soda Cáustica e Plástico: Evite Danos em Tubulações', change: -2 },
+      { title: 'Fezes Grandes Entupindo o Vaso: Causas, Prevenção e Soluções', change: -2 },
+      { title: 'Caixa de Gordura em Apartamento: Função, Limpeza e Manutenção', change: -1 },
+      { title: 'Diabo Verde vs Soda: Qual a Melhor Escolha para Desentupir?', change: -1 },
+      { title: 'Vaso Borbulhando: Sinais, Causas e Soluções Práticas', change: -1 },
     ],
     
     topContents: [
       { title: 'Soda Cáustica e Plástico: Evite Danos em Tubulações', clicks: 5 },
-      { title: 'Prumada: O Que É, Sua Função e Manutenção', clicks: 4 },
       { title: 'Ralo Fazendo Barulho: Causas, Diagnóstico e Soluções', clicks: 4 },
-      { title: 'Inquilino Reclama de Entupimento: O Que Fazer e Quem Paga', clicks: 3 },
+      { title: 'Prumada: O Que É, Sua Função e Manutenção', clicks: 4 },
       { title: 'Papel Higiênico no Vaso: Como Evitar Entupimentos', clicks: 3 },
+      { title: 'Inquilino Reclama de Entupimento: O Que Fazer e Quem Paga', clicks: 3 },
     ],
   },
   
@@ -260,10 +258,10 @@ export const defaultDashboardData: DashboardData = {
     top3: 0,
     top10: 0,
     top100: 1,
-    notRanked: 153,
+    notRanked: 167,
     gainedPositions: 0,
     lostPositions: 0,
-    unchangedPositions: 154,
+    unchangedPositions: 168,
     backlinks: 17,
     
     rankings: [
@@ -272,7 +270,7 @@ export const defaultDashboardData: DashboardData = {
     
     performance: {
       score: 61,
-      carregamento: 'Bom',
+      carregamento: 'Crítica (12,95s)',
       interatividade: 'Ótimo',
       estabilidadeVisual: 'Ótimo',
       pagesScraped: 11,
