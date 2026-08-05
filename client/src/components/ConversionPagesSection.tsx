@@ -11,6 +11,20 @@ export default function ConversionPagesSection({ data }: ConversionPagesSectionP
     { name: 'Botão WhatsApp GA4', count: 1, pct: 20 },
   ];
 
+  const pageColors = [
+    { bg: 'from-green-50', border: 'border-green-200', badge: 'bg-green-100', badgeText: 'text-green-700' },
+    { bg: 'from-blue-50', border: 'border-blue-200', badge: 'bg-blue-100', badgeText: 'text-blue-700' },
+    { bg: 'from-orange-50', border: 'border-orange-200', badge: 'bg-orange-100', badgeText: 'text-orange-700' },
+    { bg: 'from-purple-50', border: 'border-purple-200', badge: 'bg-purple-100', badgeText: 'text-purple-700' },
+  ];
+
+  const pageObservations = [
+    'Página fora da área de atendimento principal (São Luís/MA). Engajamento de 0s — validar se o evento foi acionado corretamente e se representa intenção comercial real.',
+    'Página de cidade do interior. Engajamento de 4s — baixo, mas registrou evento. Verificar se há interesse real ou se é tráfego de passagem.',
+    'Página comercial de São Paulo com 54s de engajamento — a mais consistente do período. Indica intenção de serviço alinhada à área de atuação da JD.',
+    'Conteúdo de preço com 0s de engajamento. Evento registrado, mas sem leitura confirmada. Validar se o clique foi intencional.',
+  ];
+
   return (
     <section className="py-12 border-b border-gray-200">
       <div className="container">
@@ -42,8 +56,9 @@ export default function ConversionPagesSection({ data }: ConversionPagesSectionP
           </div>
         </div>
 
-        {/* Event Breakdown */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        {/* Event Type Breakdown */}
+        <h3 className="text-lg font-bold text-[#203c50] mb-4">Tipo de Evento</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
           {eventBreakdown.map((ev, idx) => {
             const colors = [
               { bg: 'from-green-50', border: 'border-green-200', badge: 'bg-green-100', badgeText: 'text-green-700' },
@@ -79,6 +94,56 @@ export default function ConversionPagesSection({ data }: ConversionPagesSectionP
           })}
         </div>
 
+        {/* Pages that originated events */}
+        <h3 className="text-lg font-bold text-[#203c50] mb-4">Páginas de Origem dos Eventos</h3>
+        <div className="grid grid-cols-1 gap-5 mb-8">
+          {data.conversionPages && data.conversionPages.map((page, idx) => {
+            const color = pageColors[idx] || pageColors[0];
+            const totalConversions = data.conversions;
+            const pct = totalConversions > 0 ? ((page.conversions / totalConversions) * 100).toFixed(0) : '0';
+
+            return (
+              <div key={idx} className={`card-premium bg-gradient-to-r ${color.bg} to-white border-2 ${color.border}`}>
+                <div className="mb-4 pb-4 border-b border-gray-200">
+                  <p className="text-sm text-gray-500 mb-1">Página #{idx + 1}</p>
+                  <p className="text-base font-bold text-[#203c50]">{page.title}</p>
+                </div>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+                  <div className={`p-4 ${color.badge} rounded-lg`}>
+                    <p className="text-xs text-gray-600 mb-2 font-semibold">Eventos Principais</p>
+                    <p className={`text-3xl font-bold ${color.badgeText}`}>{page.conversions}</p>
+                    <p className="text-xs text-gray-600 mt-2">{pct}% do total</p>
+                  </div>
+                  <div className="p-4 bg-indigo-100 rounded-lg">
+                    <p className="text-xs text-gray-600 mb-2 font-semibold">Contagem Eventos</p>
+                    <p className="text-3xl font-bold text-indigo-700">{page.events}</p>
+                    <p className="text-xs text-gray-600 mt-2">todos os eventos</p>
+                  </div>
+                  <div className="p-4 bg-blue-100 rounded-lg">
+                    <p className="text-xs text-gray-600 mb-2 font-semibold">Engajamento</p>
+                    <p className="text-3xl font-bold text-blue-700">{page.engagementTime}</p>
+                    <p className="text-xs text-gray-600 mt-2">tempo médio</p>
+                  </div>
+                  <div className="p-4 bg-pink-100 rounded-lg">
+                    <p className="text-xs text-gray-600 mb-2 font-semibold">Tipo</p>
+                    <p className="text-sm font-bold text-pink-700">WhatsApp</p>
+                    <p className="text-xs text-gray-600 mt-2">evento</p>
+                  </div>
+                </div>
+                <div className="p-4 bg-white rounded-lg border border-gray-200">
+                  <div className="flex gap-3">
+                    <TrendingUp className="w-5 h-5 text-[#ff6737] flex-shrink-0 mt-0.5" />
+                    <div>
+                      <p className="text-sm font-semibold text-[#203c50] mb-1">Observação Estratégica</p>
+                      <p className="text-sm text-gray-700 leading-relaxed">{pageObservations[idx]}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
         {/* Quality Alert */}
         <div className="card-premium bg-yellow-50 border border-yellow-300 mb-6">
           <div className="flex gap-3">
@@ -87,7 +152,8 @@ export default function ConversionPagesSection({ data }: ConversionPagesSectionP
               <p className="text-sm font-semibold text-yellow-800 mb-1">Alerta de Qualidade</p>
               <p className="text-sm text-yellow-700 leading-relaxed">
                 Os eventos representam cliques/interações rastreadas. Eles precisam ser cruzados com o comercial para identificar 
-                quantos viraram conversa válida, orçamento, agendamento e serviço concluído.
+                quantos viraram conversa válida, orçamento, agendamento e serviço concluído. Páginas fora de São Paulo (São Luís, Araçatuba) 
+                devem ser validadas quanto à intenção comercial real.
               </p>
             </div>
           </div>
