@@ -20,7 +20,7 @@ export default function WeeklyReadingSection() {
             </p>
 
             <p>
-              No Search Console, a janela de 18 a 24/08 registrou <strong>35 cliques orgânicos (+46%)</strong> e <strong>7,07 mil impressões (-3%)</strong>. O CTR médio foi de <strong>0,5%</strong> e a posição média, <strong>8,8</strong>. O ganho em cliques, mesmo com leve redução nas impressões, aponta boa capacidade de captura; ainda assim, há espaço para títulos, meta descriptions e FAQs mais aderentes à intenção de busca.
+              No Search Console, a janela de 18 a 24/08 registrou <strong>35 cliques orgânicos (+46%)</strong> e <strong>7,07 mil impressões (-3%)</strong>. O CTR médio subiu de <strong>0,3% para 0,5% (+0,2 ponto percentual)</strong> e a posição média melhorou de <strong>9,9 para 8,8 (+1,1 posição)</strong>. O ganho em cliques, mesmo com leve redução nas impressões, aponta boa capacidade de captura; ainda assim, há espaço para títulos, meta descriptions e FAQs mais aderentes à intenção de busca.
             </p>
 
             <p>

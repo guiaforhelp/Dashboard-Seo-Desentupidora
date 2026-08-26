@@ -34,7 +34,11 @@ export interface DashboardData {
     clicks: number;
     impressions: number;
     ctr: number;
+    ctrPrevious: number;
+    ctrChangePp: number;
     avgPosition: number;
+    avgPositionPrevious: number;
+    avgPositionImprovement: number;
     dailyMetrics: Array<{
       date: string;
       clicks: number;
@@ -95,15 +99,20 @@ export const defaultDashboardData: DashboardData = {
     engagementTime: '46s',
     pageViews: 82,
     conversions: 4,
-    activeUsers30d: 0,
+    activeUsers30d: 279,
     activeUsers7d: 72,
-    activeUsers1d: 0,
+    activeUsers1d: 22,
     dailyActivity: [],
     devices: [
       { name: 'Desktop', percentage: 51.4 },
       { name: 'Mobile', percentage: 48.6 },
     ],
-    os: [],
+    os: [
+      { name: 'Windows', count: 36 },
+      { name: 'Android', count: 24 },
+      { name: 'iOS', count: 11 },
+      { name: 'Chrome OS', count: 1 },
+    ],
     locations: [
       { city: 'São Paulo', count: 15 },
       { city: 'Rio de Janeiro', count: 5 },
@@ -133,7 +142,11 @@ export const defaultDashboardData: DashboardData = {
     clicks: 35,
     impressions: 7070,
     ctr: 0.5,
+    ctrPrevious: 0.3,
+    ctrChangePp: 0.2,
     avgPosition: 8.8,
+    avgPositionPrevious: 9.9,
+    avgPositionImprovement: 1.1,
     dailyMetrics: [],
     queriesUp: [
       { query: 'desentupidora de fossa', clicks: 1, change: 1 },

@@ -2,7 +2,7 @@
 import { AlertTriangle, Eye, TrendingUp, Users, Zap } from 'lucide-react';
 import KPICard from './KPICard';
 import { DashboardData } from '@/types/dashboard';
-import { Bar, BarChart, CartesianGrid, Cell, Line, LineChart, Pie, PieChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import { Bar, BarChart, CartesianGrid, Cell, Pie, PieChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 
 interface GA4SectionProps {
   data: DashboardData['ga4'];
@@ -10,7 +10,6 @@ interface GA4SectionProps {
 
 export default function GA4Section({ data }: GA4SectionProps) {
   const deviceColors = ['#203c50', '#ff6737'];
-  const hasDailyActivity = data.dailyActivity.length > 0;
   const hasOsData = data.os.length > 0;
 
   return (
@@ -29,25 +28,15 @@ export default function GA4Section({ data }: GA4SectionProps) {
           <KPICard label="Eventos Principais" value={data.conversions} icon={<TrendingUp />} />
         </div>
 
-        {hasDailyActivity ? (
-          <div className="card-premium mb-8">
-            <h3 className="section-subtitle">Atividade do Usuário ao Longo do Tempo</h3>
-            <ResponsiveContainer width="100%" height={300}>
-              <LineChart data={data.dailyActivity}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#e5e5e5" />
-                <XAxis dataKey="date" stroke="#999" />
-                <YAxis stroke="#999" />
-                <Tooltip contentStyle={{ backgroundColor: '#fff', border: '1px solid #e5e5e5', borderRadius: '8px' }} />
-                <Line type="monotone" dataKey="users" stroke="#ff6737" strokeWidth={3} dot={{ fill: '#ff6737', r: 5 }} activeDot={{ r: 7 }} />
-              </LineChart>
-            </ResponsiveContainer>
+        <div className="card-premium mb-8">
+          <h3 className="section-subtitle">Usuários Ativos por Janela</h3>
+          <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
+            <div className="rounded-lg border border-[#dfe6ea] bg-white p-4 text-center"><p className="text-xs font-semibold uppercase tracking-wide text-gray-500">Último 1 dia</p><p className="mt-2 text-3xl font-bold text-[#203c50]">{data.activeUsers1d}</p><p className="mt-1 text-xs text-gray-500">usuários ativos únicos</p></div>
+            <div className="rounded-lg border border-[#dfe6ea] bg-white p-4 text-center"><p className="text-xs font-semibold uppercase tracking-wide text-gray-500">Últimos 7 dias</p><p className="mt-2 text-3xl font-bold text-[#203c50]">{data.activeUsers7d}</p><p className="mt-1 text-xs text-gray-500">usuários ativos únicos</p></div>
+            <div className="rounded-lg border border-[#dfe6ea] bg-white p-4 text-center"><p className="text-xs font-semibold uppercase tracking-wide text-gray-500">Últimos 30 dias</p><p className="mt-2 text-3xl font-bold text-[#203c50]">{data.activeUsers30d}</p><p className="mt-1 text-xs text-gray-500">usuários ativos únicos</p></div>
           </div>
-        ) : (
-          <div className="card-premium mb-8 border border-gray-200 bg-white">
-            <p className="text-sm font-semibold text-[#203c50]">Tendência diária</p>
-            <p className="mt-1 text-sm text-gray-600">Não disponível na coleta atual; por isso, nenhum valor diário foi estimado para o gráfico.</p>
-          </div>
-        )}
+          <p className="mt-4 text-xs leading-relaxed text-gray-600"><strong>Como ler:</strong> as janelas mostram usuários únicos ativos. O mesmo usuário pode ter visitado mais de um dia e ainda assim contar apenas uma vez no total de 7 ou 30 dias.</p>
+        </div>
 
         <div className="mb-8 grid grid-cols-1 gap-8 lg:grid-cols-2">
           <div className="card-premium">
