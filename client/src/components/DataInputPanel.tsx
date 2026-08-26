@@ -1,5 +1,5 @@
-import { X, Save } from 'lucide-react';
 import { useState } from 'react';
+import { Save, X } from 'lucide-react';
 import { DashboardData, defaultDashboardData } from '@/types/dashboard';
 
 interface DataInputPanelProps {
@@ -11,13 +11,13 @@ interface DataInputPanelProps {
 export default function DataInputPanel({ isOpen, onClose, onSave }: DataInputPanelProps) {
   const [formData, setFormData] = useState<DashboardData>(defaultDashboardData);
 
-  const handleInputChange = (path: string, value: any) => {
+  const handleInputChange = (path: string, value: string | number) => {
     const keys = path.split('.');
-    const newData = JSON.parse(JSON.stringify(formData));
-    let current = newData;
+    const newData = JSON.parse(JSON.stringify(formData)) as DashboardData;
+    let current: Record<string, unknown> = newData as unknown as Record<string, unknown>;
 
     for (let i = 0; i < keys.length - 1; i++) {
-      current = current[keys[i]];
+      current = current[keys[i]] as Record<string, unknown>;
     }
 
     current[keys[keys.length - 1]] = value;
@@ -33,192 +33,73 @@ export default function DataInputPanel({ isOpen, onClose, onSave }: DataInputPan
 
   return (
     <>
-      {/* Overlay */}
-      <div
-        className="fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-200"
-        onClick={onClose}
-      ></div>
+      <div className="fixed inset-0 z-40 bg-black bg-opacity-50" onClick={onClose} />
 
-      {/* Panel */}
-      <div className="fixed right-0 top-0 h-full w-full max-w-2xl bg-white shadow-2xl z-50 overflow-y-auto animate-slide-in-right">
-        {/* Header */}
-        <div className="sticky top-0 bg-white border-b border-gray-200 p-6 flex items-center justify-between">
-          <h2 className="text-2xl font-bold text-[#203c50] font-poppins">Inserir Novos Dados</h2>
-          <button
-            onClick={onClose}
-            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
-          >
-            <X className="w-6 h-6 text-gray-600" />
+      <aside className="fixed right-0 top-0 z-50 h-full w-full max-w-2xl overflow-y-auto bg-white shadow-2xl animate-slide-in-right">
+        <header className="sticky top-0 flex items-center justify-between border-b border-gray-200 bg-white p-6">
+          <div>
+            <h2 className="font-poppins text-2xl font-bold text-[#203c50]">Inserir Novos Dados</h2>
+            <p className="mt-1 text-sm text-gray-500">Atualize os indicadores disponíveis em cada fonte.</p>
+          </div>
+          <button onClick={onClose} className="rounded-lg p-2 transition-colors hover:bg-gray-100" aria-label="Fechar painel">
+            <X className="h-6 w-6 text-gray-600" />
           </button>
-        </div>
+        </header>
 
-        {/* Content */}
-        <div className="p-6 space-y-8">
-          {/* Period */}
-          <div>
-            <h3 className="text-lg font-semibold text-[#203c50] mb-4">Período</h3>
+        <div className="space-y-8 p-6">
+          <section>
+            <h3 className="mb-4 text-lg font-semibold text-[#203c50]">Período</h3>
             <div className="grid grid-cols-2 gap-4">
-              <input
-                type="text"
-                placeholder="Data Inicial (DD/MM/YYYY)"
-                value={formData.period.startDate}
-                onChange={(e) => handleInputChange('period.startDate', e.target.value)}
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#ff6737]"
-              />
-              <input
-                type="text"
-                placeholder="Data Final (DD/MM/YYYY)"
-                value={formData.period.endDate}
-                onChange={(e) => handleInputChange('period.endDate', e.target.value)}
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#ff6737]"
-              />
+              <input type="text" placeholder="Data inicial" value={formData.period.startDate} onChange={(e) => handleInputChange('period.startDate', e.target.value)} className="rounded-lg border border-gray-300 px-4 py-2 focus:border-[#ff6737] focus:outline-none" />
+              <input type="text" placeholder="Data final" value={formData.period.endDate} onChange={(e) => handleInputChange('period.endDate', e.target.value)} className="rounded-lg border border-gray-300 px-4 py-2 focus:border-[#ff6737] focus:outline-none" />
             </div>
-          </div>
+          </section>
 
-          {/* Company */}
-          <div>
-            <h3 className="text-lg font-semibold text-[#203c50] mb-4">Empresa</h3>
-            <input
-              type="text"
-              placeholder="Nome da Empresa"
-              value={formData.company}
-              onChange={(e) => handleInputChange('company', e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#ff6737]"
-            />
-          </div>
-
-          {/* GA4 Metrics */}
-          <div>
-            <h3 className="text-lg font-semibold text-[#203c50] mb-4">Google Analytics 4</h3>
+          <section>
+            <h3 className="mb-4 text-lg font-semibold text-[#203c50]">Google Analytics 4</h3>
             <div className="grid grid-cols-2 gap-4">
-              <input
-                type="number"
-                placeholder="Usuários Ativos"
-                value={formData.ga4.activeUsers}
-                onChange={(e) => handleInputChange('ga4.activeUsers', parseInt(e.target.value))}
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#ff6737]"
-              />
-              <input
-                type="number"
-                placeholder="Novos Usuários"
-                value={formData.ga4.newUsers}
-                onChange={(e) => handleInputChange('ga4.newUsers', parseInt(e.target.value))}
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#ff6737]"
-              />
-              <input
-                type="text"
-                placeholder="Tempo Médio (ex: 1 min 44 s)"
-                value={formData.ga4.engagementTime}
-                onChange={(e) => handleInputChange('ga4.engagementTime', e.target.value)}
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#ff6737]"
-              />
-              <input
-                type="number"
-                placeholder="Visualizações"
-                value={formData.ga4.pageViews}
-                onChange={(e) => handleInputChange('ga4.pageViews', parseInt(e.target.value))}
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#ff6737]"
-              />
-              <input
-                type="number"
-                placeholder="Conversões"
-                value={formData.ga4.conversions}
-                onChange={(e) => handleInputChange('ga4.conversions', parseInt(e.target.value))}
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#ff6737]"
-              />
+              <input type="number" placeholder="Usuários ativos" value={formData.ga4.activeUsers} onChange={(e) => handleInputChange('ga4.activeUsers', parseInt(e.target.value || '0', 10))} className="rounded-lg border border-gray-300 px-4 py-2 focus:border-[#ff6737] focus:outline-none" />
+              <input type="number" placeholder="Novos usuários" value={formData.ga4.newUsers} onChange={(e) => handleInputChange('ga4.newUsers', parseInt(e.target.value || '0', 10))} className="rounded-lg border border-gray-300 px-4 py-2 focus:border-[#ff6737] focus:outline-none" />
+              <input type="text" placeholder="Tempo médio (ex.: 1min15s)" value={formData.ga4.engagementTime} onChange={(e) => handleInputChange('ga4.engagementTime', e.target.value)} className="rounded-lg border border-gray-300 px-4 py-2 focus:border-[#ff6737] focus:outline-none" />
+              <input type="number" placeholder="Visualizações" value={formData.ga4.pageViews} onChange={(e) => handleInputChange('ga4.pageViews', parseInt(e.target.value || '0', 10))} className="rounded-lg border border-gray-300 px-4 py-2 focus:border-[#ff6737] focus:outline-none" />
+              <input type="number" placeholder="Eventos principais" value={formData.ga4.conversions} onChange={(e) => handleInputChange('ga4.conversions', parseInt(e.target.value || '0', 10))} className="rounded-lg border border-gray-300 px-4 py-2 focus:border-[#ff6737] focus:outline-none" />
             </div>
-          </div>
+          </section>
 
-          {/* GSC Metrics */}
-          <div>
-            <h3 className="text-lg font-semibold text-[#203c50] mb-4">Google Search Console</h3>
+          <section>
+            <h3 className="mb-4 text-lg font-semibold text-[#203c50]">Google Search Console</h3>
             <div className="grid grid-cols-2 gap-4">
-              <input
-                type="number"
-                placeholder="Cliques"
-                value={formData.gsc.clicks}
-                onChange={(e) => handleInputChange('gsc.clicks', parseInt(e.target.value))}
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#ff6737]"
-              />
-              <input
-                type="number"
-                placeholder="Impressões"
-                value={formData.gsc.impressions}
-                onChange={(e) => handleInputChange('gsc.impressions', parseInt(e.target.value))}
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#ff6737]"
-              />
-              <input
-                type="number"
-                placeholder="CTR (%)"
-                step="0.1"
-                value={formData.gsc.ctr}
-                onChange={(e) => handleInputChange('gsc.ctr', parseFloat(e.target.value))}
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#ff6737]"
-              />
-              <input
-                type="number"
-                placeholder="Posição Média"
-                step="0.1"
-                value={formData.gsc.avgPosition}
-                onChange={(e) => handleInputChange('gsc.avgPosition', parseFloat(e.target.value))}
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#ff6737]"
-              />
+              <input type="number" placeholder="Cliques" value={formData.gsc.clicks} onChange={(e) => handleInputChange('gsc.clicks', parseInt(e.target.value || '0', 10))} className="rounded-lg border border-gray-300 px-4 py-2 focus:border-[#ff6737] focus:outline-none" />
+              <input type="number" placeholder="Impressões" value={formData.gsc.impressions} onChange={(e) => handleInputChange('gsc.impressions', parseInt(e.target.value || '0', 10))} className="rounded-lg border border-gray-300 px-4 py-2 focus:border-[#ff6737] focus:outline-none" />
+              <input type="number" placeholder="CTR (%)" step="0.1" value={formData.gsc.ctr} onChange={(e) => handleInputChange('gsc.ctr', parseFloat(e.target.value || '0'))} className="rounded-lg border border-gray-300 px-4 py-2 focus:border-[#ff6737] focus:outline-none" />
+              <input type="number" placeholder="Posição média" step="0.1" value={formData.gsc.avgPosition} onChange={(e) => handleInputChange('gsc.avgPosition', parseFloat(e.target.value || '0'))} className="rounded-lg border border-gray-300 px-4 py-2 focus:border-[#ff6737] focus:outline-none" />
             </div>
-          </div>
+          </section>
 
-          {/* Ubersuggest Metrics */}
-          <div>
-            <h3 className="text-lg font-semibold text-[#203c50] mb-4">Ubersuggest</h3>
+          <section>
+            <h3 className="mb-1 text-lg font-semibold text-[#203c50]">Ubersuggest e Visibilidade em IA</h3>
+            <p className="mb-4 text-xs text-gray-500">Os dados do Ubersuggest são estimativas mensais e indicadores de rastreamento.</p>
             <div className="grid grid-cols-2 gap-4">
-              <input
-                type="number"
-                placeholder="Posição Média Anterior"
-                value={formData.ubersuggest.avgPositionPrevious}
-                onChange={(e) => handleInputChange('ubersuggest.avgPositionPrevious', parseFloat(e.target.value))}
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#ff6737]"
-              />
-              <input
-                type="number"
-                placeholder="Tráfego Orgânico Mensal"
-                value={formData.ubersuggest.top10}
-                onChange={(e) => handleInputChange('ubersuggest.top10', parseInt(e.target.value))}
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#ff6737]"
-              />
-              <input
-                type="number"
-                placeholder="Top 100"
-                value={formData.ubersuggest.top100}
-                onChange={(e) => handleInputChange('ubersuggest.top100', parseInt(e.target.value))}
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#ff6737]"
-              />
-              <input
-                type="number"
-                placeholder="Backlinks"
-                value={formData.ubersuggest.backlinks}
-                onChange={(e) => handleInputChange('ubersuggest.backlinks', parseInt(e.target.value))}
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#ff6737]"
-              />
+              <input type="number" placeholder="Palavras-chave orgânicas" value={formData.ubersuggest.organicKeywords} onChange={(e) => handleInputChange('ubersuggest.organicKeywords', parseInt(e.target.value || '0', 10))} className="rounded-lg border border-gray-300 px-4 py-2 focus:border-[#ff6737] focus:outline-none" />
+              <input type="number" placeholder="Tráfego estimado/mês" value={formData.ubersuggest.estimatedOrganicTraffic} onChange={(e) => handleInputChange('ubersuggest.estimatedOrganicTraffic', parseInt(e.target.value || '0', 10))} className="rounded-lg border border-gray-300 px-4 py-2 focus:border-[#ff6737] focus:outline-none" />
+              <input type="number" placeholder="Backlinks" value={formData.ubersuggest.backlinks} onChange={(e) => handleInputChange('ubersuggest.backlinks', parseInt(e.target.value || '0', 10))} className="rounded-lg border border-gray-300 px-4 py-2 focus:border-[#ff6737] focus:outline-none" />
+              <input type="text" placeholder="Valor estimado do tráfego" value={formData.ubersuggest.estimatedTrafficValue} onChange={(e) => handleInputChange('ubersuggest.estimatedTrafficValue', e.target.value)} className="rounded-lg border border-gray-300 px-4 py-2 focus:border-[#ff6737] focus:outline-none" />
+              <input type="number" placeholder="Posição média rastreada" step="0.01" value={formData.ubersuggest.trackedAveragePosition} onChange={(e) => handleInputChange('ubersuggest.trackedAveragePosition', parseFloat(e.target.value || '0'))} className="rounded-lg border border-gray-300 px-4 py-2 focus:border-[#ff6737] focus:outline-none" />
+              <input type="number" placeholder="Visibilidade de marca em IA (%)" step="0.01" value={formData.ubersuggest.aiVisibility.brandVisibility} onChange={(e) => handleInputChange('ubersuggest.aiVisibility.brandVisibility', parseFloat(e.target.value || '0'))} className="rounded-lg border border-gray-300 px-4 py-2 focus:border-[#ff6737] focus:outline-none" />
+              <input type="number" placeholder="Visibilidade no ChatGPT (%)" step="0.01" value={formData.ubersuggest.aiVisibility.chatgptVisibility} onChange={(e) => handleInputChange('ubersuggest.aiVisibility.chatgptVisibility', parseFloat(e.target.value || '0'))} className="rounded-lg border border-gray-300 px-4 py-2 focus:border-[#ff6737] focus:outline-none" />
+              <input type="text" placeholder="Sentimento da marca" value={formData.ubersuggest.aiVisibility.sentiment} onChange={(e) => handleInputChange('ubersuggest.aiVisibility.sentiment', e.target.value)} className="rounded-lg border border-gray-300 px-4 py-2 focus:border-[#ff6737] focus:outline-none" />
             </div>
-          </div>
+          </section>
 
-          {/* Action Buttons */}
-          <div className="flex gap-4 pt-6 border-t border-gray-200">
-            <button
-              onClick={onClose}
-              className="flex-1 px-4 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-medium"
-            >
-              Cancelar
-            </button>
-            <button
-              onClick={handleSave}
-              className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-[#ff6737] text-white rounded-lg hover:bg-[#e55a28] transition-colors font-medium"
-            >
-              <Save className="w-5 h-5" />
+          <div className="flex gap-4 border-t border-gray-200 pt-6">
+            <button onClick={onClose} className="flex-1 rounded-lg border border-gray-300 px-4 py-3 font-medium text-gray-700 transition-colors hover:bg-gray-50">Cancelar</button>
+            <button onClick={handleSave} className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-[#ff6737] px-4 py-3 font-medium text-white transition-colors hover:bg-[#e55a28]">
+              <Save className="h-5 w-5" />
               Salvar e Gerar
             </button>
           </div>
         </div>
-      </div>
+      </aside>
     </>
   );
 }

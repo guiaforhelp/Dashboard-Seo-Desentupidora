@@ -1,3 +1,4 @@
+// Estilo JD: o cabeçalho em gradiente azul e laranja estabelece a assinatura do relatório executivo semanal.
 import { Settings, Download } from 'lucide-react';
 
 interface DashboardHeaderProps {
@@ -30,7 +31,7 @@ export default function DashboardHeader({
                   borderColor: '#4b5057'
                 }}
               >
-                RELATÓRIO SEO PREMIUM
+                JD • INTELIGÊNCIA SEO SEMANAL
               </span>
             </div>
 
@@ -75,7 +76,7 @@ export default function DashboardHeader({
               }}
             >
               <p className="text-gray-300 text-xs font-semibold tracking-wide mb-2">USUÁRIOS ATIVOS</p>
-              <p className="text-white text-3xl font-bold" style={{ fontFamily: "'Poppins', sans-serif" }}>74</p>
+              <p className="text-white text-3xl font-bold" style={{ fontFamily: "'Poppins', sans-serif" }}>72</p>
             </div>
 
             {/* Cliques Orgânicos */}
@@ -88,7 +89,7 @@ export default function DashboardHeader({
               }}
             >
               <p className="text-gray-300 text-xs font-semibold tracking-wide mb-2">CLIQUES ORGÂNICOS</p>
-              <p className="text-white text-3xl font-bold" style={{ fontFamily: "'Poppins', sans-serif" }}>40</p>
+              <p className="text-white text-3xl font-bold" style={{ fontFamily: "'Poppins', sans-serif" }}>35</p>
             </div>
 
             {/* Impressões */}
@@ -101,7 +102,7 @@ export default function DashboardHeader({
               }}
             >
               <p className="text-gray-300 text-xs font-semibold tracking-wide mb-2">IMPRESSÕES</p>
-              <p className="text-white text-3xl font-bold" style={{ fontFamily: "'Poppins', sans-serif" }}>7.3 mil</p>
+              <p className="text-white text-3xl font-bold" style={{ fontFamily: "'Poppins', sans-serif" }}>7.07 mil</p>
             </div>
 
             {/* Conversões */}
@@ -113,8 +114,8 @@ export default function DashboardHeader({
                 border: '1px solid #9e9e9e'
               }}
             >
-              <p className="text-gray-300 text-xs font-semibold tracking-wide mb-2">CONVERSÕES</p>
-              <p className="text-white text-3xl font-bold" style={{ fontFamily: "'Poppins', sans-serif" }}>5</p>
+              <p className="text-gray-300 text-xs font-semibold tracking-wide mb-2">EVENTOS PRINCIPAIS</p>
+              <p className="text-white text-3xl font-bold" style={{ fontFamily: "'Poppins', sans-serif" }}>4</p>
             </div>
           </div>
         </div>

@@ -143,3 +143,8 @@ interface DashboardData {
 - **Salvar**: Gera nova dashboard com dados inseridos
 - **Download**: Exporta dashboard como HTML independente
 
+## Style Decisions
+
+- A paleta usa **#203c50** e **#ff6737** como cores dominantes. Verde e vermelho são reservados para desempenho positivo e alerta, enquanto fundos em tons pastéis são usados apenas quando a semântica exige.
+- Títulos executivos e valores de KPI sustentam a hierarquia. Tabelas, notas e textos explicativos permanecem em apoio, com menor contraste visual.
+- O cabeçalho em gradiente estabelece a assinatura da experiência. Réguas de acento laranja, bordas sóbrias e linguagem de diagnóstico/prioridade repetem essa identidade ao longo do relatório.

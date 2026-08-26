@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* Estilo JD: relatório executivo com azul #203c50 e laranja #ff6737 como assinatura visual dominante. */
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -135,11 +137,11 @@
 
   /* Premium Card Styles */
   .card-premium {
-    @apply bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-200 p-6 border border-gray-100;
+    @apply bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-200 p-6 border border-[#dfe6ea];
   }
 
   .card-premium-lg {
-    @apply bg-white rounded-xl shadow-sm p-8 border border-gray-100;
+    @apply bg-white rounded-xl shadow-sm p-8 border border-[#dfe6ea];
   }
 
   /* KPI Card */
@@ -214,12 +216,13 @@
   /* Section Title */
   .section-title {
     font-family: 'Poppins', sans-serif;
-    @apply text-3xl font-bold text-[#203c50] mb-8;
+    @apply text-3xl font-bold text-[#203c50] mb-8 border-l-4 border-[#ff6737] pl-4;
+    letter-spacing: -0.025em;
   }
 
   .section-subtitle {
     font-family: 'Poppins', sans-serif;
-    @apply text-lg font-semibold text-[#203c50] mb-4;
+    @apply text-lg font-semibold text-[#203c50] mb-4 border-b border-[#203c50]/10 pb-3;
   }
 
   /* Badge Styles */
@@ -237,7 +240,7 @@
 
   /* Insight Card */
   .insight-card {
-    @apply bg-white rounded-xl shadow-sm p-6 border border-gray-100 hover:shadow-md transition-all duration-200;
+    @apply bg-white rounded-xl shadow-sm p-6 border border-[#dfe6ea] border-l-2 border-l-[#ff6737] hover:shadow-md transition-all duration-200;
   }
 
   /* Alert Card */

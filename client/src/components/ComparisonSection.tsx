@@ -1,112 +1,58 @@
-import { ArrowUp, ArrowDown, Minus } from 'lucide-react';
+// Estilo JD: comparativos em cartões de alto contraste, usando azul #203c50, laranja #ff6737 e cores semânticas para variações.
+import { ArrowDown, ArrowUp, Minus } from 'lucide-react';
 
-interface ComparisonMetric {
+interface Metric {
   label: string;
-  current: string | number;
   previous: string | number;
-  change: number;
-  unit?: string;
-  note?: string;
+  current: string | number;
+  change: string;
+  tone: 'up' | 'down' | 'flat';
+}
+
+const ga4Metrics: Metric[] = [
+  { label: 'Usuários ativos', previous: 52, current: 72, change: '+38,5%', tone: 'up' },
+  { label: 'Novos usuários', previous: 52, current: 70, change: '+34,6%', tone: 'up' },
+  { label: 'Visualizações', previous: 56, current: 82, change: '+46,4%', tone: 'up' },
+  { label: 'Tempo médio de engajamento', previous: '1min15s', current: '46s', change: '-38,7%', tone: 'down' },
+  { label: 'Eventos principais', previous: 2, current: 4, change: '+100%', tone: 'up' },
+  { label: 'Eventos por usuário', previous: '3,8%', current: '5,6%', change: '+1,7 pp', tone: 'up' },
+];
+
+function Variation({ metric }: { metric: Metric }) {
+  const icon = metric.tone === 'up' ? <ArrowUp className="h-4 w-4" /> : metric.tone === 'down' ? <ArrowDown className="h-4 w-4" /> : <Minus className="h-4 w-4" />;
+  const color = metric.tone === 'up' ? 'text-green-600 bg-green-50' : metric.tone === 'down' ? 'text-red-600 bg-red-50' : 'text-gray-600 bg-gray-100';
+  return <span className={`inline-flex items-center gap-1 rounded-lg px-2 py-1 text-sm font-bold ${color}`}>{icon}{metric.change}</span>;
 }
 
 export default function ComparisonSection() {
-  const ga4Metrics: ComparisonMetric[] = [
-    { label: 'Usuários Ativos', current: 74, previous: 68, change: 8.8, unit: '%' },
-    { label: 'Novos Usuários', current: 73, previous: 68, change: 7.4, unit: '%' },
-    { label: 'Visualizações', current: 81, previous: 81, change: 0, unit: '%' },
-    { label: 'Tempo Médio', current: '1min 01s', previous: '1min 38s', change: -37.8, unit: '%' },
-    { label: 'Eventos Principais', current: 5, previous: 2, change: 150, unit: '%' },
-    { label: 'Eventos por Usuário', current: '6,8%', previous: '2,9%', change: 3.8, unit: 'pp', note: '+3,8 pontos percentuais' },
-  ];
-
-  const gscMetrics: ComparisonMetric[] = [
-    { label: 'Cliques (GSC)', current: 40, previous: 45, change: -11.1, unit: '%' },
-    { label: 'Impressões (GSC)', current: '7,3 mil', previous: '7,22 mil', change: 1.1, unit: '%' },
-    { label: 'CTR (GSC)', current: '0,5%', previous: '0,6%', change: -0.1, unit: 'pp', note: '-0,1 ponto percentual' },
-    { label: 'Posição Média', current: 8.8, previous: 7.8, change: -1, unit: '', note: 'Piorou 1 posição' },
-  ];
-
-  const getChangeColor = (change: number) => {
-    if (change > 0) return 'text-green-600';
-    if (change < 0) return 'text-red-600';
-    return 'text-gray-600';
-  };
-
-  const getChangeIcon = (change: number) => {
-    if (change > 0) return <ArrowUp className="w-4 h-4" />;
-    if (change < 0) return <ArrowDown className="w-4 h-4" />;
-    return <Minus className="w-4 h-4" />;
-  };
-
-  const renderMetricCard = (metric: ComparisonMetric, idx: number) => (
-    <div key={idx} className="card-premium">
-      <p className="text-xs text-gray-600 font-semibold mb-3">{metric.label}</p>
-      <div className="flex items-end justify-between mb-4">
-        <div>
-          <p className="text-2xl font-bold text-[#203c50]">{metric.current}</p>
-          <p className="text-xs text-gray-500 mt-1">Período atual</p>
-        </div>
-        <div className={`flex items-center gap-1 px-2 py-1 rounded-lg ${getChangeColor(metric.change)}`}>
-          {getChangeIcon(metric.change)}
-          <span className="text-sm font-semibold">
-            {metric.note ? metric.note : `${Math.abs(metric.change).toFixed(1)}${metric.unit}`}
-          </span>
-        </div>
-      </div>
-      <div className="pt-3 border-t border-gray-200">
-        <p className="text-xs text-gray-500">Período anterior: <span className="font-semibold text-gray-700">{metric.previous}</span></p>
-      </div>
-    </div>
-  );
-
   return (
-    <section className="py-12 border-b border-gray-200">
+    <section className="border-b border-gray-200 py-12">
       <div className="container">
-        {/* Section Title */}
-        <h2 className="section-title">Comparativo de Períodos</h2>
+        <h2 className="section-title mb-1">Comparativo de Períodos</h2>
+        <p className="mb-6 text-gray-600">Google Analytics 4 — 12/08-18/08 vs 19/08-25/08</p>
 
-        {/* GA4 Comparison */}
-        <p className="text-gray-600 mb-4 font-semibold">Google Analytics 4 — 22/07-28/07 vs 29/07-04/08</p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-          {ga4Metrics.map(renderMetricCard)}
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {ga4Metrics.map((metric) => (
+            <div key={metric.label} className="card-premium">
+              <p className="mb-4 text-xs font-semibold uppercase tracking-wide text-gray-600">{metric.label}</p>
+              <div className="flex items-end justify-between gap-3">
+                <div><p className="text-2xl font-bold text-[#203c50]">{metric.current}</p><p className="mt-1 text-xs text-gray-500">Período atual</p></div>
+                <Variation metric={metric} />
+              </div>
+              <div className="mt-4 border-t border-gray-200 pt-3 text-xs text-gray-500">Período anterior: <strong className="text-gray-700">{metric.previous}</strong></div>
+            </div>
+          ))}
         </div>
 
-        {/* GSC Comparison */}
-        <p className="text-gray-600 mb-4 font-semibold">Search Console — 20/07-26/07 vs 28/07-03/08</p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-          {gscMetrics.map(renderMetricCard)}
-        </div>
-
-        {/* Summary - GA4 */}
-        <div className="mt-4 card-premium bg-gradient-to-r from-blue-50 to-white border border-blue-200">
-          <p className="text-sm font-semibold text-[#203c50] mb-2">📊 Google Analytics 4</p>
-          <p className="text-sm text-gray-700 leading-relaxed">
-            Crescimento em usuários: <strong>+8,8% (68 → 74)</strong> e <strong>+7,4% em novos usuários (68 → 73)</strong>. 
-            Visualizações estáveis em 81. <strong>Eventos principais saltaram +150% (2 → 5)</strong>, com taxa de 6,8% por usuário. 
-            Ponto de atenção: <strong>tempo médio de engajamento caiu -37,8% (1min 38s → 1min 01s)</strong>, indicando que parte do novo tráfego 
-            está consumindo menos conteúdo antes de sair ou entrar em contato.
-          </p>
-        </div>
-
-        {/* Summary - GSC */}
-        <div className="mt-4 card-premium bg-gradient-to-r from-orange-50 to-white border border-orange-200">
-          <p className="text-sm font-semibold text-[#203c50] mb-2">🔍 Search Console</p>
-          <p className="text-sm text-gray-700 leading-relaxed">
-            Redução em cliques: <strong>-11,1% (45 → 40)</strong>. Impressões levemente acima: <strong>+1,1% (7,22 mil → 7,3 mil)</strong>. 
-            <strong>CTR caiu para 0,5% (-0,1 pp)</strong> e <strong>posição média piorou para 8,8 (-1 posição)</strong>. 
-            O site manteve visibilidade, mas recebeu menos cliques. Oportunidade: revisar títulos e meta descriptions das páginas com posição entre 5 e 12.
-          </p>
-        </div>
-
-        {/* Summary - Ubersuggest */}
-        <div className="mt-4 card-premium bg-gradient-to-r from-green-50 to-white border border-green-200">
-          <p className="text-sm font-semibold text-[#203c50] mb-2">🎯 Ubersuggest (estimativas mensais)</p>
-          <p className="text-sm text-gray-700 leading-relaxed">
-            Tráfego estimado: <strong>246 visitas/mês (-4,3%)</strong>. Palavras-chave: <strong>168 (+9,1%)</strong>. 
-            Backlinks (17), domínios de referência (15), DA (6) e on-page (61/100) estáveis. 
-            A cobertura de palavras-chave cresceu, mas ainda não se refletiu em maior tráfego estimado. 
-            Prioridade: fortalecer posições e CTR dos conteúdos com visibilidade.
-          </p>
+        <div className="mt-8 grid grid-cols-1 gap-4 lg:grid-cols-2">
+          <div className="card-premium border border-orange-200 bg-gradient-to-r from-orange-50 to-white">
+            <p className="mb-2 text-sm font-semibold text-[#203c50]">Visibilidade orgânica — Search Console (18-24/08)</p>
+            <p className="text-sm leading-relaxed text-gray-700"><strong>35 cliques (+46%)</strong> e <strong>7,07 mil impressões (-3%)</strong>. O CTR médio de <strong>0,5%</strong> e a posição média de <strong>8,8</strong> não têm variação exibida na fonte atual. O site ganhou cliques, mas titles, meta descriptions e FAQs ainda podem ampliar a captura de demanda.</p>
+          </div>
+          <div className="card-premium border border-[#dbe5ec] bg-white">
+            <p className="mb-2 text-sm font-semibold text-[#203c50]">Estimativas e IA — Ubersuggest</p>
+            <p className="text-sm leading-relaxed text-gray-700"><strong>168 palavras-chave (+9,1%)</strong>, <strong>246 visitas estimadas/mês (-4,3%)</strong> e <strong>53 backlinks (+55,9%)</strong>. A marca aparece em <strong>17% das respostas de IA avaliadas</strong>; no ChatGPT, a visibilidade é de <strong>16,67%</strong>, com sentimento neutro.</p>
+          </div>
         </div>
       </div>
     </section>

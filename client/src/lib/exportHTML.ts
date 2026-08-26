@@ -385,55 +385,48 @@ export function generateHTMLContent(data: DashboardData): string {
             `).join('')}
         </section>
 
-        <!-- Ubersuggest Section -->
+        <!-- Ubersuggest & IA Section -->
         <section>
-            <h2>Saúde Técnica e Autoridade — Ubersuggest</h2>
-            
+            <h2>Visibilidade, Autoridade e IA — Ubersuggest</h2>
+            <p class="text-muted">Os indicadores do Ubersuggest são estimativas e rastreamentos. Para cliques, impressões, CTR e posição no Google, considerar o Search Console como fonte principal.</p>
+
             <div class="kpi-grid">
                 <div class="kpi-card">
-                    <div class="kpi-label">Posição Média</div>
-                    <div class="kpi-value">${data.ubersuggest.avgPositionCurrent.toFixed(1)}</div>
+                    <div class="kpi-label">Palavras-chave orgânicas</div>
+                    <div class="kpi-value">${data.ubersuggest.organicKeywords}</div>
+                    <span class="badge badge-success">${data.ubersuggest.organicKeywordsChange}</span>
                 </div>
                 <div class="kpi-card">
-                    <div class="kpi-label">Melhora</div>
-                    <div class="kpi-value">+${(data.ubersuggest.avgPositionPrevious - data.ubersuggest.avgPositionCurrent).toFixed(1)}</div>
-                </div>
-                <div class="kpi-card">
-                    <div class="kpi-label">Top 100</div>
-                    <div class="kpi-value">${data.ubersuggest.top100}</div>
+                    <div class="kpi-label">Tráfego orgânico estimado</div>
+                    <div class="kpi-value">${data.ubersuggest.estimatedOrganicTraffic}/mês</div>
+                    <span class="badge badge-danger">${data.ubersuggest.estimatedTrafficChange}</span>
                 </div>
                 <div class="kpi-card">
                     <div class="kpi-label">Backlinks</div>
                     <div class="kpi-value">${data.ubersuggest.backlinks}</div>
+                    <span class="badge badge-success">${data.ubersuggest.backlinksChange}</span>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Valor estimado do tráfego</div>
+                    <div class="kpi-value">${data.ubersuggest.estimatedTrafficValue}</div>
+                    <span class="badge badge-danger">${data.ubersuggest.estimatedTrafficValueChange}</span>
                 </div>
             </div>
 
-            <h3>Performance Técnica</h3>
-            <h4 style="margin-top: 1rem; margin-bottom: 0.5rem;">Mobile</h4>
-            <div class="data-row">
-                <div class="data-label">Carregamento</div>
-                <div class="data-value">${data.technicalSeo.mobile.carregamento}</div>
-            </div>
-            <div class="data-row">
-                <div class="data-label">Interatividade</div>
-                <div class="data-value">${data.technicalSeo.mobile.interatividade}</div>
-            </div>
+            <h3>Posicionamento rastreado</h3>
+            <div class="data-row"><div class="data-label">Posição média rastreada</div><div class="data-value">${data.ubersuggest.trackedAveragePosition.toFixed(2)} (melhora histórica de ${data.ubersuggest.historicalAveragePosition.toFixed(2)})</div></div>
+            <div class="data-row"><div class="data-label">Palavras rastreadas</div><div class="data-value">${data.ubersuggest.trackedKeywords} de ${data.ubersuggest.totalTrackedKeywords}</div></div>
+            <div class="data-row"><div class="data-label">Movimentação</div><div class="data-value">${data.ubersuggest.keywordsUp} em alta · ${data.ubersuggest.keywordsDown} em baixa · ${data.ubersuggest.keywordsUnchanged} sem alteração</div></div>
+            <div class="data-row"><div class="data-label">Distribuição</div><div class="data-value">Top 3: ${data.ubersuggest.top3} · Top 10: ${data.ubersuggest.top10} · Top 100: ${data.ubersuggest.top100} · Não posicionadas: ${data.ubersuggest.notRanked}</div></div>
 
-            <h4 style="margin-top: 1rem; margin-bottom: 0.5rem;">Desktop</h4>
-            <div class="data-row">
-                <div class="data-label">Carregamento</div>
-                <div class="data-value">${data.technicalSeo.desktop.carregamento}</div>
+            <h3>Como a IA vê o site</h3>
+            <div class="kpi-grid">
+                <div class="kpi-card"><div class="kpi-label">Visibilidade da marca em IA</div><div class="kpi-value">${data.ubersuggest.aiVisibility.brandVisibility}%</div></div>
+                <div class="kpi-card"><div class="kpi-label">Visibilidade no ChatGPT</div><div class="kpi-value">${data.ubersuggest.aiVisibility.chatgptVisibility.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</div></div>
+                <div class="kpi-card"><div class="kpi-label">Sentimento da marca</div><div class="kpi-value">${data.ubersuggest.aiVisibility.sentiment}</div></div>
+                <div class="kpi-card"><div class="kpi-label">Sentimento no ChatGPT</div><div class="kpi-value">${data.ubersuggest.aiVisibility.chatgptSentiment}</div></div>
             </div>
-            <div class="data-row">
-                <div class="data-label">Interatividade</div>
-                <div class="data-value">${data.technicalSeo.desktop.interatividade}</div>
-            </div>
-
-            <h3>Problemas Encontrados</h3>
-            <div class="data-row">
-                <div class="data-label">Total de Problemas</div>
-                <span class="badge badge-danger">${data.technicalSeo.problemasEncontrados}</span>
-            </div>
+            <p class="insight-text">A marca já aparece em parte das respostas avaliadas por IA, mas a visibilidade ainda é inicial. O sentimento neutro não indica sinal negativo e abre espaço para reforçar autoridade e associação aos serviços em São Paulo.</p>
         </section>
 
         <!-- Insights Section -->
@@ -442,7 +435,7 @@ export function generateHTMLContent(data: DashboardData): string {
             <div class="insight-grid">
                 <div class="insight-card">
                     <div class="insight-title">Conversão em Crescimento</div>
-                    <div class="insight-text">O site gerou ${data.ga4.conversions} conversões no período, todas associadas ao evento ${data.ga4.conversionEvent.name}. Isso mostra que o orgânico já está gerando ações reais.</div>
+                    <div class="insight-text">O site registrou ${data.ga4.conversions} eventos principais no período, associados a ${data.ga4.conversionEvent.name}. Os cliques devem ser cruzados com o comercial antes de serem considerados leads validados.</div>
                 </div>
                 <div class="insight-card">
                     <div class="insight-title">Visibilidade no Google</div>
@@ -459,16 +452,12 @@ export function generateHTMLContent(data: DashboardData): string {
         <section>
             <h2>Próximas Ações Recomendadas</h2>
             <ul class="action-list">
-                <li>Reotimizar titles e meta descriptions para aumentar CTR</li>
-                <li>Validar sitemap.xml e corrigir se necessário</li>
-                <li>Corrigir ou redirecionar página 4XX</li>
-                <li>Validar performance mobile no PageSpeed Insights</li>
-                <li>Reotimizar artigos em queda</li>
-                <li>Inserir CTAs mais fortes nos artigos com tráfego</li>
-                <li>Criar mais conteúdos locais de fundo de funil para São Paulo</li>
-                <li>Fortalecer linkagem interna entre artigos técnicos e páginas comerciais</li>
-                <li>Monitorar conversões via Whatsapp Flutuante</li>
-                <li>Replicar o padrão das páginas que geram conversão</li>
+                <li>Corrigir a origem da página “Page not found - Desentupidora JD” e aplicar redirecionamento quando necessário.</li>
+                <li>Validar no comercial os 4 cliques de telefone e WhatsApp para distinguir interação de lead real.</li>
+                <li>Revisar titles, meta descriptions e FAQs das páginas com CTR baixo ou queda de cliques.</li>
+                <li>Adicionar links internos de prumada, vaso, fossa e inquilino para serviços em São Paulo.</li>
+                <li>Melhorar a experiência de leitura e CTAs das páginas de entrada para recuperar engajamento.</li>
+                <li>Produzir conteúdos e menções estruturadas que reforcem marca, serviço e localização em respostas de IA.</li>
             </ul>
         </section>
 
@@ -476,8 +465,8 @@ export function generateHTMLContent(data: DashboardData): string {
         <section>
             <h2>Resumo Executivo Final</h2>
             <div class="summary-box">
-                <p class="summary-text">O período mostra que o SEO da <strong>${data.company}</strong> já gera <strong>visibilidade e conversões orgânicas</strong>. Mesmo com volume moderado de usuários, houve <span class="highlight">${data.ga4.conversions} conversões via ${data.ga4.conversionEvent.name}</span>.</p>
-                <p class="summary-text" style="margin-top: 1rem;">O principal desafio está em <strong>transformar mais impressões em cliques, melhorar a performance mobile</strong> e <strong>fortalecer conteúdos locais</strong> com maior intenção de contratação.</p>
+                <p class="summary-text">O período mostra que o SEO da <strong>${data.company}</strong> avançou em usuários, visualizações, cliques orgânicos e interações de contato. Foram registrados <span class="highlight">${data.ga4.conversions} eventos principais via ${data.ga4.conversionEvent.name}</span>, ainda sujeitos à validação comercial.</p>
+                <p class="summary-text" style="margin-top: 1rem;">O próximo ganho depende de <strong>corrigir a página 404, elevar o engajamento</strong> e <strong>transformar artigos informativos em caminhos claros para serviços em São Paulo</strong>. A nova leitura de IA complementa o SEO tradicional ao acompanhar como a marca começa a aparecer em respostas de inteligência artificial.</p>
                 
                 <div class="status-grid">
                     <div class="status-item">
