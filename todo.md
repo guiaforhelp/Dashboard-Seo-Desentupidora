@@ -1,8 +1,7 @@
-# Atualização SEO — Complementos de 19/08 a 25/08/2026
+# Atualização SEO — Correções de conversões e indicadores
 
-- [x] Remover a área de tendência diária de usuários ativos, conforme solicitado.
-- [x] Exibir os cards de usuários ativos únicos nas janelas de 1 dia (22), 7 dias (72) e 30 dias (279).
-- [x] Adicionar o gráfico de sistemas operacionais: Windows (36), Android (24), iOS (11) e Chrome OS (1).
-- [x] Atualizar o Search Console com CTR de 0,5% e variação de +0,2 ponto percentual.
-- [x] Atualizar o Search Console com posição média de 8,8 e melhora de 1,1 posição.
+- [x] Registrar as páginas que originaram os quatro eventos principais na coleta atual.
+- [x] Exibir a seção de páginas com eventos principais na dashboard.
+- [x] Remover o valor estimado do tráfego dos blocos de Ubersuggest e da exportação HTML.
+- [x] Exibir a variação de CTR apenas como “+0,2”, sem a sigla “p.p.”.
 - [x] Validar compilação e revisar a apresentação; checkpoint pendente.

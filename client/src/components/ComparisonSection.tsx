@@ -47,7 +47,7 @@ export default function ComparisonSection() {
         <div className="mt-8 grid grid-cols-1 gap-4 lg:grid-cols-2">
           <div className="card-premium border border-orange-200 bg-gradient-to-r from-orange-50 to-white">
             <p className="mb-2 text-sm font-semibold text-[#203c50]">Visibilidade orgânica — Search Console (18-24/08)</p>
-            <p className="text-sm leading-relaxed text-gray-700"><strong>35 cliques (+46%)</strong> e <strong>7,07 mil impressões (-3%)</strong>. O CTR médio avançou de <strong>0,3% para 0,5% (+0,2 p.p.)</strong>, enquanto a posição média melhorou de <strong>9,9 para 8,8 (+1,1 posição)</strong>. O site ganhou cliques e eficiência de exibição, mas titles, meta descriptions e FAQs ainda podem ampliar a captura de demanda.</p>
+            <p className="text-sm leading-relaxed text-gray-700"><strong>35 cliques (+46%)</strong> e <strong>7,07 mil impressões (-3%)</strong>. O CTR médio avançou de <strong>0,3% para 0,5% (+0,2)</strong>, enquanto a posição média melhorou de <strong>9,9 para 8,8 (+1,1 posição)</strong>. O site ganhou cliques e eficiência de exibição, mas titles, meta descriptions e FAQs ainda podem ampliar a captura de demanda.</p>
           </div>
           <div className="card-premium border border-[#dbe5ec] bg-white">
             <p className="mb-2 text-sm font-semibold text-[#203c50]">Estimativas e IA — Ubersuggest</p>

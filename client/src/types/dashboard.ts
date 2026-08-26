@@ -24,6 +24,13 @@ export interface DashboardData {
     locations: Array<{ city: string; count: number }>;
     audiences: Array<{ name: string; count: number }>;
     topPages: Array<{ title: string; views: number; reading?: string }>;
+    conversionPages: Array<{
+      title: string;
+      mainEvents: number;
+      share: number;
+      totalEvents: number;
+      engagementTime: string;
+    }>;
     conversionEvent: {
       name: string;
       count: number;
@@ -60,8 +67,6 @@ export interface DashboardData {
     estimatedTrafficChange: string;
     backlinks: number;
     backlinksChange: string;
-    estimatedTrafficValue: string;
-    estimatedTrafficValueChange: string;
     trackedAveragePosition: number;
     historicalAveragePosition: number;
     trackedKeywords: number;
@@ -132,6 +137,22 @@ export const defaultDashboardData: DashboardData = {
       { title: 'Bueiros Entupidos', views: 3, reading: 'Tema complementar' },
       { title: 'Como usar soda cáustica', views: 3, reading: 'Tema complementar' },
     ],
+    conversionPages: [
+      {
+        title: 'Page not found - Desentupidora JD',
+        mainEvents: 3,
+        share: 75,
+        totalEvents: 50,
+        engagementTime: '2s',
+      },
+      {
+        title: 'Prumada: O Que É, Sua Função e Manutenção Preventiva - Desentupidora JD',
+        mainEvents: 1,
+        share: 25,
+        totalEvents: 35,
+        engagementTime: '1min16s',
+      },
+    ],
     conversionEvent: {
       name: 'Eventos principais (telefone e WhatsApp)',
       count: 4,
@@ -187,8 +208,6 @@ export const defaultDashboardData: DashboardData = {
     estimatedTrafficChange: '-4,3%',
     backlinks: 53,
     backlinksChange: '+55,9%',
-    estimatedTrafficValue: 'US$ 49,35',
-    estimatedTrafficValueChange: '-8,9%',
     trackedAveragePosition: 29,
     historicalAveragePosition: 35,
     trackedKeywords: 55,

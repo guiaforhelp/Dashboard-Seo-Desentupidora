@@ -406,11 +406,6 @@ export function generateHTMLContent(data: DashboardData): string {
                     <div class="kpi-value">${data.ubersuggest.backlinks}</div>
                     <span class="badge badge-success">${data.ubersuggest.backlinksChange}</span>
                 </div>
-                <div class="kpi-card">
-                    <div class="kpi-label">Valor estimado do tráfego</div>
-                    <div class="kpi-value">${data.ubersuggest.estimatedTrafficValue}</div>
-                    <span class="badge badge-danger">${data.ubersuggest.estimatedTrafficValueChange}</span>
-                </div>
             </div>
 
             <h3>Posicionamento rastreado</h3>

@@ -46,7 +46,7 @@ export default function UbersuggestSection({ data }: UbersuggestSectionProps) {
           </span>
         </div>
 
-        <div className="mb-8 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mb-8 grid grid-cols-1 gap-4 md:grid-cols-3">
           <div className="card-premium">
             <KPICard label="Palavras-chave orgânicas" value={data.organicKeywords} />
             <ChangeLabel value={data.organicKeywordsChange} positive />
@@ -58,10 +58,6 @@ export default function UbersuggestSection({ data }: UbersuggestSectionProps) {
           <div className="card-premium">
             <KPICard label="Backlinks" value={data.backlinks} />
             <ChangeLabel value={data.backlinksChange} positive />
-          </div>
-          <div className="card-premium">
-            <KPICard label="Valor estimado do tráfego" value={data.estimatedTrafficValue} />
-            <ChangeLabel value={data.estimatedTrafficValueChange} positive={false} />
           </div>
         </div>
 
