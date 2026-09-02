@@ -24,10 +24,8 @@ export default function GenerativeAISection({ data }: GenerativeAISectionProps) 
           </div>
         </div>
 
-        <div className="-mt-1 grid grid-cols-1 gap-4 bg-[#edf1f3] px-1 py-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="-mt-1 grid grid-cols-1 gap-4 bg-[#edf1f3] px-1 py-6 sm:grid-cols-2 lg:grid-cols-4">
           <div className="rounded-xl border border-[#dbe5ec] bg-white p-5"><p className="text-xs font-semibold uppercase tracking-wide text-gray-500">Impressões em IA generativa</p><p className="mt-2 text-3xl font-bold text-[#203c50]">{formatNumber(data.impressions)}</p></div>
-          <div className="rounded-xl border border-[#dbe5ec] bg-white p-5"><p className="text-xs font-semibold uppercase tracking-wide text-gray-500">Cliques</p><p className="mt-2 text-base font-bold leading-snug text-[#203c50]">{data.clicks}</p></div>
-          <div className="rounded-xl border border-[#dbe5ec] bg-white p-5"><p className="text-xs font-semibold uppercase tracking-wide text-gray-500">Cidades</p><p className="mt-2 text-base font-bold leading-snug text-[#203c50]">{data.cities}</p></div>
           <div className="rounded-xl border border-[#dbe5ec] bg-white p-5"><p className="text-xs font-semibold uppercase tracking-wide text-gray-500">País predominante</p><p className="mt-2 text-3xl font-bold text-[#203c50]">{data.primaryCountry}</p></div>
           <div className="rounded-xl border border-[#dbe5ec] bg-white p-5"><p className="text-xs font-semibold uppercase tracking-wide text-gray-500">Impressões do Brasil</p><p className="mt-2 text-3xl font-bold text-[#203c50]">{formatNumber(data.brazilImpressions)}</p></div>
           <div className="rounded-xl border border-[#dbe5ec] bg-white p-5"><p className="text-xs font-semibold uppercase tracking-wide text-gray-500">Participação do Brasil</p><p className="mt-2 text-3xl font-bold text-[#ff6737]">{data.brazilShare.toLocaleString('pt-BR', { minimumFractionDigits: 1 })}%</p></div>

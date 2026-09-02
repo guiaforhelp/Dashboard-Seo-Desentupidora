@@ -62,8 +62,6 @@ export interface DashboardData {
     topContents: Array<{ title: string; clicks: number }>;
     generativeAI: {
       impressions: number;
-      clicks: string;
-      cities: string;
       primaryCountry: string;
       brazilImpressions: number;
       brazilShare: number;
@@ -199,8 +197,6 @@ export const defaultDashboardData: DashboardData = {
     ],
     generativeAI: {
       impressions: 1074,
-      clicks: 'Não informado na exportação',
-      cities: 'Não informado na exportação',
       primaryCountry: 'Brasil',
       brazilImpressions: 1046,
       brazilShare: 97.4,
