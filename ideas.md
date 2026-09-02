@@ -148,3 +148,6 @@ interface DashboardData {
 - A paleta usa **#203c50** e **#ff6737** como cores dominantes. Verde e vermelho são reservados para desempenho positivo e alerta, enquanto fundos em tons pastéis são usados apenas quando a semântica exige.
 - Títulos executivos e valores de KPI sustentam a hierarquia. Tabelas, notas e textos explicativos permanecem em apoio, com menor contraste visual.
 - O cabeçalho em gradiente estabelece a assinatura da experiência. Réguas de acento laranja, bordas sóbrias e linguagem de diagnóstico/prioridade repetem essa identidade ao longo do relatório.
+- Cada capítulo do relatório deve conter uma **leitura executiva dominante**, enquanto tabelas, microindicadores e notas permanecem visualmente secundários.
+- O laranja **#ff6737** é reservado para prioridades, ações primárias, valores-chave e réguas de seção; verde e vermelho são estritamente semânticos.
+- O lockup “JD · Relatório Executivo · SEO & IA” reforça uma leitura de produto de inteligência premium, com linguagem diagnóstica, decisiva e orientada à ação.

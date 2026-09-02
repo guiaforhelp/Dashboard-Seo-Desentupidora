@@ -137,11 +137,13 @@
 
   /* Premium Card Styles */
   .card-premium {
-    @apply bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-200 p-6 border border-[#dfe6ea];
+    @apply bg-white rounded-2xl shadow-sm transition-all duration-200 p-6 border border-[#dfe6ea];
+    box-shadow: 0 5px 18px rgba(32, 60, 80, 0.045);
   }
 
   .card-premium-lg {
-    @apply bg-white rounded-xl shadow-sm p-8 border border-[#dfe6ea];
+    @apply bg-white rounded-2xl shadow-sm p-8 border border-[#dfe6ea];
+    box-shadow: 0 7px 24px rgba(32, 60, 80, 0.06);
   }
 
   /* KPI Card */
@@ -240,7 +242,25 @@
 
   /* Insight Card */
   .insight-card {
-    @apply bg-white rounded-xl shadow-sm p-6 border border-[#dfe6ea] border-l-2 border-l-[#ff6737] hover:shadow-md transition-all duration-200;
+    @apply bg-white rounded-xl shadow-sm p-6 border border-[#dfe6ea] border-l-2 border-l-[#203c50] transition-all duration-200;
+  }
+
+  .executive-takeaway {
+    @apply rounded-2xl border border-[#dbe5ec] bg-white p-6 shadow-sm;
+    border-top: 4px solid #203c50;
+    box-shadow: 0 8px 24px rgba(32, 60, 80, 0.06);
+  }
+
+  .executive-takeaway-label {
+    @apply mb-2 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.14em] text-[#203c50];
+  }
+
+  .executive-takeaway-label::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: #ff6737;
   }
 
   /* Alert Card */

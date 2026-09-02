@@ -15,9 +15,9 @@ export interface DashboardData {
     engagementTime: string;
     pageViews: number;
     conversions: number;
-    activeUsers30d: number;
-    activeUsers7d: number;
-    activeUsers1d: number;
+    activeUsers30d?: number;
+    activeUsers7d?: number;
+    activeUsers1d?: number;
     dailyActivity: Array<{ date: string; users: number }>;
     devices: Array<{ name: string; percentage: number }>;
     os: Array<{ name: string; count: number }>;
@@ -39,7 +39,9 @@ export interface DashboardData {
 
   gsc: {
     clicks: number;
+    clicksChange: string;
     impressions: number;
+    impressionsChange: string;
     ctr: number;
     ctrPrevious: number;
     ctrChangePp: number;
@@ -53,11 +55,23 @@ export interface DashboardData {
       ctr: number;
       position: number;
     }>;
-    queriesUp: Array<{ query: string; change: number; clicks?: number }>;
+    queriesUp: Array<{ query: string; change: number; clicks?: number; changeLabel?: string }>;
     queriesDown: Array<{ query: string; change: number }>;
-    contentsUp: Array<{ title: string; change: number; clicks?: number }>;
+    contentsUp: Array<{ title: string; change: number; clicks?: number; changeLabel?: string }>;
     contentsDown: Array<{ title: string; change: number }>;
     topContents: Array<{ title: string; clicks: number }>;
+    generativeAI: {
+      impressions: number;
+      clicks: string;
+      cities: string;
+      primaryCountry: string;
+      brazilImpressions: number;
+      brazilShare: number;
+      dailyImpressions: Array<{ date: string; impressions: number }>;
+      devices: Array<{ name: string; impressions: number; percentage: number }>;
+      countries: Array<{ country: string; impressions: number }>;
+      pages: Array<{ title: string; impressions: number }>;
+    };
   };
 
   ubersuggest: {
@@ -65,8 +79,10 @@ export interface DashboardData {
     organicKeywordsChange: string;
     estimatedOrganicTraffic: number;
     estimatedTrafficChange: string;
+    domainAuthority: number;
     backlinks: number;
     backlinksChange: string;
+    paidKeywords: number;
     trackedAveragePosition: number;
     historicalAveragePosition: number;
     trackedKeywords: number;
@@ -77,10 +93,14 @@ export interface DashboardData {
     top3: number;
     top10: number;
     top100: number;
+    top100Change: string;
     notRanked: number;
+    notRankedChange: string;
     aiVisibility: {
       brandVisibility: number;
       chatgptVisibility: number;
+      shareOfVoice: number;
+      chatgptShareOfVoice: number;
       sentiment: string;
       chatgptSentiment: string;
     };
@@ -89,139 +109,159 @@ export interface DashboardData {
 
 export const defaultDashboardData: DashboardData = {
   period: {
-    startDate: '19/08/2026',
-    endDate: '25/08/2026',
+    startDate: '26/08/2026',
+    endDate: '01/09/2026',
   },
   previousPeriod: {
-    startDate: '12/08/2026',
-    endDate: '18/08/2026',
+    startDate: '19/08/2026',
+    endDate: '25/08/2026',
   },
   company: 'Desentupidora JD',
 
   ga4: {
-    activeUsers: 72,
-    newUsers: 70,
-    engagementTime: '46s',
-    pageViews: 82,
-    conversions: 4,
-    activeUsers30d: 279,
-    activeUsers7d: 72,
-    activeUsers1d: 22,
-    dailyActivity: [],
-    devices: [
-      { name: 'Desktop', percentage: 51.4 },
-      { name: 'Mobile', percentage: 48.6 },
+    activeUsers: 55,
+    newUsers: 55,
+    engagementTime: '1min32s',
+    pageViews: 74,
+    conversions: 1,
+    dailyActivity: [
+      { date: '26/08', users: 13 },
+      { date: '27/08', users: 5 },
+      { date: '28/08', users: 9 },
+      { date: '29/08', users: 9 },
+      { date: '30/08', users: 6 },
+      { date: '31/08', users: 10 },
+      { date: '01/09', users: 5 },
     ],
-    os: [
-      { name: 'Windows', count: 36 },
-      { name: 'Android', count: 24 },
-      { name: 'iOS', count: 11 },
-      { name: 'Chrome OS', count: 1 },
-    ],
-    locations: [
-      { city: 'São Paulo', count: 15 },
-      { city: 'Rio de Janeiro', count: 5 },
-      { city: 'Brasília', count: 4 },
-      { city: 'Fortaleza', count: 3 },
-      { city: 'Belo Horizonte', count: 2 },
-      { city: 'Campinas', count: 2 },
-      { city: 'Cascavel', count: 2 },
-    ],
+    devices: [],
+    os: [],
+    locations: [],
     audiences: [],
     topPages: [
-      { title: 'Page not found - Desentupidora JD', views: 11, reading: 'Alerta técnico prioritário' },
-      { title: 'Prumada: O Que É, Sua Função e Manutenção', views: 9, reading: 'Conteúdo com potencial para condomínios' },
-      { title: 'Fezes Grandes Entupindo o Vaso', views: 7, reading: 'Conteúdo informativo com potencial comercial' },
-      { title: 'Quanto Custa Limpar Caixa D’Água', views: 4, reading: 'Busca de preço/intenção comercial' },
-      { title: 'Soda Cáustica Derrete Cano?', views: 4, reading: 'Conteúdo de risco e prevenção' },
-      { title: 'Bueiros Entupidos', views: 3, reading: 'Tema complementar' },
-      { title: 'Como usar soda cáustica', views: 3, reading: 'Tema complementar' },
+      { title: 'Page not found - Desentupidora JD', views: 8, reading: 'Alerta técnico prioritário' },
+      { title: 'Diabo Verde vs Soda: Qual a Melhor Escolha para Desentupir?', views: 5, reading: 'Conteúdo informativo em alta' },
+      { title: 'O Que é Prumada? Guia para Condomínios e Edifícios', views: 5, reading: 'Conteúdo com potencial para condomínios' },
+      { title: 'Quanto Custa Limpar Caixa D’Água', views: 5, reading: 'Busca com intenção de preço' },
+      { title: 'Fezes Grandes Entupindo o Vaso', views: 4, reading: 'Conteúdo informativo recorrente' },
+      { title: 'Quanto Custa Limpa Fossa?', views: 4, reading: 'Busca com intenção comercial' },
+      { title: 'Soda Cáustica no Vaso Sanitário', views: 4, reading: 'Conteúdo de prevenção e risco' },
     ],
-    conversionPages: [
-      {
-        title: 'Page not found - Desentupidora JD',
-        mainEvents: 3,
-        share: 75,
-        totalEvents: 50,
-        engagementTime: '2s',
-      },
-      {
-        title: 'Prumada: O Que É, Sua Função e Manutenção Preventiva - Desentupidora JD',
-        mainEvents: 1,
-        share: 25,
-        totalEvents: 35,
-        engagementTime: '1min16s',
-      },
-    ],
+    conversionPages: [],
     conversionEvent: {
-      name: 'Eventos principais (telefone e WhatsApp)',
-      count: 4,
+      name: 'link e-mail GA4',
+      count: 1,
     },
   },
 
   gsc: {
-    clicks: 35,
-    impressions: 7070,
-    ctr: 0.5,
-    ctrPrevious: 0.3,
-    ctrChangePp: 0.2,
-    avgPosition: 8.8,
-    avgPositionPrevious: 9.9,
-    avgPositionImprovement: 1.1,
+    clicks: 42,
+    clicksChange: '+20%',
+    impressions: 6720,
+    impressionsChange: '-5%',
+    ctr: 0.6,
+    ctrPrevious: 0.5,
+    ctrChangePp: 0.1,
+    avgPosition: 8.6,
+    avgPositionPrevious: 8.8,
+    avgPositionImprovement: 0.2,
     dailyMetrics: [],
     queriesUp: [
-      { query: 'desentupidora de fossa', clicks: 1, change: 1 },
-      { query: 'diabo verde ou soda cáustica para desentupir', clicks: 1, change: 1 },
+      { query: 'prumada', clicks: 2, change: 2, changeLabel: 'Anteriormente 0' },
+      { query: 'fossa entupida inquilino ou proprietário', clicks: 1, change: 1, changeLabel: 'Anteriormente 0' },
+      { query: 'fossa rudimentar', clicks: 1, change: 1, changeLabel: 'Anteriormente 0' },
+      { query: 'quanto custa pra esvaziar uma fossa', clicks: 1, change: 1, changeLabel: 'Anteriormente 0' },
+      { query: 'soda cáustica derrete pvc', clicks: 1, change: 1, changeLabel: 'Anteriormente 0' },
     ],
     queriesDown: [
-      { query: 'fossa rudimentar', change: -2 },
-      { query: 'qual a diferença entre fossa séptica e rudimentar', change: -1 },
-      { query: 'sentir cheiro de esgoto', change: -1 },
+      { query: 'desentupidora de fossa', change: -1 },
+      { query: 'diabo verde ou soda cáustica para desentupir', change: -1 },
     ],
     contentsUp: [
-      { title: 'Prumada de Esgoto: O Que É, Função e Manutenção Essencial', clicks: 4, change: 4 },
-      { title: 'Fezes Grandes Entupindo o Vaso', clicks: 3, change: 3 },
-      { title: 'Vaso Borbulhando: Sinais, Causas e Diagnóstico', clicks: 3, change: 3 },
-      { title: 'Desentupimento em São Paulo', clicks: 2, change: 2 },
-      { title: 'Inquilino Reclama de Entupimento', clicks: 2, change: 2 },
+      { title: 'Quanto Custa Limpa Fossa? Preços e Serviço Profissional', clicks: 5, change: 5, changeLabel: 'Anteriormente 0' },
+      { title: 'Prumada: O Que É, Sua Função e Manutenção Preventiva', clicks: 4, change: 300, changeLabel: '+300%' },
+      { title: 'Diabo Verde vs Soda: Qual a Melhor Escolha para Desentupir?', clicks: 4, change: 100, changeLabel: '+100%' },
+      { title: 'O Que é Prumada? Guia para Condomínios e Edifícios', clicks: 3, change: 200, changeLabel: '+200%' },
+      { title: 'Quanto Custa Limpar Caixa D’Água', clicks: 3, change: 50, changeLabel: '+50%' },
     ],
     contentsDown: [
-      { title: 'Fossa Rudimentar: O Que É, Funcionamento e Manutenção', change: -4 },
-      { title: 'Quanto Custa Limpar Fossa? Preços e Serviço Profissional', change: -2 },
-      { title: 'Artigo sobre inquilino reclama de entupimento inesperado', change: -1 },
-      { title: 'Cheiro de Esgoto do Nada? Entenda as Causas e Soluções', change: -1 },
-      { title: 'Vaso Entupido: Água Não Desce? Guia para Solucionar em SP', change: -1 },
+      { title: 'Prumada de Esgoto: O Que É, Função e Manutenção Essencial', change: -3 },
+      { title: 'Desentupimento em São Paulo - Desentupidora JD', change: -2 },
+      { title: 'Ralo Fazendo Barulho: O Que Significa em Tubulações', change: -2 },
+      { title: 'Fezes Grandes Entupindo o Vaso', change: -1 },
+      { title: 'Soda Cáustica no Vaso Sanitário: Riscos e Alternativas Seguras', change: -1 },
     ],
     topContents: [
-      { title: 'Prumada de Esgoto: O Que É, Função e Manutenção Essencial', clicks: 4 },
-      { title: 'Fezes Grandes Entupindo o Vaso', clicks: 3 },
-      { title: 'Vaso Borbulhando: Sinais, Causas e Diagnóstico', clicks: 3 },
-      { title: 'Desentupimento em São Paulo', clicks: 2 },
-      { title: 'Inquilino Reclama de Entupimento', clicks: 2 },
+      { title: 'Quanto Custa Limpa Fossa? Preços e Serviço Profissional', clicks: 5 },
+      { title: 'Prumada: O Que É, Sua Função e Manutenção Preventiva', clicks: 4 },
+      { title: 'Diabo Verde vs Soda: Qual a Melhor Escolha para Desentupir?', clicks: 4 },
+      { title: 'O Que é Prumada? Guia para Condomínios e Edifícios', clicks: 3 },
+      { title: 'Quanto Custa Limpar Caixa D’Água', clicks: 3 },
     ],
+    generativeAI: {
+      impressions: 1074,
+      clicks: 'Não informado na exportação',
+      cities: 'Não informado na exportação',
+      primaryCountry: 'Brasil',
+      brazilImpressions: 1046,
+      brazilShare: 97.4,
+      dailyImpressions: [
+        { date: '25/08', impressions: 189 },
+        { date: '26/08', impressions: 181 },
+        { date: '27/08', impressions: 160 },
+        { date: '28/08', impressions: 137 },
+        { date: '29/08', impressions: 74 },
+        { date: '30/08', impressions: 115 },
+        { date: '31/08', impressions: 218 },
+      ],
+      devices: [
+        { name: 'Celular', impressions: 755, percentage: 70.3 },
+        { name: 'Computador', impressions: 311, percentage: 29 },
+        { name: 'Tablet', impressions: 8, percentage: 0.7 },
+      ],
+      countries: [
+        { country: 'Brasil', impressions: 1046 },
+        { country: 'Portugal', impressions: 12 },
+        { country: 'Estados Unidos', impressions: 6 },
+        { country: 'Índia', impressions: 2 },
+        { country: 'Ucrânia', impressions: 2 },
+      ],
+      pages: [
+        { title: 'Fossa Rudimentar: O Que É, Funcionamento e Manutenção', impressions: 300 },
+        { title: 'O Que é Prumada? Guia para Condomínios e Edifícios', impressions: 117 },
+        { title: 'Diabo Verde vs Soda: Qual a Melhor Escolha para Desentupir?', impressions: 108 },
+        { title: 'Prumada: O Que É, Sua Função e Manutenção Preventiva', impressions: 90 },
+        { title: 'Fezes Grandes Entupindo o Vaso', impressions: 77 },
+      ],
+    },
   },
 
   ubersuggest: {
-    organicKeywords: 168,
-    organicKeywordsChange: '+9,1%',
-    estimatedOrganicTraffic: 246,
-    estimatedTrafficChange: '-4,3%',
-    backlinks: 53,
-    backlinksChange: '+55,9%',
-    trackedAveragePosition: 29,
-    historicalAveragePosition: 35,
+    organicKeywords: 196,
+    organicKeywordsChange: '+16,7%',
+    estimatedOrganicTraffic: 273,
+    estimatedTrafficChange: '+11,0%',
+    domainAuthority: 10,
+    backlinks: 59,
+    backlinksChange: '+11,3%',
+    paidKeywords: 0,
+    trackedAveragePosition: 67,
+    historicalAveragePosition: 26.75,
     trackedKeywords: 55,
     totalTrackedKeywords: 125,
     keywordsUp: 0,
-    keywordsDown: 1,
-    keywordsUnchanged: 54,
+    keywordsDown: 4,
+    keywordsUnchanged: 51,
     top3: 0,
     top10: 0,
-    top100: 0,
-    notRanked: 55,
+    top100: 1,
+    top100Change: '-75%',
+    notRanked: 54,
+    notRankedChange: '+6%',
     aiVisibility: {
       brandVisibility: 17,
       chatgptVisibility: 16.67,
+      shareOfVoice: 5,
+      chatgptShareOfVoice: 5,
       sentiment: 'Neutro',
       chatgptSentiment: '100% neutro',
     },

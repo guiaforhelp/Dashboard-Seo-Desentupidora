@@ -1,506 +1,55 @@
 import { DashboardData } from '@/types/dashboard';
 
+const escapeHTML = (value: string | number) => String(value).replace(/[&<>'"]/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' })[char] ?? char);
+const formatNumber = (value: number) => value.toLocaleString('pt-BR');
+const formatImpressions = (value: number) => value >= 1000 ? `${(value / 1000).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} mil` : formatNumber(value);
+
 export function generateHTMLContent(data: DashboardData): string {
-  const formatDate = (date: string) => date;
-  const formatNumber = (num: number) => num.toLocaleString('pt-BR');
+  const period = `${data.period.startDate} a ${data.period.endDate}`;
+  const dailyGa4Rows = data.ga4.dailyActivity.map((item) => `<div class="mini-stat"><span>${escapeHTML(item.date)}</span><strong>${item.users}</strong></div>`).join('');
+  const topPageRows = data.ga4.topPages.map((page, index) => `<tr><td>${index + 1}. ${escapeHTML(page.title)}</td><td class="number">${page.views}</td><td>${escapeHTML(page.reading ?? 'Não informado na exportação')}</td></tr>`).join('');
+  const contentUpRows = data.gsc.contentsUp.map((item) => `<tr><td>${escapeHTML(item.title)}</td><td class="number">${item.clicks ?? '—'}</td><td><span class="positive">${escapeHTML(item.changeLabel ?? `${item.change > 0 ? '+' : ''}${item.change}`)}</span></td></tr>`).join('');
+  const contentDownRows = data.gsc.contentsDown.map((item) => `<tr><td>${escapeHTML(item.title)}</td><td class="negative">${item.change}</td></tr>`).join('');
+  const queryUpRows = data.gsc.queriesUp.map((item) => `<tr><td>${escapeHTML(item.query)}</td><td class="number">${item.clicks ?? '—'}</td><td><span class="positive">${escapeHTML(item.changeLabel ?? 'Em alta')}</span></td></tr>`).join('');
+  const queryDownRows = data.gsc.queriesDown.map((item) => `<tr><td>${escapeHTML(item.query)}</td><td class="negative">${item.change}</td></tr>`).join('');
+  const aiDailyRows = data.gsc.generativeAI.dailyImpressions.map((item) => `<div class="mini-stat"><span>${escapeHTML(item.date)}</span><strong>${formatNumber(item.impressions)}</strong></div>`).join('');
+  const aiDeviceRows = data.gsc.generativeAI.devices.map((item) => `<tr><td>${escapeHTML(item.name)}</td><td class="number">${formatNumber(item.impressions)}</td><td>${item.percentage.toLocaleString('pt-BR', { minimumFractionDigits: 1 })}%</td></tr>`).join('');
+  const aiCountryRows = data.gsc.generativeAI.countries.map((item) => `<tr><td>${escapeHTML(item.country)}</td><td class="number">${formatNumber(item.impressions)}</td></tr>`).join('');
+  const aiPageRows = data.gsc.generativeAI.pages.map((item) => `<tr><td>${escapeHTML(item.title)}</td><td class="number">${formatNumber(item.impressions)}</td></tr>`).join('');
+  const rankingStats = [
+    ['Palavras rastreadas', `${data.ubersuggest.trackedKeywords} de ${data.ubersuggest.totalTrackedKeywords}`],
+    ['Palavras que subiram', data.ubersuggest.keywordsUp],
+    ['Palavras que caíram', data.ubersuggest.keywordsDown],
+    ['Sem alteração', data.ubersuggest.keywordsUnchanged],
+    ['Top 3', data.ubersuggest.top3],
+    ['Top 10', data.ubersuggest.top10],
+    ['Top 100', `${data.ubersuggest.top100} · ${data.ubersuggest.top100Change}`],
+    ['Não posicionadas', `${data.ubersuggest.notRanked} · ${data.ubersuggest.notRankedChange}`],
+  ].map(([label, value]) => `<div class="metric-card"><span>${label}</span><strong>${value}</strong></div>`).join('');
 
   return `<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard SEO - ${data.company}</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background-color: #f2f2f7;
-            color: #1a1a1a;
-            line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-        
-        header {
-            background: white;
-            border-bottom: 1px solid #e0e0e0;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            border-radius: 12px;
-        }
-        
-        h1 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #203c50;
-            margin-bottom: 0.5rem;
-        }
-        
-        .period {
-            font-size: 1.1rem;
-            color: #666;
-            margin-bottom: 1rem;
-        }
-        
-        .summary {
-            background: linear-gradient(to right, #f2f2f7, white);
-            padding: 1.5rem;
-            border-radius: 8px;
-            border: 1px solid #e0e0e0;
-            color: #333;
-            line-height: 1.8;
-        }
-        
-        section {
-            background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            border: 1px solid #e0e0e0;
-        }
-        
-        h2 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #203c50;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid #ff6737;
-        }
-        
-        h3 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: #203c50;
-            margin-top: 1.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .kpi-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-        
-        .kpi-card {
-            background: white;
-            border: 1px solid #e0e0e0;
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-        }
-        
-        .kpi-label {
-            font-size: 0.875rem;
-            color: #666;
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-        }
-        
-        .kpi-value {
-            font-family: 'Poppins', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #ff6737;
-        }
-        
-        .data-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem;
-            border-bottom: 1px solid #f0f0f0;
-            background: #fafafa;
-            border-radius: 8px;
-            margin-bottom: 0.5rem;
-        }
-        
-        .data-row:last-child {
-            border-bottom: none;
-        }
-        
-        .data-label {
-            font-weight: 500;
-            color: #333;
-        }
-        
-        .data-value {
-            font-weight: 700;
-            color: #ff6737;
-            font-size: 1.2rem;
-        }
-        
-        .badge {
-            display: inline-block;
-            padding: 0.4rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-        }
-        
-        .badge-success {
-            background: #d1fae5;
-            color: #065f46;
-        }
-        
-        .badge-danger {
-            background: #fee2e2;
-            color: #991b1b;
-        }
-        
-        .badge-warning {
-            background: #fef3c7;
-            color: #92400e;
-        }
-        
-        .insight-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-        
-        .insight-card {
-            background: linear-gradient(135deg, #fff5f0 0%, white 100%);
-            border: 1px solid #ffe0d0;
-            border-radius: 12px;
-            padding: 1.5rem;
-        }
-        
-        .insight-title {
-            font-weight: 700;
-            color: #203c50;
-            margin-bottom: 0.5rem;
-        }
-        
-        .insight-text {
-            font-size: 0.95rem;
-            color: #555;
-            line-height: 1.6;
-        }
-        
-        .action-list {
-            list-style: none;
-            margin-top: 1rem;
-        }
-        
-        .action-list li {
-            padding: 0.75rem 1rem;
-            margin-bottom: 0.5rem;
-            background: #f9f9f9;
-            border-left: 4px solid #ff6737;
-            border-radius: 4px;
-        }
-        
-        .summary-box {
-            background: linear-gradient(135deg, #fff5f0 0%, white 100%);
-            border: 2px solid #ff6737;
-            border-radius: 12px;
-            padding: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .summary-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #333;
-        }
-        
-        .summary-text strong {
-            color: #203c50;
-        }
-        
-        .summary-text .highlight {
-            color: #ff6737;
-            font-weight: 700;
-        }
-        
-        .footer {
-            text-align: center;
-            color: #999;
-            font-size: 0.9rem;
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid #e0e0e0;
-        }
-        
-        .status-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-        
-        .status-item {
-            text-align: center;
-            padding: 1.5rem;
-            background: #f9f9f9;
-            border-radius: 8px;
-        }
-        
-        .status-label {
-            font-size: 0.875rem;
-            color: #666;
-            margin-bottom: 0.5rem;
-        }
-        
-        .status-value {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #ff6737;
-        }
-        
-        @media print {
-            body {
-                background: white;
-            }
-            section {
-                page-break-inside: avoid;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <!-- Header -->
-        <header>
-            <h1>Dashboard SEO Semanal — ${data.company}</h1>
-            <div class="period">Período analisado: ${formatDate(data.period.startDate)} a ${formatDate(data.period.endDate)}</div>
-            <div class="summary">
-                <p>No período analisado, o site registrou ${data.ga4.activeUsers} usuários ativos, ${data.ga4.pageViews} visualizações e ${data.ga4.conversions} conversões via Whatsapp Flutuante. O Google Search Console registrou ${data.gsc.clicks} cliques e ${formatNumber(data.gsc.impressions)} impressões, com CTR média de ${data.gsc.ctr}% e posição média de ${data.gsc.avgPosition.toFixed(1)}. A auditoria técnica aponta atenção para performance mobile, sitemap.xml e uma página 4XX.</p>
-            </div>
-        </header>
-
-        <!-- GA4 Section -->
-        <section>
-            <h2>Desempenho do Site — Google Analytics</h2>
-            
-            <div class="kpi-grid">
-                <div class="kpi-card">
-                    <div class="kpi-label">Usuários Ativos</div>
-                    <div class="kpi-value">${data.ga4.activeUsers}</div>
-                </div>
-                <div class="kpi-card">
-                    <div class="kpi-label">Novos Usuários</div>
-                    <div class="kpi-value">${data.ga4.newUsers}</div>
-                </div>
-                <div class="kpi-card">
-                    <div class="kpi-label">Tempo Médio</div>
-                    <div class="kpi-value">${data.ga4.engagementTime}</div>
-                </div>
-                <div class="kpi-card">
-                    <div class="kpi-label">Visualizações</div>
-                    <div class="kpi-value">${data.ga4.pageViews}</div>
-                </div>
-                <div class="kpi-card">
-                    <div class="kpi-label">Conversões</div>
-                    <div class="kpi-value">${data.ga4.conversions}</div>
-                </div>
-            </div>
-
-            <h3>Páginas Mais Acessadas</h3>
-            ${data.ga4.topPages.map((page) => `
-                <div class="data-row">
-                    <div class="data-label">${page.title}</div>
-                    <div class="data-value">${page.views} visualizações</div>
-                </div>
-            `).join('')}
-
-            <h3>Dispositivos</h3>
-            ${data.ga4.devices.map((device) => `
-                <div class="data-row">
-                    <div class="data-label">${device.name}</div>
-                    <div class="data-value">${device.percentage.toFixed(1)}%</div>
-                </div>
-            `).join('')}
-
-            <h3>Localização dos Usuários</h3>
-            ${data.ga4.locations.map((loc) => `
-                <div class="data-row">
-                    <div class="data-label">${loc.city}</div>
-                    <div class="data-value">${loc.count} usuários</div>
-                </div>
-            `).join('')}
-        </section>
-
-        <!-- GSC Section -->
-        <section>
-            <h2>Visibilidade no Google — Search Console</h2>
-            
-            <div class="kpi-grid">
-                <div class="kpi-card">
-                    <div class="kpi-label">Total de Cliques</div>
-                    <div class="kpi-value">${data.gsc.clicks}</div>
-                </div>
-                <div class="kpi-card">
-                    <div class="kpi-label">Total de Impressões</div>
-                    <div class="kpi-value">${formatNumber(data.gsc.impressions)}</div>
-                </div>
-                <div class="kpi-card">
-                    <div class="kpi-label">CTR Média</div>
-                    <div class="kpi-value">${data.gsc.ctr}%</div>
-                </div>
-                <div class="kpi-card">
-                    <div class="kpi-label">Posição Média</div>
-                    <div class="kpi-value">${data.gsc.avgPosition.toFixed(1)}</div>
-                </div>
-            </div>
-
-            <h3>Consultas em Alta</h3>
-            ${data.gsc.queriesUp.map((query) => `
-                <div class="data-row">
-                    <div class="data-label">${query.query}</div>
-                    <span class="badge badge-success">+${query.change}</span>
-                </div>
-            `).join('')}
-
-            <h3>Conteúdos em Alta</h3>
-            ${data.gsc.contentsUp.map((content) => `
-                <div class="data-row">
-                    <div class="data-label">${content.title}</div>
-                    <span class="badge badge-success">+${content.change}</span>
-                </div>
-            `).join('')}
-
-            <h3>Páginas Principais</h3>
-            ${data.gsc.topContents.map((page: any, idx: number) => `
-                <div class="data-row">
-                    <div class="data-label">${idx + 1}. ${page.title}</div>
-                    <div class="data-value">${page.clicks} cliques</div>
-                </div>
-            `).join('')}
-        </section>
-
-        <!-- Ubersuggest & IA Section -->
-        <section>
-            <h2>Visibilidade, Autoridade e IA — Ubersuggest</h2>
-            <p class="text-muted">Os indicadores do Ubersuggest são estimativas e rastreamentos. Para cliques, impressões, CTR e posição no Google, considerar o Search Console como fonte principal.</p>
-
-            <div class="kpi-grid">
-                <div class="kpi-card">
-                    <div class="kpi-label">Palavras-chave orgânicas</div>
-                    <div class="kpi-value">${data.ubersuggest.organicKeywords}</div>
-                    <span class="badge badge-success">${data.ubersuggest.organicKeywordsChange}</span>
-                </div>
-                <div class="kpi-card">
-                    <div class="kpi-label">Tráfego orgânico estimado</div>
-                    <div class="kpi-value">${data.ubersuggest.estimatedOrganicTraffic}/mês</div>
-                    <span class="badge badge-danger">${data.ubersuggest.estimatedTrafficChange}</span>
-                </div>
-                <div class="kpi-card">
-                    <div class="kpi-label">Backlinks</div>
-                    <div class="kpi-value">${data.ubersuggest.backlinks}</div>
-                    <span class="badge badge-success">${data.ubersuggest.backlinksChange}</span>
-                </div>
-            </div>
-
-            <h3>Posicionamento rastreado</h3>
-            <div class="data-row"><div class="data-label">Posição média rastreada</div><div class="data-value">${data.ubersuggest.trackedAveragePosition.toFixed(2)} (melhora histórica de ${data.ubersuggest.historicalAveragePosition.toFixed(2)})</div></div>
-            <div class="data-row"><div class="data-label">Palavras rastreadas</div><div class="data-value">${data.ubersuggest.trackedKeywords} de ${data.ubersuggest.totalTrackedKeywords}</div></div>
-            <div class="data-row"><div class="data-label">Movimentação</div><div class="data-value">${data.ubersuggest.keywordsUp} em alta · ${data.ubersuggest.keywordsDown} em baixa · ${data.ubersuggest.keywordsUnchanged} sem alteração</div></div>
-            <div class="data-row"><div class="data-label">Distribuição</div><div class="data-value">Top 3: ${data.ubersuggest.top3} · Top 10: ${data.ubersuggest.top10} · Top 100: ${data.ubersuggest.top100} · Não posicionadas: ${data.ubersuggest.notRanked}</div></div>
-
-            <h3>Como a IA vê o site</h3>
-            <div class="kpi-grid">
-                <div class="kpi-card"><div class="kpi-label">Visibilidade da marca em IA</div><div class="kpi-value">${data.ubersuggest.aiVisibility.brandVisibility}%</div></div>
-                <div class="kpi-card"><div class="kpi-label">Visibilidade no ChatGPT</div><div class="kpi-value">${data.ubersuggest.aiVisibility.chatgptVisibility.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</div></div>
-                <div class="kpi-card"><div class="kpi-label">Sentimento da marca</div><div class="kpi-value">${data.ubersuggest.aiVisibility.sentiment}</div></div>
-                <div class="kpi-card"><div class="kpi-label">Sentimento no ChatGPT</div><div class="kpi-value">${data.ubersuggest.aiVisibility.chatgptSentiment}</div></div>
-            </div>
-            <p class="insight-text">A marca já aparece em parte das respostas avaliadas por IA, mas a visibilidade ainda é inicial. O sentimento neutro não indica sinal negativo e abre espaço para reforçar autoridade e associação aos serviços em São Paulo.</p>
-        </section>
-
-        <!-- Insights Section -->
-        <section>
-            <h2>Insights Inteligentes</h2>
-            <div class="insight-grid">
-                <div class="insight-card">
-                    <div class="insight-title">Conversão em Crescimento</div>
-                    <div class="insight-text">O site registrou ${data.ga4.conversions} eventos principais no período, associados a ${data.ga4.conversionEvent.name}. Os cliques devem ser cruzados com o comercial antes de serem considerados leads validados.</div>
-                </div>
-                <div class="insight-card">
-                    <div class="insight-title">Visibilidade no Google</div>
-                    <div class="insight-text">O Search Console registrou ${formatNumber(data.gsc.impressions)} impressões. O site está aparecendo no Google, mas o CTR de ${data.gsc.ctr}% mostra espaço para melhorar títulos e descrições.</div>
-                </div>
-                <div class="insight-card">
-                    <div class="insight-title">SEO Local Estratégico</div>
-                    <div class="insight-text">São Paulo foi a cidade com maior volume de usuários. Isso reforça a importância de continuar criando conteúdos e páginas locais para bairros e regiões estratégicas.</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Action Items -->
-        <section>
-            <h2>Próximas Ações Recomendadas</h2>
-            <ul class="action-list">
-                <li>Corrigir a origem da página “Page not found - Desentupidora JD” e aplicar redirecionamento quando necessário.</li>
-                <li>Validar no comercial os 4 cliques de telefone e WhatsApp para distinguir interação de lead real.</li>
-                <li>Revisar titles, meta descriptions e FAQs das páginas com CTR baixo ou queda de cliques.</li>
-                <li>Adicionar links internos de prumada, vaso, fossa e inquilino para serviços em São Paulo.</li>
-                <li>Melhorar a experiência de leitura e CTAs das páginas de entrada para recuperar engajamento.</li>
-                <li>Produzir conteúdos e menções estruturadas que reforcem marca, serviço e localização em respostas de IA.</li>
-            </ul>
-        </section>
-
-        <!-- Executive Summary -->
-        <section>
-            <h2>Resumo Executivo Final</h2>
-            <div class="summary-box">
-                <p class="summary-text">O período mostra que o SEO da <strong>${data.company}</strong> avançou em usuários, visualizações, cliques orgânicos e interações de contato. Foram registrados <span class="highlight">${data.ga4.conversions} eventos principais via ${data.ga4.conversionEvent.name}</span>, ainda sujeitos à validação comercial.</p>
-                <p class="summary-text" style="margin-top: 1rem;">O próximo ganho depende de <strong>corrigir a página 404, elevar o engajamento</strong> e <strong>transformar artigos informativos em caminhos claros para serviços em São Paulo</strong>. A nova leitura de IA complementa o SEO tradicional ao acompanhar como a marca começa a aparecer em respostas de inteligência artificial.</p>
-                
-                <div class="status-grid">
-                    <div class="status-item">
-                        <div class="status-label">Status Geral</div>
-                        <div class="status-value">✓ Positivo</div>
-                    </div>
-                    <div class="status-item">
-                        <div class="status-label">Prioridade</div>
-                        <div class="status-value">Alta</div>
-                    </div>
-                    <div class="status-item">
-                        <div class="status-label">Próximo Período</div>
-                        <div class="status-value">Monitorar</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <div class="footer">
-            <p>Relatório gerado automaticamente • Dashboard SEO Premium</p>
-            <p>${data.company} © 2026</p>
-        </div>
-    </div>
-</body>
-</html>`;
+<html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Dashboard SEO — ${escapeHTML(data.company)}</title>
+<style>
+  *{box-sizing:border-box} body{margin:0;background:#f2f2f7;color:#2b3740;font-family:Arial,sans-serif;line-height:1.5}.container{max-width:1180px;margin:0 auto;padding:32px 20px}.hero{background:linear-gradient(110deg,#203c50,#44515c,#a65b37);color:#fff;border-radius:28px;padding:34px;margin-bottom:28px}.badge{display:inline-block;border:1px solid #ffffff33;border-radius:999px;padding:6px 10px;font-size:12px;font-weight:700;letter-spacing:.4px}.hero-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:24px;align-items:end}.hero h1{font-size:42px;line-height:1.1;margin:16px 0 10px}.hero p{max-width:640px;color:#edf2f4}.hero-kpis,.grid{display:grid;gap:14px}.hero-kpis{grid-template-columns:repeat(2,1fr)}.hero-kpi{padding:14px;border:1px solid #ffffff40;border-radius:15px;background:#323c46cc;text-align:center}.hero-kpi span,.metric-card span,.kpi span{display:block;color:#65717a;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.4px}.hero-kpi span{color:#dfe6ea}.hero-kpi strong{font-size:28px}.section{background:#fff;border:1px solid #dfe6ea;border-radius:18px;padding:26px;margin-bottom:22px}.section h2{margin:0 0 8px;color:#203c50;font-size:27px}.section h3{color:#203c50;margin:26px 0 12px;font-size:18px}.sub{margin:0 0 20px;color:#65717a;font-size:14px}.grid.kpis{grid-template-columns:repeat(5,1fr)}.grid.two{grid-template-columns:repeat(2,1fr)}.grid.three{grid-template-columns:repeat(3,1fr)}.grid.six{grid-template-columns:repeat(3,1fr)}.kpi,.metric-card{border:1px solid #dfe6ea;border-radius:13px;padding:16px;background:#fff}.kpi strong,.metric-card strong{display:block;color:#203c50;font-size:26px;margin-top:7px}.metric-card strong{font-size:20px}.callout{margin-top:18px;border-left:4px solid #ff6737;background:#fff5f0;padding:14px 16px;color:#60321f;font-size:14px}.callout.blue{border-color:#203c50;background:#eef5f8;color:#203c50}.ai-header{margin:-26px -26px 22px;padding:24px 26px;background:#203c50;color:#fff;border-radius:18px 18px 0 0}.ai-header h2{color:#fff}.ai-header p{color:#e3edf2;margin:8px 0 0;font-size:14px}.mini-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:9px}.mini-stat{border:1px solid #dfe6ea;border-radius:10px;padding:11px;text-align:center;background:#fafbfc}.mini-stat span{display:block;color:#65717a;font-size:12px}.mini-stat strong{display:block;color:#203c50;font-size:18px;margin-top:3px}table{width:100%;border-collapse:collapse;font-size:14px}th{text-align:left;color:#65717a;font-size:12px;text-transform:uppercase;letter-spacing:.35px;border-bottom:1px solid #dfe6ea;padding:10px 8px}td{padding:11px 8px;border-bottom:1px solid #eef1f3;vertical-align:top}.number{text-align:right;font-weight:700;color:#203c50}.positive{color:#18784b;font-weight:700}.negative{color:#bd3b3b;font-weight:700}.dark-panel{background:#f4f8fa;border:1px solid #cbdbe4;border-radius:14px;padding:18px}.footer{text-align:center;color:#65717a;padding:20px;font-size:12px}@media(max-width:760px){.hero-grid,.grid.two,.grid.three,.grid.six{grid-template-columns:1fr}.grid.kpis{grid-template-columns:repeat(2,1fr)}.mini-grid{grid-template-columns:repeat(2,1fr)}.hero h1{font-size:34px}.container{padding:18px 12px}.section{padding:20px}.ai-header{margin:-20px -20px 18px;padding:20px}.hero{padding:24px}}
+</style></head><body><main class="container">
+  <header class="hero"><div class="hero-grid"><div><span class="badge">JD · INTELIGÊNCIA SEO SEMANAL</span><h1>${escapeHTML(data.company)}</h1><p>Últimos 7 dias (${escapeHTML(period)}) — visão executiva orientada a tráfego, visibilidade, engajamento e oportunidades de crescimento orgânico.</p></div><div class="hero-kpis"><div class="hero-kpi"><span>Usuários ativos</span><strong>${data.ga4.activeUsers}</strong></div><div class="hero-kpi"><span>Cliques orgânicos</span><strong>${data.gsc.clicks}</strong></div><div class="hero-kpi"><span>Impressões</span><strong>${formatImpressions(data.gsc.impressions)}</strong></div><div class="hero-kpi"><span>Eventos principais</span><strong>${data.ga4.conversions}</strong></div></div></div></header>
+  <section class="section"><h2>Desempenho do Site — Google Analytics 4</h2><p class="sub">Fonte oficial para usuários, comportamento, páginas e eventos principais.</p><div class="grid kpis"><div class="kpi"><span>Usuários ativos</span><strong>${data.ga4.activeUsers}</strong></div><div class="kpi"><span>Novos usuários</span><strong>${data.ga4.newUsers}</strong></div><div class="kpi"><span>Tempo médio</span><strong>${escapeHTML(data.ga4.engagementTime)}</strong></div><div class="kpi"><span>Visualizações</span><strong>${data.ga4.pageViews}</strong></div><div class="kpi"><span>Eventos principais</span><strong>${data.ga4.conversions}</strong></div></div><h3>Tendência diária de usuários ativos</h3><div class="mini-grid">${dailyGa4Rows}</div><div class="callout"><strong>Nota:</strong> a soma dos usuários ativos por dia é 57, enquanto o período registra 55 usuários únicos. Isso é esperado: uma mesma pessoa pode acessar em mais de um dia.</div><h3>Evento principal</h3><div class="dark-panel"><strong>${escapeHTML(data.ga4.conversionEvent.name)}</strong> · ${data.ga4.conversionEvent.count} clique rastreado.<div class="sub" style="margin:8px 0 0">Validar no atendimento se houve contato efetivo e não tratar automaticamente como lead ou venda.</div></div><h3>Páginas mais visualizadas</h3><table><thead><tr><th>Página</th><th class="number">Visualizações</th><th>Leitura</th></tr></thead><tbody>${topPageRows}</tbody></table><div class="callout"><strong>Alerta prioritário:</strong> a página 404 continua sendo a URL mais visualizada. Identificar URLs de origem, links internos e links externos quebrados.</div></section>
+  <section class="section"><h2>Visibilidade no Google — Search Console</h2><p class="sub">Fonte oficial para cliques, impressões, CTR, posição média, consultas e conteúdos orgânicos.</p><div class="grid kpis"><div class="kpi"><span>Cliques orgânicos</span><strong>${data.gsc.clicks}</strong><small class="positive">${data.gsc.clicksChange}</small></div><div class="kpi"><span>Impressões</span><strong>${formatImpressions(data.gsc.impressions)}</strong><small class="negative">${data.gsc.impressionsChange}</small></div><div class="kpi"><span>CTR médio</span><strong>${data.gsc.ctr.toLocaleString('pt-BR', { minimumFractionDigits: 1 })}%</strong><small class="positive">de ${data.gsc.ctrPrevious.toLocaleString('pt-BR', { minimumFractionDigits: 1 })}%</small></div><div class="kpi"><span>Posição média</span><strong>${data.gsc.avgPosition.toLocaleString('pt-BR', { minimumFractionDigits: 1 })}</strong><small class="positive">de ${data.gsc.avgPositionPrevious.toLocaleString('pt-BR', { minimumFractionDigits: 1 })}</small></div><div class="kpi"><span>Eficiência</span><strong>Em alta</strong><small class="positive">mais cliques com menos impressões</small></div></div><div class="callout blue"><strong>Leitura:</strong> mesmo com menos impressões, a Desentupidora JD gerou mais cliques. CTR e posição média evoluíram levemente.</div><div class="grid two"><div><h3>Conteúdos em alta</h3><table><thead><tr><th>Conteúdo</th><th class="number">Cliques</th><th>Variação</th></tr></thead><tbody>${contentUpRows}</tbody></table></div><div><h3>Conteúdos em queda</h3><table><thead><tr><th>Conteúdo</th><th>Queda</th></tr></thead><tbody>${contentDownRows}</tbody></table></div><div><h3>Consultas em alta</h3><table><thead><tr><th>Consulta</th><th class="number">Cliques</th><th>Variação</th></tr></thead><tbody>${queryUpRows}</tbody></table></div><div><h3>Consultas em queda</h3><table><thead><tr><th>Consulta</th><th>Queda</th></tr></thead><tbody>${queryDownRows}</tbody></table></div></div></section>
+  <section class="section"><div class="ai-header"><h2>Informações da IA generativa</h2><p>Dados de presença em recursos de IA generativa do Google. Este recorte não representa tráfego adicional e não deve ser somado ao desempenho orgânico tradicional.</p></div><div class="grid six"><div class="metric-card"><span>Impressões em IA generativa</span><strong>${formatNumber(data.gsc.generativeAI.impressions)}</strong></div><div class="metric-card"><span>Cliques</span><strong style="font-size:16px">${escapeHTML(data.gsc.generativeAI.clicks)}</strong></div><div class="metric-card"><span>Cidades</span><strong style="font-size:16px">${escapeHTML(data.gsc.generativeAI.cities)}</strong></div><div class="metric-card"><span>País predominante</span><strong>${escapeHTML(data.gsc.generativeAI.primaryCountry)}</strong></div><div class="metric-card"><span>Impressões do Brasil</span><strong>${formatNumber(data.gsc.generativeAI.brazilImpressions)}</strong></div><div class="metric-card"><span>Participação do Brasil</span><strong>${data.gsc.generativeAI.brazilShare.toLocaleString('pt-BR', { minimumFractionDigits: 1 })}%</strong></div></div><h3>Tendência diária de impressões em IA generativa</h3><div class="mini-grid">${aiDailyRows}</div><div class="grid two"><div><h3>Dispositivos</h3><table><thead><tr><th>Dispositivo</th><th class="number">Impressões</th><th>Participação</th></tr></thead><tbody>${aiDeviceRows}</tbody></table></div><div><h3>Países</h3><table><thead><tr><th>País</th><th class="number">Impressões</th></tr></thead><tbody>${aiCountryRows}</tbody></table></div></div><h3>Páginas mais exibidas em IA generativa</h3><table><thead><tr><th>Página</th><th class="number">Impressões</th></tr></thead><tbody>${aiPageRows}</tbody></table><div class="callout blue"><strong>Leitura:</strong> a presença em IA generativa é majoritariamente brasileira e mobile. Os conteúdos sobre fossa rudimentar, prumada, soda e vaso sanitário devem receber links internos para serviços relacionados em São Paulo.</div></section>
+  <section class="section"><h2>Visibilidade, Autoridade e IA — Ubersuggest</h2><p class="sub">Estimativas e rastreamentos da ferramenta; utilizar o Search Console como fonte principal para cliques, impressões, CTR e posição no Google.</p><div class="grid kpis"><div class="kpi"><span>Palavras-chave orgânicas</span><strong>${data.ubersuggest.organicKeywords}</strong><small class="positive">${data.ubersuggest.organicKeywordsChange}</small></div><div class="kpi"><span>Tráfego orgânico estimado</span><strong>${data.ubersuggest.estimatedOrganicTraffic}/mês</strong><small class="positive">${data.ubersuggest.estimatedTrafficChange}</small></div><div class="kpi"><span>Domain Authority</span><strong>${data.ubersuggest.domainAuthority}</strong></div><div class="kpi"><span>Backlinks</span><strong>${data.ubersuggest.backlinks}</strong><small class="positive">${data.ubersuggest.backlinksChange}</small></div><div class="kpi"><span>Palavras-chave pagas</span><strong>${data.ubersuggest.paidKeywords}</strong></div></div><h3>Palavras-chave rastreadas</h3><div class="grid three"><div class="metric-card"><span>Posição média</span><strong>${data.ubersuggest.historicalAveragePosition.toLocaleString('pt-BR', { minimumFractionDigits: 2 })} → ${data.ubersuggest.trackedAveragePosition.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</strong><small class="negative">piora de ${(data.ubersuggest.trackedAveragePosition - data.ubersuggest.historicalAveragePosition).toLocaleString('pt-BR', { minimumFractionDigits: 2 })} posições</small></div><div class="metric-card"><span>Cobertura acompanhada</span><strong>${data.ubersuggest.trackedKeywords}/${data.ubersuggest.totalTrackedKeywords}</strong></div><div class="metric-card"><span>Diagnóstico</span><strong style="font-size:18px">Revisar termos e destinos</strong></div></div><div class="grid" style="grid-template-columns:repeat(4,1fr);margin-top:14px">${rankingStats}</div><h3>Como a IA vê seu site</h3><div class="grid three"><div class="metric-card"><span>Visibilidade em IA</span><strong>${data.ubersuggest.aiVisibility.brandVisibility}%</strong></div><div class="metric-card"><span>Visibilidade no ChatGPT</span><strong>${data.ubersuggest.aiVisibility.chatgptVisibility.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}%</strong></div><div class="metric-card"><span>Share of voice</span><strong>${data.ubersuggest.aiVisibility.shareOfVoice}%</strong></div><div class="metric-card"><span>Share of voice ChatGPT</span><strong>${data.ubersuggest.aiVisibility.chatgptShareOfVoice}%</strong></div><div class="metric-card"><span>Sentimento da marca</span><strong>${escapeHTML(data.ubersuggest.aiVisibility.sentiment)}</strong></div><div class="metric-card"><span>Sentimento no ChatGPT</span><strong>${escapeHTML(data.ubersuggest.aiVisibility.chatgptSentiment)}</strong></div></div></section>
+  <section class="section"><h2>Plano de ação prioritário</h2><ol><li>Corrigir a origem da página “Page not found - Desentupidora JD” e criar redirecionamentos corretos.</li><li>Revisar title, meta description, CTA e links internos da página de Desentupimento em São Paulo.</li><li>Criar links internos dos artigos de fossa, prumada, caixa-d’água, soda e vaso para serviços da JD em São Paulo.</li><li>Validar possível canibalização entre URLs que disputam buscas sobre prumada.</li><li>Revisar as 55 palavras rastreadas no Ubersuggest, priorizando termos locais e comerciais.</li><li>Padronizar a mensuração de eventos, conversas, leads, orçamentos, agendamentos e serviços concluídos.</li><li>Aprofundar conteúdos que aparecem em IA generativa, conectando informação útil a CTAs locais.</li></ol><div class="callout"><strong>Fechamento:</strong> a semana trouxe menos usuários no GA4, porém mais engajados. O Search Console ganhou eficiência; a página 404 e a home de São Paulo exigem atenção; e a área de IA generativa deve ser acompanhada sem ser misturada ao SEO orgânico tradicional.</div></section>
+  <footer class="footer">Relatório SEO Premium · ${escapeHTML(data.company)} · 2026</footer>
+</main></body></html>`;
 }
 
-export function downloadHTML(html: string, filename: string) {
-  const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
-  const link = document.createElement('a');
+export function downloadHTML(content: string, filename: string) {
+  const blob = new Blob([content], { type: 'text/html;charset=utf-8' });
   const url = URL.createObjectURL(blob);
-  
-  link.setAttribute('href', url);
-  link.setAttribute('download', filename);
-  link.style.visibility = 'hidden';
-  
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = filename;
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
-  
   URL.revokeObjectURL(url);
 }

@@ -1,5 +1,5 @@
-// Estilo JD: o cabeçalho em gradiente azul e laranja estabelece a assinatura do relatório executivo semanal.
-import { Settings, Download } from 'lucide-react';
+// Estilo JD: capa executiva com lockup próprio, gradiente azul-laranja e KPIs de alta hierarquia.
+import { Download, Settings, Sparkles } from 'lucide-react';
 
 interface DashboardHeaderProps {
   period: { startDate: string; endDate: string };
@@ -9,116 +9,32 @@ interface DashboardHeaderProps {
   onDownload: () => void;
 }
 
-export default function DashboardHeader({
-  period,
-  company,
-  summary,
-  onSettings,
-  onDownload,
-}: DashboardHeaderProps) {
+const headerKpis = [
+  { label: 'Usuários ativos', value: '55' },
+  { label: 'Cliques orgânicos', value: '42' },
+  { label: 'Impressões', value: '6,72 mil' },
+  { label: 'Eventos principais', value: '1' },
+];
+
+export default function DashboardHeader({ period, company, summary, onSettings, onDownload }: DashboardHeaderProps) {
   return (
     <div className="bg-[#f2f2f7] py-6">
       <div className="container">
-        <div className="bg-gradient-to-r from-[#203c50] via-[#2a4d63] to-[#8b5a3c] rounded-[32px] p-8 flex items-center justify-between">
-          {/* Left Content */}
-          <div className="flex-1 pr-8">
-            {/* Badge */}
-            <div className="inline-block mb-4">
-              <span 
-                className="px-4 py-2 text-white text-xs font-bold tracking-wider rounded-full border"
-                style={{
-                  backgroundColor: '#224055',
-                  borderColor: '#4b5057'
-                }}
-              >
-                JD • INTELIGÊNCIA SEO SEMANAL
-              </span>
+        <header className="relative flex flex-col gap-8 overflow-hidden rounded-[32px] bg-gradient-to-r from-[#183347] via-[#274d64] to-[#895838] p-8 shadow-[0_18px_45px_rgba(32,60,80,0.16)] lg:flex-row lg:items-center lg:justify-between">
+          <div className="absolute -right-14 -top-16 h-56 w-56 rounded-full border border-white/10" />
+          <div className="absolute -right-2 -bottom-24 h-56 w-56 rounded-full border border-white/10" />
+          <div className="relative z-10 flex-1 lg:pr-8">
+            <div className="mb-5 flex items-center gap-3">
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#ff6737] font-poppins text-sm font-bold text-white shadow-lg">JD</span>
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-2 text-xs font-bold tracking-[0.12em] text-white"><Sparkles className="h-3.5 w-3.5 text-[#ff6737]" />RELATÓRIO EXECUTIVO · SEO &amp; IA</span>
             </div>
-
-            {/* Title */}
-            <h1 className="text-5xl font-bold text-white mb-4" style={{ fontFamily: "'Poppins', sans-serif" }}>
-              {company}
-            </h1>
-
-            {/* Description */}
-            <p className="text-gray-200 text-sm leading-relaxed max-w-md">
-              Últimos 7 dias ({period.startDate} a {period.endDate}) — visão executiva, clara e orientada a performance, com foco em tráfego, visibilidade, conversão e oportunidades de crescimento orgânico.
-            </p>
-
-            {/* Action Buttons */}
-            <div className="flex gap-3 mt-6">
-              <button
-                onClick={onSettings}
-                className="flex items-center gap-2 px-4 py-2 bg-[#ff6737] text-white rounded-lg hover:bg-[#e55a28] transition-colors duration-200 font-medium shadow-lg"
-              >
-                <Settings className="w-5 h-5" />
-                <span>Novos Dados</span>
-              </button>
-              <button
-                onClick={onDownload}
-                className="flex items-center gap-2 px-4 py-2 bg-white text-[#203c50] rounded-lg hover:bg-gray-100 transition-colors duration-200 font-medium shadow-lg"
-              >
-                <Download className="w-5 h-5" />
-                <span>Download</span>
-              </button>
-            </div>
+            <h1 className="mb-4 text-5xl font-bold tracking-[-0.035em] text-white md:text-[56px]" style={{ fontFamily: "'Poppins', sans-serif" }}>{company}</h1>
+            <p className="max-w-md text-sm leading-relaxed text-gray-200">Últimos 7 dias ({period.startDate} a {period.endDate}) — inteligência de SEO, IA generativa e oportunidades comerciais para São Paulo.</p>
+            <p className="sr-only">{summary}</p>
+            <div className="mt-6 flex gap-3"><button onClick={onSettings} className="flex items-center gap-2 rounded-lg bg-[#ff6737] px-4 py-2 font-medium text-white shadow-lg transition-colors duration-200 hover:bg-[#e55a28]"><Settings className="h-5 w-5" /><span>Novos Dados</span></button><button onClick={onDownload} className="flex items-center gap-2 rounded-lg bg-white px-4 py-2 font-medium text-[#203c50] shadow-lg transition-colors duration-200 hover:bg-gray-100"><Download className="h-5 w-5" /><span>Download</span></button></div>
           </div>
-
-          {/* Right KPI Cards */}
-          <div className="grid grid-cols-2 gap-4">
-            {/* Usuários Ativos */}
-            <div 
-              className="backdrop-blur-sm rounded-xl p-4 text-center"
-              style={{
-                backgroundColor: '#4b5057',
-                borderColor: '#9e9e9e',
-                border: '1px solid #9e9e9e'
-              }}
-            >
-              <p className="text-gray-300 text-xs font-semibold tracking-wide mb-2">USUÁRIOS ATIVOS</p>
-              <p className="text-white text-3xl font-bold" style={{ fontFamily: "'Poppins', sans-serif" }}>72</p>
-            </div>
-
-            {/* Cliques Orgânicos */}
-            <div 
-              className="backdrop-blur-sm rounded-xl p-4 text-center"
-              style={{
-                backgroundColor: '#4b5057',
-                borderColor: '#9e9e9e',
-                border: '1px solid #9e9e9e'
-              }}
-            >
-              <p className="text-gray-300 text-xs font-semibold tracking-wide mb-2">CLIQUES ORGÂNICOS</p>
-              <p className="text-white text-3xl font-bold" style={{ fontFamily: "'Poppins', sans-serif" }}>35</p>
-            </div>
-
-            {/* Impressões */}
-            <div 
-              className="backdrop-blur-sm rounded-xl p-4 text-center"
-              style={{
-                backgroundColor: '#4b5057',
-                borderColor: '#9e9e9e',
-                border: '1px solid #9e9e9e'
-              }}
-            >
-              <p className="text-gray-300 text-xs font-semibold tracking-wide mb-2">IMPRESSÕES</p>
-              <p className="text-white text-3xl font-bold" style={{ fontFamily: "'Poppins', sans-serif" }}>7.07 mil</p>
-            </div>
-
-            {/* Conversões */}
-            <div 
-              className="backdrop-blur-sm rounded-xl p-4 text-center"
-              style={{
-                backgroundColor: '#4b5057',
-                borderColor: '#9e9e9e',
-                border: '1px solid #9e9e9e'
-              }}
-            >
-              <p className="text-gray-300 text-xs font-semibold tracking-wide mb-2">EVENTOS PRINCIPAIS</p>
-              <p className="text-white text-3xl font-bold" style={{ fontFamily: "'Poppins', sans-serif" }}>4</p>
-            </div>
-          </div>
-        </div>
+          <div className="relative z-10 grid w-full grid-cols-2 gap-4 lg:w-auto">{headerKpis.map((kpi) => <div key={kpi.label} className="rounded-xl border border-white/25 bg-white/10 p-4 text-center backdrop-blur-sm"><p className="mb-2 text-xs font-semibold tracking-wide text-gray-200">{kpi.label.toUpperCase()}</p><p className="text-3xl font-bold text-white" style={{ fontFamily: "'Poppins', sans-serif" }}>{kpi.value}</p></div>)}</div>
+        </header>
       </div>
     </div>
   );
