@@ -10,9 +10,9 @@ interface DashboardHeaderProps {
 }
 
 const headerKpis = [
-  { label: 'Usuários ativos', value: '55' },
-  { label: 'Cliques orgânicos', value: '42' },
-  { label: 'Impressões', value: '6,72 mil' },
+  { label: 'Usuários ativos', value: '46' },
+  { label: 'Cliques orgânicos', value: '18' },
+  { label: 'Impressões', value: '4,01 mil' },
   { label: 'Eventos principais', value: '1' },
 ];
 

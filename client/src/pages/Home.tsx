@@ -2,7 +2,6 @@ import { useState } from 'react';
 import DashboardHeader from '@/components/DashboardHeader';
 import GA4Section from '@/components/GA4Section';
 import GSCSection from '@/components/GSCSection';
-import GenerativeAISection from '@/components/GenerativeAISection';
 import UbersuggestSection from '@/components/UbersuggestSection';
 import InsightsSection from '@/components/InsightsSection';
 import ActionItemsSection from '@/components/ActionItemsSection';
@@ -10,7 +9,6 @@ import ExecutiveSummarySection from '@/components/ExecutiveSummarySection';
 import WeeklyReadingSection from '@/components/WeeklyReadingSection';
 import RecommendationsSection from '@/components/RecommendationsSection';
 import ComparisonSection from '@/components/ComparisonSection';
-import ConversionPagesSection from '@/components/ConversionPagesSection';
 
 import DataInputPanel from '@/components/DataInputPanel';
 import { DashboardData, defaultDashboardData } from '@/types/dashboard';
@@ -30,7 +28,7 @@ export default function Home() {
     downloadHTML(htmlContent, filename);
   };
 
-  const summary = `No período analisado, o site registrou ${dashboardData.ga4.activeUsers} usuários ativos, ${dashboardData.ga4.pageViews} visualizações e ${dashboardData.ga4.conversions} evento principal de e-mail. O Google Search Console registrou ${dashboardData.gsc.clicks} cliques e ${(dashboardData.gsc.impressions / 1000).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} mil impressões, com CTR média de ${dashboardData.gsc.ctr.toLocaleString('pt-BR', { minimumFractionDigits: 1 })}% e posição média de ${dashboardData.gsc.avgPosition.toLocaleString('pt-BR', { minimumFractionDigits: 1 })}. A página “Page not found - Desentupidora JD” continua como prioridade de correção.`;
+  const summary = `No período analisado, o site registrou ${dashboardData.ga4.activeUsers} usuários ativos, ${dashboardData.ga4.pageViews} visualizações e ${dashboardData.ga4.conversions} evento principal de botão WhatsApp. O Google Search Console registrou ${dashboardData.gsc.clicks} cliques e ${(dashboardData.gsc.impressions / 1000).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} mil impressões, com CTR média de ${dashboardData.gsc.ctr.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}% e posição média de ${dashboardData.gsc.avgPosition.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}.`;
 
   return (
     <div className="min-h-screen bg-[#f2f2f7]">
@@ -48,12 +46,8 @@ export default function Home() {
         {/* GA4 Section */}
         <GA4Section data={dashboardData.ga4} />
 
-        <ConversionPagesSection data={dashboardData.ga4} />
-
         {/* GSC Section */}
         <GSCSection data={dashboardData.gsc} />
-
-        <GenerativeAISection data={dashboardData.gsc.generativeAI} />
 
         {/* Ubersuggest Section */}
         <UbersuggestSection data={dashboardData.ubersuggest} />
