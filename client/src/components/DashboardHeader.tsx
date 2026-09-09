@@ -1,5 +1,5 @@
 // Estilo JD: capa executiva com lockup próprio, gradiente azul-laranja e KPIs de alta hierarquia.
-import { Download, Settings, Sparkles } from 'lucide-react';
+import { Download, FolderOpen, Settings, Sparkles } from 'lucide-react';
 
 interface DashboardHeaderProps {
   period: { startDate: string; endDate: string };
@@ -7,6 +7,7 @@ interface DashboardHeaderProps {
   summary: string;
   onSettings: () => void;
   onDownload: () => void;
+  onFiles: () => void;
 }
 
 const headerKpis = [
@@ -16,7 +17,7 @@ const headerKpis = [
   { label: 'Eventos principais', value: '1' },
 ];
 
-export default function DashboardHeader({ period, company, summary, onSettings, onDownload }: DashboardHeaderProps) {
+export default function DashboardHeader({ period, company, summary, onSettings, onDownload, onFiles }: DashboardHeaderProps) {
   return (
     <div className="bg-[#f2f2f7] py-6">
       <div className="container">
@@ -31,7 +32,7 @@ export default function DashboardHeader({ period, company, summary, onSettings, 
             <h1 className="mb-4 text-5xl font-bold tracking-[-0.035em] text-white md:text-[56px]" style={{ fontFamily: "'Poppins', sans-serif" }}>{company}</h1>
             <p className="max-w-md text-sm leading-relaxed text-gray-200">Últimos 7 dias ({period.startDate} a {period.endDate}) — inteligência de SEO, IA generativa e oportunidades comerciais para São Paulo.</p>
             <p className="sr-only">{summary}</p>
-            <div className="mt-6 flex gap-3"><button onClick={onSettings} className="flex items-center gap-2 rounded-lg bg-[#ff6737] px-4 py-2 font-medium text-white shadow-lg transition-colors duration-200 hover:bg-[#e55a28]"><Settings className="h-5 w-5" /><span>Novos Dados</span></button><button onClick={onDownload} className="flex items-center gap-2 rounded-lg bg-white px-4 py-2 font-medium text-[#203c50] shadow-lg transition-colors duration-200 hover:bg-gray-100"><Download className="h-5 w-5" /><span>Download</span></button></div>
+            <div className="mt-6 flex flex-wrap gap-3"><button onClick={onSettings} className="flex items-center gap-2 rounded-lg bg-[#ff6737] px-4 py-2 font-medium text-white shadow-lg transition-colors duration-200 hover:bg-[#e55a28]"><Settings className="h-5 w-5" /><span>Novos Dados</span></button><button onClick={onDownload} className="flex items-center gap-2 rounded-lg bg-white px-4 py-2 font-medium text-[#203c50] shadow-lg transition-colors duration-200 hover:bg-gray-100"><Download className="h-5 w-5" /><span>Download</span></button><button onClick={onFiles} className="flex items-center gap-2 rounded-lg border border-white/35 bg-white/10 px-4 py-2 font-medium text-white transition-colors duration-200 hover:bg-white/20"><FolderOpen className="h-5 w-5" /><span>Arquivos</span></button></div>
           </div>
           <div className="relative z-10 grid w-full grid-cols-2 gap-4 lg:w-auto">{headerKpis.map((kpi) => <div key={kpi.label} className="rounded-xl border border-white/25 bg-white/10 p-4 text-center backdrop-blur-sm"><p className="mb-2 text-xs font-semibold tracking-wide text-gray-200">{kpi.label.toUpperCase()}</p><p className="text-3xl font-bold text-white" style={{ fontFamily: "'Poppins', sans-serif" }}>{kpi.value}</p></div>)}</div>
         </header>

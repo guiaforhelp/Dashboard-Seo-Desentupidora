@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useLocation } from 'wouter';
 import DashboardHeader from '@/components/DashboardHeader';
 import GA4Section from '@/components/GA4Section';
 import GSCSection from '@/components/GSCSection';
@@ -17,6 +18,7 @@ import { generateHTMLContent, downloadHTML } from '@/lib/exportHTML';
 export default function Home() {
   const [dashboardData, setDashboardData] = useState<DashboardData>(defaultDashboardData);
   const [isPanelOpen, setIsPanelOpen] = useState(false);
+  const [, setLocation] = useLocation();
 
   const handleSaveData = (newData: DashboardData) => {
     setDashboardData(newData);
@@ -39,6 +41,7 @@ export default function Home() {
         summary={summary}
         onSettings={() => setIsPanelOpen(true)}
         onDownload={handleDownload}
+        onFiles={() => setLocation('/arquivos')}
       />
 
       {/* Main Content */}
