@@ -28,7 +28,7 @@ export default function Home() {
     downloadHTML(htmlContent, filename);
   };
 
-  const summary = `No período analisado, o site registrou ${dashboardData.ga4.activeUsers} usuários ativos, ${dashboardData.ga4.pageViews} visualizações e ${dashboardData.ga4.conversions} evento principal de botão WhatsApp. O Google Search Console registrou ${dashboardData.gsc.clicks} cliques e ${(dashboardData.gsc.impressions / 1000).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} mil impressões, com CTR média de ${dashboardData.gsc.ctr.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}% e posição média de ${dashboardData.gsc.avgPosition.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}.`;
+  const summary = `No período analisado, o site registrou ${dashboardData.ga4.activeUsers} usuários ativos, ${dashboardData.ga4.pageViews} visualizações e ${dashboardData.ga4.conversions} evento principal de botão WhatsApp. O Google Search Console registrou ${dashboardData.gsc.clicks} cliques e ${(dashboardData.gsc.impressions / 1000).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} mil impressões, com CTR média de ${dashboardData.gsc.ctr.toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 2 })}% e posição média de ${dashboardData.gsc.avgPosition.toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 2 })}.`;
 
   return (
     <div className="min-h-screen bg-[#f2f2f7]">
