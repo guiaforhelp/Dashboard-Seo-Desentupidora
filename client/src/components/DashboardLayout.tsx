@@ -19,17 +19,17 @@ import {
   SidebarTrigger,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { startLogin } from "@/const";
+import { getLoginUrl } from "@/const";
 import { useIsMobile } from "@/hooks/useMobile";
-import { FolderArchive, LayoutDashboard, LogOut, PanelLeft } from "lucide-react";
+import { LayoutDashboard, LogOut, PanelLeft, Upload, BarChart3 } from "lucide-react";
 import { CSSProperties, useEffect, useRef, useState } from "react";
 import { useLocation } from "wouter";
 import { DashboardLayoutSkeleton } from './DashboardLayoutSkeleton';
 import { Button } from "./ui/button";
 
 const menuItems = [
-  { icon: LayoutDashboard, label: "Dashboard SEO", path: "/" },
-  { icon: FolderArchive, label: "Arquivos", path: "/arquivos" },
+  { icon: LayoutDashboard, label: "Campanhas", path: "/campanhas" },
+  { icon: Upload, label: "Importar JSON", path: "/upload" },
 ];
 
 const SIDEBAR_WIDTH_KEY = "sidebar-width";
@@ -69,7 +69,9 @@ export default function DashboardLayout({
             </p>
           </div>
           <Button
-            onClick={() => startLogin()}
+            onClick={() => {
+              window.location.href = getLoginUrl();
+            }}
             size="lg"
             className="w-full shadow-lg hover:shadow-xl transition-all"
           >
@@ -168,7 +170,8 @@ function DashboardLayoutContent({
               </button>
               {!isCollapsed ? (
                 <div className="flex items-center gap-2 min-w-0">
-                  <span className="font-semibold tracking-tight truncate">
+                  <BarChart3 className="w-5 h-5 text-sidebar-primary shrink-0" />
+                  <span className="font-semibold tracking-tight truncate text-sidebar-foreground">
                     Desentupidora JD
                   </span>
                 </div>
@@ -224,7 +227,7 @@ function DashboardLayoutContent({
                   className="cursor-pointer text-destructive focus:text-destructive"
                 >
                   <LogOut className="mr-2 h-4 w-4" />
-                  <span>Sign out</span>
+                  <span>Sair</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -248,7 +251,7 @@ function DashboardLayoutContent({
               <div className="flex items-center gap-3">
                 <div className="flex flex-col gap-1">
                   <span className="tracking-tight text-foreground">
-                    {activeMenuItem?.label ?? "Desentupidora JD"}
+                    {activeMenuItem?.label ?? "Menu"}
                   </span>
                 </div>
               </div>

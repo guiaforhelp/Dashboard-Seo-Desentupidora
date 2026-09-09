@@ -1,15 +1,17 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-/* Estilo JD: relatório executivo com azul #203c50 e laranja #ff6737 como assinatura visual dominante. */
-
 @custom-variant dark (&:is(.dark *));
+
+/* ─── Google Fonts ─────────────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -25,7 +27,6 @@
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
@@ -45,272 +46,78 @@
 }
 
 :root {
-  /* Dashboard Brand Colors */
-  --brand-primary: #ff6737;
-  --brand-secondary: #203c50;
-  --brand-background: #f2f2f7;
-  --brand-success: #10b981;
-  --brand-danger: #ef4444;
-  --brand-warning: #f59e0b;
-  
-  /* Tailwind Overrides */
-  --primary: #ff6737;
-  --primary-foreground: #ffffff;
-  --sidebar-primary: #ff6737;
-  --sidebar-primary-foreground: #ffffff;
-  --chart-1: #ff6737;
-  --chart-2: #203c50;
-  --chart-3: #10b981;
-  --chart-4: #f59e0b;
-  --chart-5: #ef4444;
   --radius: 0.75rem;
-  
-  /* Light Theme */
-  --background: #f2f2f7;
-  --foreground: #1a1a1a;
-  --card: #ffffff;
-  --card-foreground: #1a1a1a;
-  --popover: #ffffff;
-  --popover-foreground: #1a1a1a;
-  --secondary: #f5f5f5;
-  --secondary-foreground: #333333;
-  --muted: #e5e5e5;
-  --muted-foreground: #666666;
-  --accent: #ff6737;
-  --accent-foreground: #ffffff;
-  --destructive: #ef4444;
-  --destructive-foreground: #ffffff;
-  --border: #e0e0e0;
-  --input: #ffffff;
-  --ring: #ff6737;
-  --sidebar: #ffffff;
-  --sidebar-foreground: #1a1a1a;
-  --sidebar-accent: #f5f5f5;
-  --sidebar-accent-foreground: #ff6737;
-  --sidebar-border: #e0e0e0;
-  --sidebar-ring: #ff6737;
+  font-family: 'Inter', sans-serif;
+
+  /* ── Paleta principal ── */
+  /* Laranja: #ff6737 → oklch(0.68 0.2 35) */
+  /* Azul escuro: #203c50 → oklch(0.31 0.06 230) */
+  /* Fundo: #f2f2f7 → oklch(0.97 0.005 270) */
+
+  --background:        oklch(0.97 0.005 270);   /* #f2f2f7 */
+  --foreground:        oklch(0.31 0.06 230);     /* #203c50 */
+  --card:              oklch(1 0 0);             /* branco */
+  --card-foreground:   oklch(0.31 0.06 230);
+  --popover:           oklch(1 0 0);
+  --popover-foreground: oklch(0.31 0.06 230);
+  --primary:           oklch(0.68 0.2 35);       /* #ff6737 laranja */
+  --primary-foreground: oklch(1 0 0);
+  --secondary:         oklch(0.31 0.06 230);     /* #203c50 azul */
+  --secondary-foreground: oklch(1 0 0);
+  --muted:             oklch(0.93 0.005 270);
+  --muted-foreground:  oklch(0.55 0.04 230);
+  --accent:            oklch(0.95 0.03 35);      /* laranja claro */
+  --accent-foreground: oklch(0.31 0.06 230);
+  --destructive:       oklch(0.62 0.22 25);
+  --border:            oklch(0.88 0.01 270);
+  --input:             oklch(0.88 0.01 270);
+  --ring:              oklch(0.68 0.2 35);
+
+  --chart-1: oklch(0.68 0.2 35);
+  --chart-2: oklch(0.31 0.06 230);
+  --chart-3: oklch(0.55 0.15 145);
+  --chart-4: oklch(0.78 0.15 85);
+  --chart-5: oklch(0.62 0.18 310);
+
+  --sidebar:                    oklch(0.31 0.06 230);  /* azul escuro */
+  --sidebar-foreground:         oklch(0.95 0.01 270);
+  --sidebar-primary:            oklch(0.68 0.2 35);    /* laranja */
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent:             oklch(0.25 0.05 230);
+  --sidebar-accent-foreground:  oklch(0.95 0.01 270);
+  --sidebar-border:             oklch(0.25 0.05 230);
+  --sidebar-ring:               oklch(0.68 0.2 35);
 }
 
 @layer base {
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
-  
-  * {
-    @apply border-border outline-ring/50;
-  }
-  
+  * { @apply border-border outline-ring/50; }
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-background text-foreground;
     font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
   }
-  
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-  }
-  
-  button:not(:disabled),
-  [role="button"]:not([aria-disabled="true"]),
-  [type="button"]:not(:disabled),
-  [type="submit"]:not(:disabled),
-  [type="reset"]:not(:disabled),
-  a[href],
-  select:not(:disabled),
-  input[type="checkbox"]:not(:disabled),
-  input[type="radio"]:not(:disabled) {
-    @apply cursor-pointer;
-  }
+  .flex { min-width: 0; min-height: 0; }
+  .container { @apply mx-auto px-4 sm:px-6 lg:px-8; }
 }
 
-@layer components {
-  .container {
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
+/* ─── Utilitários de cor do novo tema ──────────────────────────────────────── */
+@layer utilities {
+  /* Gradiente laranja */
+  .gradient-primary {
+    background: linear-gradient(135deg, #ff6737 0%, #ff8c5a 100%);
   }
+  /* Gradiente azul escuro */
+  .gradient-secondary {
+    background: linear-gradient(135deg, #203c50 0%, #2d5470 100%);
+  }
+  /* Cards de status */
+  .status-green  { @apply bg-green-50 border border-green-200 text-green-800; }
+  .status-yellow { @apply bg-amber-50 border border-amber-200 text-amber-800; }
+  .status-red    { @apply bg-red-50 border border-red-200 text-red-800; }
+  .status-gray   { @apply bg-gray-50 border border-gray-200 text-gray-700; }
 
-  .flex {
-    min-height: 0;
-    min-width: 0;
-  }
-
-  /* Premium Card Styles */
-  .card-premium {
-    @apply bg-white rounded-2xl shadow-sm transition-all duration-200 p-6 border border-[#dfe6ea];
-    box-shadow: 0 5px 18px rgba(32, 60, 80, 0.045);
-  }
-
-  .card-premium-lg {
-    @apply bg-white rounded-2xl shadow-sm p-8 border border-[#dfe6ea];
-    box-shadow: 0 7px 24px rgba(32, 60, 80, 0.06);
-  }
-
-  /* KPI Card */
-  .kpi-card {
-    @apply bg-white rounded-xl shadow-sm p-6 border border-gray-100 transition-all duration-300;
-    animation: slideUp 0.6s ease-out forwards;
-  }
-
-  .kpi-card:hover {
-    @apply shadow-lg border-gray-200;
-    transform: translateY(-4px);
-  }
-
-  @keyframes slideUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes slideUp-delay-1 {
-    0% {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    33% {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes slideUp-delay-2 {
-    0% {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    66% {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .kpi-card:nth-child(2) {
-    animation: slideUp-delay-1 0.8s ease-out forwards;
-  }
-
-  .kpi-card:nth-child(3) {
-    animation: slideUp-delay-2 1s ease-out forwards;
-  }
-
-  .kpi-value {
-    font-family: 'Poppins', sans-serif;
-    @apply text-5xl font-bold text-[#ff6737];
-  }
-
-  .kpi-label {
-    @apply text-sm font-medium text-gray-600 mt-2;
-  }
-
-  /* Section Title */
-  .section-title {
-    font-family: 'Poppins', sans-serif;
-    @apply text-3xl font-bold text-[#203c50] mb-8 border-l-4 border-[#ff6737] pl-4;
-    letter-spacing: -0.025em;
-  }
-
-  .section-subtitle {
-    font-family: 'Poppins', sans-serif;
-    @apply text-lg font-semibold text-[#203c50] mb-4 border-b border-[#203c50]/10 pb-3;
-  }
-
-  /* Badge Styles */
-  .badge-success {
-    @apply inline-flex items-center gap-1 px-3 py-1 bg-green-50 text-green-700 text-xs font-medium rounded-full border border-green-200;
-  }
-
-  .badge-danger {
-    @apply inline-flex items-center gap-1 px-3 py-1 bg-red-50 text-red-700 text-xs font-medium rounded-full border border-red-200;
-  }
-
-  .badge-warning {
-    @apply inline-flex items-center gap-1 px-3 py-1 bg-yellow-50 text-yellow-700 text-xs font-medium rounded-full border border-yellow-200;
-  }
-
-  /* Insight Card */
-  .insight-card {
-    @apply bg-white rounded-xl shadow-sm p-6 border border-[#dfe6ea] border-l-2 border-l-[#203c50] transition-all duration-200;
-  }
-
-  .executive-takeaway {
-    @apply rounded-2xl border border-[#dbe5ec] bg-white p-6 shadow-sm;
-    border-top: 4px solid #203c50;
-    box-shadow: 0 8px 24px rgba(32, 60, 80, 0.06);
-  }
-
-  .executive-takeaway-label {
-    @apply mb-2 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.14em] text-[#203c50];
-  }
-
-  .executive-takeaway-label::before {
-    content: '';
-    width: 8px;
-    height: 8px;
-    border-radius: 999px;
-    background: #ff6737;
-  }
-
-  /* Alert Card */
-  .alert-card {
-    @apply bg-red-50 rounded-xl p-6 border border-red-200;
-  }
-
-  @media (min-width: 640px) {
-    .container {
-      padding-left: 1.5rem;
-      padding-right: 1.5rem;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .container {
-      padding-left: 2rem;
-      padding-right: 2rem;
-      max-width: 1400px;
-    }
-  }
-}
-
-/* Animations */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(100%);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.animate-fade-in-up {
-  animation: fadeInUp 0.5s ease-out;
-}
-
-.animate-slide-in-right {
-  animation: slideInRight 0.3s ease-out;
+  /* Insight cards */
+  .insight-positive  { @apply bg-green-50 border-l-4 border-green-500; }
+  .insight-attention { @apply bg-amber-50 border-l-4 border-amber-500; }
+  .insight-danger    { @apply bg-red-50 border-l-4 border-red-500; }
 }
